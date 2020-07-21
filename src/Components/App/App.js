@@ -5,33 +5,36 @@ import Game from '../Game/Game'
 import {getAllPokemon} from '../../ApiCalls'
 import { Route } from 'react-router-dom';
 
-function App() {
+const App = () => {
   const [allPokemon, setAllPokemon] = useState([]);
-  
+
   useEffect(() => {
     const fetchAllPokemon = async () => {
       try {
         const allPokemon = await getAllPokemon();
-        console.log(allPokemon)
         setAllPokemon(allPokemon)
       } catch (error) {
         console.log(error);
       }
     }
     fetchAllPokemon();
-  }, [])
+  }, []);
 
-  console.log(allPokemon);
+  const getRandomIndex = () => {
+    return Math.floor(Math.random() * allPokemon.length)
+  };
+
   return (
+    
     <main className="App">
       <Header />
-      <Route
+      {allPokemon.length && <Route
         exact
         path="/game"
         render={() => (
-          <Game />
+          <Game answer={allPokemon[getRandomIndex()]}/>
         )}
-      />
+      />}
     </main>
   );
 }

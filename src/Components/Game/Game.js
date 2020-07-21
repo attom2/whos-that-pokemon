@@ -1,6 +1,22 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
-const Game = () => {
+const Game = ({answer: {name, url} } ) => {
+
+  const [singlePokemon, setSinglePokemon] = useState({});
+
+  useEffect(() => {
+    const fetchSinglePokemon = async () => {
+      try {
+        const response = await fetch(url);
+        const singlePokemon = await response.json()
+        setSinglePokemon(singlePokemon)
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    fetchSinglePokemon();
+  }, []);
+  
   return (
     <>
       {/* <h1 styles="font-family:'Pokemon Hollow Normal';font-weight:normal;font-size:42px"> Who's That Pokemon</h1> */}
@@ -8,12 +24,9 @@ const Game = () => {
       <section>
         <input></input>
         <button>SUBMIT</button>
-        {/* <button>A</button>
-        <button>B</button>
-        <button>C</button>
-        <button>D</button> */}
+
+      <h2>{`${name}`} </h2>
       </section>
-      {/* <img /> */}
     </>
   )
 }
