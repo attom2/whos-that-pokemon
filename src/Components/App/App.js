@@ -20,19 +20,22 @@ const App = () => {
     fetchAllPokemon();
   }, []);
 
-  const getRandomIndex = () => {
-    return Math.floor(Math.random() * allPokemon.length)
+  const get4RdmPokemon = () => {
+    const pokemons = [{}, {}, {}, {}]
+    return pokemons.map(emptySlot => {
+      const randomIndex = Math.floor(Math.random() * allPokemon.length)
+      return allPokemon[randomIndex]
+    })
   };
 
   return (
-    
     <main className="App">
       <Header />
       {allPokemon.length && <Route
         exact
         path="/game"
         render={() => (
-          <Game answer={allPokemon[getRandomIndex()]}/>
+          <Game pokemons={get4RdmPokemon()}/>
         )}
       />}
     </main>
