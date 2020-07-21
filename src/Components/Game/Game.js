@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import './Game.css'
 
 const Game = ({answer: {name, url} } ) => {
 
@@ -16,7 +17,6 @@ const Game = ({answer: {name, url} } ) => {
     }
     fetchSinglePokemon();
   }, []);
-  console.log(singlePokemon.sprites)
   return (
     <>
       {/* <h1 styles="font-family:'Pokemon Hollow Normal';font-weight:normal;font-size:42px"> Who's That Pokemon</h1> */}
@@ -27,7 +27,7 @@ const Game = ({answer: {name, url} } ) => {
 
       <h2>{`${name}`} </h2>
       </section>
-      { singlePokemon.sprites && <img src={`${singlePokemon.sprites.front_default}`} alt="pokemon"/> }
+      { singlePokemon.sprites && <img className="single-pokemon" src={`${singlePokemon.sprites.front_default}`} alt="pokemon"/> }
     </>
   )
 }
