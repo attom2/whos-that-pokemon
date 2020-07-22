@@ -4,16 +4,16 @@ import './Header.css'
 
 const Header = () => {
   return (
-    <header>
-      {/* <h1 styles="font-family:'Pokemon Hollow Normal';font-weight:normal;font-size:42px"> Who's That Pokemon</h1> */}
-      <h1> Who's That Pokemon</h1>
-
+    <header className="nav-header">
+      <h1 className="pokemon-title">Who's That Pokémon?</h1>
+      <section className="btn-section">
       <NavLink to='/pokedex'>
         <button> Pokedex </button>
       </NavLink>
       <NavLink to='/game'>
         <button>Game</button>
       </NavLink>
+      </section>
     </header>
   )
 }

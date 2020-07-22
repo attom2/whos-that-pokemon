@@ -18,7 +18,6 @@ const Game = ({pokemons}) => {
 
     const {name, url} = pokemons[Math.floor(Math.random() * pokemons.length)]
 
-
     const fetchSinglePokemon = async () => {
       try {
         const response = await fetch(url);
@@ -30,15 +29,11 @@ const Game = ({pokemons}) => {
     }
     fetchSinglePokemon();
 
-  }, []);
+  }, [pokemons]);
 
   return (
     <>
-      {/* <h1 styles="font-family:'Pokemon Hollow Normal';font-weight:normal;font-size:42px"> Who's That Pokemon</h1> */}
-      <h1> Who's that pokemon Game</h1>
       <section>
-        <input></input>
-        <button>SUBMIT</button>
       {singlePokemon.sprites && (
         <>
         <h2>{`${singlePokemon.forms[0].name}`} </h2>

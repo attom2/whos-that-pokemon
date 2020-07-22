@@ -1,4 +1,6 @@
 .single-pokemon {
   height: 40vh;
   filter: brightness(0%);
+  -webkit-user-drag: none;
 }
+
