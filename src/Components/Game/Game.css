@@ -1,4 +1,18 @@
 .single-pokemon {
   height: 40vh;
   filter: brightness(0%);
+  -webkit-user-drag: none;
+}
+
+.choices {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.pokemon-button {
+  font-size: 31px;
+  height: 10vh;
+  width: 46%;
+  margin: 2%;
+  box-shadow: 2px 2px 3px grey;
 }
