@@ -28,7 +28,6 @@ const Pokedex = ({allPokemon}) => {
       const response = await fetch(url);
       const singlePokemon = await response.json()
       setPokeDetails(singlePokemon)
-      console.log(singlePokemon)
     } catch (error) {
       console.log(error);
     }
