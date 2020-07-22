@@ -4,6 +4,16 @@ import './Game.css'
 const Game = ({pokemons}) => {
   const [singlePokemon, setSinglePokemon] = useState({});
 
+  const createOptionList = () => {
+    return pokemons.map(( pokemon, index ) => {
+      return (
+        <li key={index}>
+          {pokemon.name}
+        </li>
+      )
+    })
+  }
+
   useEffect(() => {
 
     const {name, url} = pokemons[Math.floor(Math.random() * pokemons.length)]
@@ -36,6 +46,9 @@ const Game = ({pokemons}) => {
           src={`${singlePokemon.sprites.front_default}`}
           alt="pokemon"
         />
+        <ul className="choices">
+          {createOptionList()} 
+        </ul>
         </>)
         }
 
