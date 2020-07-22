@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import './Game.css'
 
-const Game = ({pokemons}) => {
+const Game = ({pokemons, get4RdmPokemon}) => {
   const [singlePokemon, setSinglePokemon] = useState({});
   const [winCounter, setWinCounter] = useState(0);
+  const [pokemonChoices, setPokemonChoices] = useState(pokemons)
 
   const createOptionList = () => {
-    return pokemons.map(( pokemon, index ) => {
+    return pokemonChoices.map(( pokemon, index ) => {
       return (
         <button onClick={(event) => checkForWin(event)} id={`${pokemon.name}`} className="pokemon-button" key={index}>
           {pokemon.name}
@@ -19,11 +20,13 @@ const Game = ({pokemons}) => {
     if(winner === event.target.id){
       setWinCounter(winCounter + 1)
     }
+    setPokemonChoices(get4RdmPokemon())
+
     
   }
 
   useEffect(() => {
-    const {name, url} = pokemons[Math.floor(Math.random() * pokemons.length)]
+    const {name, url} = pokemonChoices[Math.floor(Math.random() * pokemonChoices.length)]
 
     const fetchSinglePokemon = async () => {
       try {
@@ -36,7 +39,7 @@ const Game = ({pokemons}) => {
     }
     fetchSinglePokemon();
 
-  }, [pokemons]);
+  }, [pokemonChoices]);
 
   return (
     <>

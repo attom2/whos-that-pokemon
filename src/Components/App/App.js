@@ -35,7 +35,7 @@ const App = () => {
         exact
         path="/game"
         render={() => (
-          <Game pokemons={get4RdmPokemon()}/>
+          <Game get4RdmPokemon={get4RdmPokemon} pokemons={get4RdmPokemon()}/>
         )}
       />}
     </main>
