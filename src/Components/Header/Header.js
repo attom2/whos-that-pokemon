@@ -7,7 +7,7 @@ const Header = () => {
   return (
     <header className="nav-header">
       <input type="checkbox" id="overlay-input" />
-      <label for="overlay-input" id="overlay-button"><span></span></label>
+      <label htmlFor="overlay-input" id="overlay-button"><span></span></label>
       <div id="overlay">
         <ul>
           <NavLink to='/pokedex'>
