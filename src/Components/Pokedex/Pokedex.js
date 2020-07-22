@@ -1,16 +1,25 @@
-import React from 'react'
-import { useState } from 'react'
+import React, { useState } from 'react'
+import PokeDetails from '../PokeDetails/PokeDetails'
 
 const Pokedex = ({allPokemon}) => {
   const [pokeDetails, setPokeDetails] = useState({})
-  const pokeNames = allPokemon.map(poke => {
-   return  <p data-url={poke.url} onClick={(event) => displaySinglePokemon(event)}>{poke.name}</p>
-  })
-  
+
+  const createSelectMenu = () => {
+    const pokeNames = allPokemon.map(poke => {
+     return  <option value={poke.url}>{poke.name}</option>
+    })
+    return (
+      <form className="poke-list">
+        <select
+          onChange={(event) => {displaySinglePokemon(event)}}>
+          {pokeNames}
+        </select>
+      </form>
+    )
+  }
+
   const displaySinglePokemon = (event) => {
-
-    fetchSinglePokemon(event.target.dataset.url)
-
+    fetchSinglePokemon(event.target.value)
   }
 
 
@@ -19,7 +28,6 @@ const Pokedex = ({allPokemon}) => {
       const response = await fetch(url);
       const singlePokemon = await response.json()
       setPokeDetails(singlePokemon)
-      console.log(singlePokemon)
     } catch (error) {
       console.log(error);
     }
@@ -28,11 +36,14 @@ const Pokedex = ({allPokemon}) => {
 
 
   return (
-    <section>{pokeNames}</section>
+    <>
+      {createSelectMenu()}
+      {pokeDetails.forms && <PokeDetails details={pokeDetails}/> }
+    </>
     )
 
-  
-  
+
+
 
 
 
