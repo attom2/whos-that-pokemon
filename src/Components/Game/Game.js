@@ -19,6 +19,8 @@ const Game = ({pokemons, get4RdmPokemon}) => {
     const winner = singlePokemon.forms[0].name
     if(winner === event.target.id){
       setWinCounter(winCounter + 1)
+    } else {
+      setWinCounter(0)
     }
     setPokemonChoices(get4RdmPokemon())
 
