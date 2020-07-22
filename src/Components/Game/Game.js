@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './Game.css'
+import '../../assets/whos-that-pokemon_.mp3'
 
 const Game = ({pokemons, get4RdmPokemon}) => {
   const [singlePokemon, setSinglePokemon] = useState({});
@@ -15,6 +16,14 @@ const Game = ({pokemons, get4RdmPokemon}) => {
       )
     })
   }
+
+  const playAudio = () => {
+  const whosThat = document.getElementsByClassName('pokemonSound')[0]
+  console.log(whosThat, 'WHOSTHAT')
+  if(whosThat){
+    whosThat.play()
+    }
+  }
   const checkForWin = (event) => {
     const winner = singlePokemon.forms[0].name
     if(winner === event.target.id){
@@ -23,8 +32,6 @@ const Game = ({pokemons, get4RdmPokemon}) => {
       setWinCounter(0)
     }
     setPokemonChoices(get4RdmPokemon())
-
-    
   }
 
   useEffect(() => {
@@ -59,8 +66,11 @@ const Game = ({pokemons, get4RdmPokemon}) => {
         </section>
         </>)
         }
-
+ <audio className='pokemonSound'>
+        <source src='../../assets/whos-that-pokemon_.mp3'></source>
+      </audio>
       </section>
+      {playAudio()}
     </>
   )
 }

@@ -4,6 +4,8 @@ import Header from '../Header/Header'
 import Game from '../Game/Game'
 import {getAllPokemon} from '../../ApiCalls'
 import { Route } from 'react-router-dom';
+import Pokedex from '../Pokedex/Pokedex'
+
 
 const App = () => {
   const [allPokemon, setAllPokemon] = useState([]);
@@ -38,6 +40,7 @@ const App = () => {
           <Game get4RdmPokemon={get4RdmPokemon} pokemons={get4RdmPokemon()}/>
         )}
       />}
+      <Route path='/pokedex' render={() => <Pokedex allPokemon={allPokemon}/>}/>
     </main>
   );
 }
