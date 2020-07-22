@@ -25,21 +25,9 @@ src: local('Pokemon Hollow Normal'), url('Pokemon Hollow.woff') format('woff');
 font-family: 'Pokemon Solid Normal';
 font-style: normal;
 font-weight: normal;
-src: local('Pokemon Solid Normal'), url('Pokemon Solid.woff') format('woff');
+src: local('Pokemon Solid Normal'), url('../../assets/Pokemon Solid.woff') format('woff');
 }
 
-// body {
-//   background: #87cc77;
-//   margin: 0;
-//   font-family: arial;
-//   width: 100vw;
-//   height: 100vh;
-//   animation: bugfix infinite 1s;
-//   -webkit-animation: bugfix infinite 1s;
-// }
-
-// @keyframes bugfix { from {padding:0;} to {padding:0;}}
-// @-webkit-keyframes bugfix { from {padding:0;} to {padding:0;}}
 
 #overlay-button {
   position: absolute;
