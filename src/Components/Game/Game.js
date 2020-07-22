@@ -7,9 +7,9 @@ const Game = ({pokemons}) => {
   const createOptionList = () => {
     return pokemons.map(( pokemon, index ) => {
       return (
-        <li key={index}>
+        <button className="pokemon-button" key={index}>
           {pokemon.name}
-        </li>
+        </button>
       )
     })
   }
@@ -41,9 +41,9 @@ const Game = ({pokemons}) => {
           src={`${singlePokemon.sprites.front_default}`}
           alt="pokemon"
         />
-        <ul className="choices">
+        <section className="choices">
           {createOptionList()} 
-        </ul>
+        </section>
         </>)
         }
 
