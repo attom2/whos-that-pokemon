@@ -1,9 +1,10 @@
 import React from 'react'
 import Pokedex from './Pokedex'
-import { render, fireEvent, waitFor } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import { MemoryRouter } from 'react-router-dom'
 import "@testing-library/jest-dom";
 import { getSinglePokemon } from '../../ApiCalls'
+import userEvent from '@testing-library/user-event'
 
 jest.mock('../../ApiCalls')
 
@@ -47,7 +48,20 @@ describe("Pokedex component", () => {
     expect(selectMenu).toBeInTheDocument();
     expect(pokemonListOptions.length).toEqual(6)
   })
+})
 
+describe("User interactions through Pokedex", () => {
+  it("should pick and display different pokemon's info", async () => {
+    const { getByRole, getAllByRole } = render(
+      <MemoryRouter>
+        <Pokedex allPokemon={pokemonList}/>
+      </MemoryRouter>)
+
+    const selectMenu = getByRole('combobox', {name:'Pokemon List'})
+    userEvent.selectOptions(selectMenu, 'charmeleon')
+
+
+  })
 
 
 })
