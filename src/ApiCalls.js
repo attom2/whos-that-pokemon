@@ -3,3 +3,8 @@ export const getAllPokemon = async () => {
   const pokemon = await response.json()
   return pokemon.results;
 }
+
+export const getSinglePokemon = async (url) => {
+  const response = await fetch(url)
+  return await response.json()
+}

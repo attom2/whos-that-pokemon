@@ -16,7 +16,7 @@ describe('Header', () => {
   })
 
   it('should render buttons for a game and pokedex', () => {
-    const { getByRole, getByText } = render(
+    const { getByText } = render(
     <MemoryRouter><Header /></MemoryRouter>
     )
       const button1 = getByText('Pokedex')

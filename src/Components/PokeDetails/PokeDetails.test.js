@@ -9,10 +9,13 @@ describe('PokeDetails', () => {
   it('should render the pokemons name', () => {
     const { getByRole, getByText } = render(
       <MemoryRouter>
-        <Pokedex />
         <PokeDetails
-        image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/66.png"
-        name='Machop'
+        details = {{
+            name: 'Machop',
+            sprites: {
+              front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/66.png"
+            }
+          }}
         />
       </MemoryRouter>
     )
@@ -26,15 +29,18 @@ describe('PokeDetails', () => {
     it('should render the pokemons image', () => {
     const { getByRole, getByText } = render(
       <MemoryRouter>
-        <Pokedex />
         <PokeDetails
-        image= "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/66.png"
-        name='Machop'
+        details = {{
+            name: 'Machop',
+            sprites: {
+              front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/66.png"
+            }
+          }}
         />
       </MemoryRouter>
     )
 
-    const pokeImage = getByRole('img')
-    expect(pokeImage).toBeInTheDocument()
+    const linkElement = getByRole('img')
+    expect(linkElement).toBeInTheDocument()
   })
 })

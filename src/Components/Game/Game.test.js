@@ -5,5 +5,5 @@ import { BrowserRouter } from 'react-router-dom'
 import '@testing-library/jest-dom'
 
 describe('Game', () => {
-  it()
+  it('should render the pokemon names')
 })
