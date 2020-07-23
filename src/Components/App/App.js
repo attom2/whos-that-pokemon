@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
-import Header from '../Header/Header'
-import Game from '../Game/Game'
-import {getAllPokemon} from '../../ApiCalls'
+import Header from '../Header/Header';
+import Game from '../Game/Game';
+import {getAllPokemon} from '../../ApiCalls';
 import { Route } from 'react-router-dom';
-import Pokedex from '../Pokedex/Pokedex'
+import Pokedex from '../Pokedex/Pokedex';
 
 
 const App = () => {
@@ -14,7 +14,7 @@ const App = () => {
     const fetchAllPokemon = async () => {
       try {
         const allPokemon = await getAllPokemon();
-        setAllPokemon(allPokemon)
+        setAllPokemon(allPokemon);
       } catch (error) {
         console.log(error);
       }

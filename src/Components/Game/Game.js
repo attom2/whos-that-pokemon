@@ -24,6 +24,7 @@ const Game = ({pokemons, get4RdmPokemon}) => {
     whosThat.play()
     }
   }
+
   const checkForWin = (event) => {
     const winner = singlePokemon.name
     if(winner === event.target.id){
@@ -65,7 +66,7 @@ const Game = ({pokemons, get4RdmPokemon}) => {
         </section>
         </>)
         }
- <audio className='pokemonSound'>
+      <audio className='pokemonSound'>
         <source src='../../assets/whos-that-pokemon_.mp3'></source>
       </audio>
       </section>
