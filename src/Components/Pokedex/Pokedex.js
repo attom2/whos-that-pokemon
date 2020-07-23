@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import PokeDetails from '../PokeDetails/PokeDetails'
 import './Pokedex.scss'
+import {getSinglePokemon} from '../../ApiCalls'
 
 const Pokedex = ({allPokemon}) => {
   const [pokeDetails, setPokeDetails] = useState({})
@@ -26,8 +27,7 @@ const Pokedex = ({allPokemon}) => {
 
   const fetchSinglePokemon = async (url) => {
     try {
-      const response = await fetch(url);
-      const singlePokemon = await response.json()
+      const singlePokemon = getSinglePokemon(url)
       setPokeDetails(singlePokemon)
     } catch (error) {
       console.log(error);
