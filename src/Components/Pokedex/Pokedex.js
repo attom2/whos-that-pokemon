@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import PokeDetails from '../PokeDetails/PokeDetails'
+import './Pokedex.scss'
 
 const Pokedex = ({allPokemon}) => {
   const [pokeDetails, setPokeDetails] = useState({})
@@ -36,10 +37,12 @@ const Pokedex = ({allPokemon}) => {
 
 
   return (
-    <>
-      {createSelectMenu()}
-      {pokeDetails.forms && <PokeDetails details={pokeDetails}/> }
-    </>
+    <section className="pokedex-outline">
+      <section className="pokedex-screen">
+        {createSelectMenu()}
+        {pokeDetails.forms && <PokeDetails details={pokeDetails}/> }
+      </section>  
+    </section>
     )
 
 
