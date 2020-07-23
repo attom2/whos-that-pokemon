@@ -1,10 +1,10 @@
-import React from 'react'
-import Pokedex from './Pokedex'
-import { render, waitFor, act } from "@testing-library/react";
-import { MemoryRouter } from 'react-router-dom'
+import React from 'react';
+import Pokedex from './Pokedex';
+import { render, act } from "@testing-library/react";
+import {MemoryRouter} from 'react-router-dom';
 import "@testing-library/jest-dom";
-import { getSinglePokemon } from '../../ApiCalls'
-import userEvent from '@testing-library/user-event'
+import userEvent from '@testing-library/user-event';
+import {getSinglePokemon} from '../../ApiCalls';
 
 jest.mock('../../ApiCalls')
 

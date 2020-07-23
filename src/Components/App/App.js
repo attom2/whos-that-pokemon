@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import './App.css';
 import Header from '../Header/Header'
 import Game from '../Game/Game'
+import Pokedex from '../Pokedex/Pokedex'
 import {getAllPokemon} from '../../ApiCalls'
 import { Route } from 'react-router-dom';
-import Pokedex from '../Pokedex/Pokedex'
 
 
 const App = () => {
