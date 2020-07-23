@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import PokeDetails from '../PokeDetails/PokeDetails'
 import './Pokedex.scss'
+import {getSinglePokemon} from '../../ApiCalls'
 
 const Pokedex = ({allPokemon}) => {
   const [pokeDetails, setPokeDetails] = useState({})
@@ -26,8 +27,8 @@ const Pokedex = ({allPokemon}) => {
 
   const fetchSinglePokemon = async (url) => {
     try {
-      const response = await fetch(url);
-      const singlePokemon = await response.json()
+      const singlePokemon = await getSinglePokemon(url)
+      console.log(singlePokemon)
       setPokeDetails(singlePokemon)
     } catch (error) {
       console.log(error);
@@ -41,18 +42,18 @@ const Pokedex = ({allPokemon}) => {
       <section className="pokedex-screen">
         {createSelectMenu()}
         {pokeDetails.forms && <PokeDetails details={pokeDetails}/> }
-      </section>  
-      <div class="controller">
-        <div class="d-pad-container">
-          <div class="d-pad top"></div>
-          <div class="d-pad left"></div>
-          <div class="d-pad middle"></div>
-          <div class="d-pad right"></div>
-          <div class="d-pad bottom"></div>
+      </section>
+      <div className="controller">
+        <div className="d-pad-container">
+          <div className="d-pad top"></div>
+          <div className="d-pad left"></div>
+          <div className="d-pad middle"></div>
+          <div className="d-pad right"></div>
+          <div className="d-pad bottom"></div>
         </div>
-        <div class="control-buttons">
-          <div class="buttons">B</div>
-          <div class="buttons">A</div>
+        <div className="control-buttons">
+          <div className="buttons">B</div>
+          <div className="buttons">A</div>
         </div>
       </div>
     </section>
