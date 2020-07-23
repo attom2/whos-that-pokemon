@@ -15,7 +15,7 @@ describe('Header', () => {
     expect(linkElement).toBeInTheDocument()
   })
 
-  it('should render a game and pokedex buttons', () => {
+  it('should render buttons for a game and pokedex', () => {
     const { getByRole, getByText } = render(
     <MemoryRouter><Header /></MemoryRouter>
     )
