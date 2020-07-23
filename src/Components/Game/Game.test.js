@@ -36,8 +36,8 @@ describe('Game', () => {
       </BrowserRouter>
     )
     debug()
-    // const gamePage = getByAltText("game-section")
+    const gamePage = getByAltText("game-section")
 
-    // expect(gamePage).toBeInTheDocument()
+    expect(gamePage).toBeInTheDocument()
   })
 })
