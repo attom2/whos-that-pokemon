@@ -40,7 +40,7 @@ const Pokedex = ({allPokemon}) => {
     <section className="pokedex-outline">
       <section className="pokedex-screen">
         {createSelectMenu()}
-        {pokeDetails.forms && <PokeDetails details={pokeDetails}/> }
+        {pokeDetails.name && <PokeDetails details={pokeDetails}/> }
       </section>
       <div className="controller">
         <div className="d-pad-container">
