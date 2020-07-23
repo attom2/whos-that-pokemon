@@ -62,7 +62,7 @@ describe("User interactions through Pokedex", () => {
     })
 
   it("should pick and display different pokemon's info", async () => {
-    const { debug, getByRole, findByRole } = render(
+    const { getByRole, findByRole } = render(
       <MemoryRouter>
         <Pokedex allPokemon={pokemonList}/>
       </MemoryRouter>)
