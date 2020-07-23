@@ -7,16 +7,16 @@ const Pokedex = ({allPokemon}) => {
   const [pokeDetails, setPokeDetails] = useState({})
 
   const createSelectMenu = () => {
-    const pokeNames = allPokemon.map(poke => {
-     return  <option value={poke.url}>{poke.name}</option>
+    const pokeNames = allPokemon.map((poke, index) => {
+     return  <option value={poke.url} key={index}>{poke.name}</option>
     })
     return (
-      <form className="poke-list">
-        <select
-          onChange={(event) => {displaySinglePokemon(event)}}>
-          {pokeNames}
-        </select>
-      </form>
+      <select
+        title="Pokemon List"
+        onChange={(event) => {displaySinglePokemon(event)}}
+      >
+        {pokeNames}
+      </select>
     )
   }
 
@@ -28,7 +28,6 @@ const Pokedex = ({allPokemon}) => {
   const fetchSinglePokemon = async (url) => {
     try {
       const singlePokemon = await getSinglePokemon(url)
-      console.log(singlePokemon)
       setPokeDetails(singlePokemon)
     } catch (error) {
       console.log(error);
