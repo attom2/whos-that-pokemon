@@ -10,7 +10,7 @@
 }
 
 .pokemon-button {
-  border: 3px solid #1e65a7;
+  border: 3px solid #1e65a73b;
   background: radial-gradient(#3d7dca, #1e65a7);
   cursor: pointer;
   color: white;

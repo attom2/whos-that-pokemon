@@ -42,6 +42,19 @@ const Pokedex = ({allPokemon}) => {
         {createSelectMenu()}
         {pokeDetails.forms && <PokeDetails details={pokeDetails}/> }
       </section>  
+      <div class="controller">
+        <div class="d-pad-container">
+          <div class="d-pad top"></div>
+          <div class="d-pad left"></div>
+          <div class="d-pad middle"></div>
+          <div class="d-pad right"></div>
+          <div class="d-pad bottom"></div>
+        </div>
+        <div class="control-buttons">
+          <div class="buttons">B</div>
+          <div class="buttons">A</div>
+        </div>
+      </div>
     </section>
     )
 

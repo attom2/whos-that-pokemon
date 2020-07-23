@@ -1,7 +1,11 @@
 .pokedex-outline {
-  width: 100vw;
   background-color: #FF0000;
   height: 77vh;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 2px solid black;
 }
 
 .pokedex-screen {
@@ -11,4 +15,68 @@
   margin: 0 auto;
   width: 78vw;
   border: 1px solid black;
+}
+
+.d-pad-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+}
+
+.d-pad {
+  background: black;
+  box-shadow: 0 0 2px 2px rgba(0,0,0, .3);
+  height: 25px;
+  width: 25px;
+}
+
+.controller {
+  align-items: center;
+  display: flex;
+  justify-content: space-around;
+  margin: 10px 25px 0;
+}
+
+.d-pad.top {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.d-pad.left {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.d-pad.middle {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+.d-pad.right {
+  grid-column: 3;
+  grid-row: 2;
+}
+
+.d-pad.bottom {
+  grid-column: 2;
+  grid-row: 3;
+}
+
+.control-buttons {
+  display: flex;
+  justify-content: space-around;
+  width: 100px;
+}
+
+.buttons {
+  align-items: center;
+  background: black;
+  border-radius: 50%;
+  border: 1px solid dimgrey;
+  box-shadow: 0 0 2px 2px rgba(0,0,0, .3);
+  color: rgba(255,255,255,.75);
+  display: flex;
+  height: 35px;
+  justify-content: center;
+  width: 35px;
 }
