@@ -11,7 +11,7 @@ const Game = ({ get4RdmPokemon}) => {
   const createOptionList = () => {
     return pokemonChoices.map(( pokemon, index ) => {
       return (
-        <button onClick={(event) => checkForWin(event)} id={`${pokemon.name}`} className="pokemon-button" key={index}>
+        <button name="user-button" onClick={(event) => checkForWin(event)} id={`${pokemon.name}`} className="pokemon-button" key={index}>
           {pokemon.name}
         </button>
       )
@@ -52,7 +52,7 @@ const Game = ({ get4RdmPokemon}) => {
 
   return (
     <>
-      <section>
+      <section alt="game-section">
       {singlePokemon.sprites && (
         <>
         <h2>{`${singlePokemon.name}`} </h2>
@@ -61,6 +61,7 @@ const Game = ({ get4RdmPokemon}) => {
           src={`${singlePokemon.sprites.front_default}`}
           alt="pokemon"
         />
+        <section alt='user-choices' className="choices">
         <section className="choices">
           {createOptionList()}
         </section>
