@@ -1,6 +1,7 @@
 import React from 'react'
 import Game from './Game'
 import { render, getByAltText } from '@testing-library/react'
+import 'jest-environment-jsdom-sixteen'
 import { BrowserRouter } from 'react-router-dom'
 import '@testing-library/jest-dom'
 import { getAllPokemon, getSinglePokemon } from '../../ApiCalls'
@@ -35,7 +36,6 @@ describe('Game', () => {
       />
       </BrowserRouter>
     )
-    debug()
     const gamePage = getByAltText("game-section")
 
     expect(gamePage).toBeInTheDocument()
