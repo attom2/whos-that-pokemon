@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './Game.css'
 import '../../assets/whos-that-pokemon_.mp3'
+import {getSinglePokemon} from '../../ApiCalls'
 
 const Game = ({pokemons, get4RdmPokemon}) => {
   const [singlePokemon, setSinglePokemon] = useState({});
@@ -19,7 +20,6 @@ const Game = ({pokemons, get4RdmPokemon}) => {
 
   const playAudio = () => {
   const whosThat = document.getElementsByClassName('pokemonSound')[0]
-  console.log(whosThat, 'WHOSTHAT')
   if(whosThat){
     whosThat.play()
     }
@@ -39,8 +39,7 @@ const Game = ({pokemons, get4RdmPokemon}) => {
 
     const fetchSinglePokemon = async () => {
       try {
-        const response = await fetch(url);
-        const singlePokemon = await response.json()
+        const singlePokemon = await getSinglePokemon(url)
         setSinglePokemon(singlePokemon)
       } catch (error) {
         console.log(error);
@@ -62,7 +61,7 @@ const Game = ({pokemons, get4RdmPokemon}) => {
           alt="pokemon"
         />
         <section className="choices">
-          {createOptionList()} 
+          {createOptionList()}
         </section>
         </>)
         }
