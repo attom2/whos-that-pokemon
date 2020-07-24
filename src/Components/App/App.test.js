@@ -4,39 +4,39 @@ import App from './App';
 import '@testing-library/jest-dom';
 import { MemoryRouter } from 'react-router-dom';
 import { getAllPokemon, getSinglePokemon } from '../../ApiCalls'
-import { singlePokemonMockData} from './Pokemon-Mock-Data';
-
 
 jest.mock("../../ApiCalls");
 
 describe('App', () => {
-  act(() => {
-    getAllPokemon.mockResolvedValue( [
-        {
-          "name": "bulbasaur",
-          "url": "https://pokeapi.co/api/v2/pokemon/1/"
-        },
-        {
-          "name": "ivysaur",
-          "url": "https://pokeapi.co/api/v2/pokemon/2/"
-        },
-        {
-          "name": "venusaur",
-          "url": "https://pokeapi.co/api/v2/pokemon/3/"
-        },
-        {
-          "name": "charmander",
-          "url": "https://pokeapi.co/api/v2/pokemon/4/"
-        },
-        {
-          "name": "bulbasaur",
-          "url": "https://pokeapi.co/api/v2/pokemon/5/"
-    }])
-  });
+  getAllPokemon.mockResolvedValue( [
+      {
+        "name": "bulbasaur",
+        "url": "https://pokeapi.co/api/v2/pokemon/1/"
+      },
+      {
+        "name": "ivysaur",
+        "url": "https://pokeapi.co/api/v2/pokemon/2/"
+      },
+      {
+        "name": "venusaur",
+        "url": "https://pokeapi.co/api/v2/pokemon/3/"
+      },
+      {
+        "name": "charmander",
+        "url": "https://pokeapi.co/api/v2/pokemon/4/"
+      },
+      {
+        "name": "bulbasaur",
+        "url": "https://pokeapi.co/api/v2/pokemon/5/"
+  }])
 
-  act(() => {
-    getSinglePokemon.mockResolvedValue(singlePokemonMockData)
-
+  getSinglePokemon.mockResolvedValue({
+    name: "charmander",
+    height: 20,
+    weight: 1000,
+    sprites: {
+      front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/3.png"
+    }
   });
 
   it('should render the app header', async () => {
@@ -48,7 +48,6 @@ describe('App', () => {
     );
 
     const title = await waitFor(() => getByRole('heading', { name: "Who's That Pokémon?" }));
-
     expect(title).toBeInTheDocument();
 
   });
