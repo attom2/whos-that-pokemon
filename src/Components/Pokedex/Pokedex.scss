@@ -1,3 +1,16 @@
+@mixin pixelate($size, $base, $accent: rgba(0,0,0,.25)) {
+  background: $base;
+  background-image:
+    linear-gradient(45deg,
+    $accent 25%, transparent 0,
+    transparent 75%, $accent 0),
+    linear-gradient(45deg,
+    $accent 25%, transparent 0,
+    transparent 75%, $accent 0);
+  background-position: 0 0, $size $size;
+  background-size: 2*$size 2*$size;
+}
+
 .pokedex-outline {
   background-color: #FF0000;
   height: 77vh;
@@ -9,8 +22,8 @@
 }
 
 .pokedex-screen {
+  @include pixelate(5px, #6285b0, #6994bd);
   height: 40vh;
-  background-color: white;
   display: table;
   margin: 0 auto;
   width: 78vw;
