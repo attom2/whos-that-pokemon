@@ -1,11 +1,16 @@
-import React, {useState} from 'react'
+import React from 'react'
+import './PokeDetails.scss'
 
 const PokeDetails = ({details}) => {
   const pokemonName = details.name
   const pokeFrontImage = details.sprites.front_default
   return (
     <figure>
-      <img src={pokeFrontImage} alt={pokemonName}/>
+      <img
+        className='pokemon-pic'
+        src={pokeFrontImage}
+        alt={pokemonName}
+      />
       <figcaption>
         <h4>{pokemonName}</h4>
         <h4>Height: {Math.round(parseInt(details.height)*10)/100}m</h4>

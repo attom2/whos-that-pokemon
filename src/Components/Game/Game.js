@@ -63,15 +63,16 @@ const Game = ({ get4RdmPokemon}) => {
         />
         <section alt='user-choices' className="choices">
         <section className="choices">
-          {createOptionList()}
+            {createOptionList()}
+        </section>
         </section>
         </>)
         }
-      {/* <audio className='pokemonSound'>
-        <source src='../../assets/whos-that-pokemon_.mp3'></source>
-      </audio> */}
+        {/* <audio className='pokemonSound'>
+        <source src='../../assets/whos-that-pokemon_.mp3'></source> */}
       </section>
-      {/* {playAudio()} */}
+      {/* </audio>
+       {playAudio()} */}
     </>
   
   )
