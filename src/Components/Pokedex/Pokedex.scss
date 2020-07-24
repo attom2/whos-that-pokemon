@@ -15,7 +15,7 @@
 
 .pokedex-outline {
   background-color: #FF0000;
-  height: 77vh;
+  height:77vh;
   position: absolute;
   left: 0;
   right: 0;
@@ -31,6 +31,14 @@
   margin: 0 auto;
   width: 78vw;
   border: 8px outset #211911;
+}
+
+select {
+  @include pixelate(5px, #6285b0, #6994bd);
+  font-family: 'Fira Mono', monospace;
+  font-size: 1.8em;
+  width: 85%;
+  height: 12%;
 }
 
 .d-pad-container {
