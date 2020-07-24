@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent, waitFor, act } from '@testing-library/react';
+import { render, fireEvent, waitFor } from '@testing-library/react';
 import App from './App';
 import '@testing-library/jest-dom';
 import { MemoryRouter } from 'react-router-dom';
@@ -66,6 +66,18 @@ describe('App', () => {
     expect(singlePokemon).toBeInTheDocument();
   });
 
+  it('should have 4 pokemon choices buttons when navigating to /game', async () => {
+    const { getByText, getAllByRole } = render(
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>
+    );
+    const gameNav = getByText('Game')
+    fireEvent.click(gameNav);
+    const pokemonChoices = await waitFor(() => getAllByRole('button'));
+    expect(pokemonChoices.length).toBe(4);
+  });
+
   it('should start with a winning streak of 0, add 1 if the correct answer is selected, and reset to 0 if wrong answer selected', async () => {
     const { getByRole, getByText } = render(
       <MemoryRouter>
@@ -100,7 +112,6 @@ describe('App', () => {
     const gameNav = getByText('Game');
     fireEvent.click(gameNav);
     const winningStreak = await waitFor(() => getByRole('heading', { name: "Winning streak: 0" }));
-    debug();
     expect(winningStreak).toBeInTheDocument();
 
     const losingBtn = await waitFor(() => getByRole('button', { name: "ivysaur" })) || await waitFor(() => getByRole('button', { name: "venusaur" }));
@@ -110,8 +121,8 @@ describe('App', () => {
 
   });
 
-  it('should have 4 pokemon choices buttons when navigating to /game', async () => {
-    const { getByText, getAllByRole } = render(
+  it('should be able navigating to /game and from there to /pokedex', async () => {
+    const { getByText, getAllByRole, getByRole } = render(
       <MemoryRouter>
         <App />
       </MemoryRouter>
@@ -120,19 +131,23 @@ describe('App', () => {
     fireEvent.click(gameNav);
     const pokemonChoices = await waitFor(() => getAllByRole('button'));
     expect(pokemonChoices.length).toBe(4);
+
+    const pokeNav = await waitFor(() => getByText('Pokedex'));
+    fireEvent.click(pokeNav);
+    const pokeSelect = getByRole('combobox', { name: "Pokemon List" });
+    expect(pokeSelect).toBeInTheDocument();
+
   });
 
   it('should be able to navigate to /pokedex', async () => {
-    const { debug, getByText, getByRole } = render(
+    const { getByText, getByRole } = render(
       <MemoryRouter>
         <App />
       </MemoryRouter>
     );
 
     const pokeNav = await waitFor(() => getByText('Pokedex'));
-    act(() => {
-      fireEvent.click(pokeNav);
-    });
+    fireEvent.click(pokeNav);
     const aButton = getByText('A');
     const bButton = getByText('B');
     const pokeSelect = getByRole('combobox', {name: "Pokemon List"});
