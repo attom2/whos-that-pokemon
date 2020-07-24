@@ -3,11 +3,10 @@ import PokeDetails from './PokeDetails'
 import '@testing-library/jest-dom'
 import { render } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
-import Pokedex from '../Pokedex/Pokedex'
 
 describe('PokeDetails', () => {
   it('should render the pokemons name', () => {
-    const { getByRole, getByText } = render(
+    const { getByText } = render(
       <MemoryRouter>
         <PokeDetails
         details = {{
@@ -27,7 +26,7 @@ describe('PokeDetails', () => {
 
 
     it('should render the pokemons image', () => {
-    const { getByRole, getByText } = render(
+    const { getByRole } = render(
       <MemoryRouter>
         <PokeDetails
         details = {{

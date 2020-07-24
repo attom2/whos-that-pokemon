@@ -1,13 +1,10 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { render, fireEvent, waitFor } from '@testing-library/react';
+import { render, fireEvent, waitFor, act } from '@testing-library/react';
 import App from './App';
 import '@testing-library/jest-dom';
 import { MemoryRouter } from 'react-router-dom';
 import { getAllPokemon, getSinglePokemon } from '../../ApiCalls'
 import { singlePokemonMockData} from './Pokemon-Mock-Data';
-import { act } from 'react-dom/test-utils';
-// import '@testing-library/jest-dom/extend-expect';
 
 
 jest.mock("../../ApiCalls");
@@ -39,7 +36,7 @@ describe('App', () => {
   getSinglePokemon.mockResolvedValue(singlePokemonMockData)
 
   it('should render the app header', () => {
-    
+
     const { debug, getByRole, getByText, getAllByRole, getByPlaceholderText } = render(
       <MemoryRouter>
         <App />
@@ -87,13 +84,12 @@ describe('App', () => {
     const gameNav = getByText('Game')
     fireEvent.click(gameNav);
     const pokemonChoices = await waitFor(() => getAllByRole('button'));
-    debug();
     expect(pokemonChoices.length).toBe(4);
   });
 
   it('should be able to navigate to /pokedex', () => {
 
-    const { debug, getByRole, getByText, getAllByRole, getByPlaceholderText } = render(
+    const { getByRole, getByText, getAllByRole, getByPlaceholderText } = render(
       <MemoryRouter>
         <App />
       </MemoryRouter>
@@ -109,5 +105,3 @@ describe('App', () => {
     expect(bButton).toBeInTheDocument();
   });
 
-
-});
