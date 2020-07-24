@@ -10,45 +10,52 @@ import { singlePokemonMockData} from './Pokemon-Mock-Data';
 jest.mock("../../ApiCalls");
 
 describe('App', () => {
+  act(() => {
+    getAllPokemon.mockResolvedValue( [
+        {
+          "name": "bulbasaur",
+          "url": "https://pokeapi.co/api/v2/pokemon/1/"
+        },
+        {
+          "name": "ivysaur",
+          "url": "https://pokeapi.co/api/v2/pokemon/2/"
+        },
+        {
+          "name": "venusaur",
+          "url": "https://pokeapi.co/api/v2/pokemon/3/"
+        },
+        {
+          "name": "charmander",
+          "url": "https://pokeapi.co/api/v2/pokemon/4/"
+        },
+        {
+          "name": "bulbasaur",
+          "url": "https://pokeapi.co/api/v2/pokemon/5/"
+    }])
+  });
 
-  getAllPokemon.mockResolvedValue( [
-      {
-        "name": "bulbasaur",
-        "url": "https://pokeapi.co/api/v2/pokemon/1/"
-      },
-      {
-        "name": "ivysaur",
-        "url": "https://pokeapi.co/api/v2/pokemon/2/"
-      },
-      {
-        "name": "venusaur",
-        "url": "https://pokeapi.co/api/v2/pokemon/3/"
-      },
-      {
-        "name": "charmander",
-        "url": "https://pokeapi.co/api/v2/pokemon/4/"
-      },
-      {
-        "name": "charmeleon",
-        "url": "https://pokeapi.co/api/v2/pokemon/5/"
-  }])
+  act(() => {
+    getSinglePokemon.mockResolvedValue(singlePokemonMockData)
 
-  getSinglePokemon.mockResolvedValue(singlePokemonMockData)
+  });
 
-  it('should render the app header', () => {
+  it('should render the app header', async () => {
 
-    const { debug, getByRole, getByText, getAllByRole, getByPlaceholderText } = render(
+    const { getByRole } = render(
       <MemoryRouter>
         <App />
       </MemoryRouter>
     );
-    expect(getByRole('heading', { name: "Who's That Pokémon?" })).toBeInTheDocument();
+
+    const title = await waitFor(() => getByRole('heading', { name: "Who's That Pokémon?" }));
+
+    expect(title).toBeInTheDocument();
 
   });
 
 
   it('should be able to navigate to /game', async () => {
-    const { debug, getByRole, getByText, getAllByRole, getByPlaceholderText } = render(
+    const { getByRole, getByText } = render(
       <MemoryRouter>
         <App />
       </MemoryRouter>
@@ -59,24 +66,52 @@ describe('App', () => {
     expect(singlePokemon).toBeInTheDocument();
   });
 
-  it('should start with a winning streak of 0, and add 1 if the correct answer is selected', async () => {
-    const { debug, getByRole, getByText, getAllByRole, getByPlaceholderText } = render(
+  it('should start with a winning streak of 0, add 1 if the correct answer is selected, and reset to 0 if wrong answer selected', async () => {
+    const { getByRole, getByText } = render(
       <MemoryRouter>
         <App />
       </MemoryRouter>
     );
-    const gameNav = getByText('Game')
+    const gameNav = getByText('Game');
     fireEvent.click(gameNav);
     const winningStreak = await waitFor(() => getByRole('heading', {name: "Winning streak: 0"}));
+    expect(winningStreak).toBeInTheDocument();
+
+  
+    const winningBtn = await waitFor(() => getByRole('button', {name: "charmander"}));
+    fireEvent.click(winningBtn);
+    const winningStreak2 = await waitFor(() => getByRole('heading', { name: "Winning streak: 1" }));
+    expect(winningStreak2).toBeInTheDocument();
+
+    const losingBtn = await waitFor(() => getByRole('button', { name: "ivysaur" })) || await waitFor(() => getByRole('button', { name: "venusaur" }));
+    fireEvent.click(losingBtn);
+    const winningStreakLost = await waitFor(() => getByRole('heading', { name: "Winning streak: 0" }));
+    expect(winningStreakLost).toBeInTheDocument();
+
+  });
+
+  it('should start with a winning streak of 0 and stay at 0 if wrong answer selected', async () => {
+    const { getByRole, getByText, debug } = render(
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>
+    );
+
+    const gameNav = getByText('Game');
+    fireEvent.click(gameNav);
+    const winningStreak = await waitFor(() => getByRole('heading', { name: "Winning streak: 0" }));
     debug();
     expect(winningStreak).toBeInTheDocument();
 
-    //Still need to check if winning button (charmander) is clicked, should add 1 to win counter
+    const losingBtn = await waitFor(() => getByRole('button', { name: "ivysaur" })) || await waitFor(() => getByRole('button', { name: "venusaur" }));
+    fireEvent.click(losingBtn);
+    const winningStreakLost = await waitFor(() => getByRole('heading', { name: "Winning streak: 0" }));
+    expect(winningStreakLost).toBeInTheDocument();
 
   });
 
   it('should have 4 pokemon choices buttons when navigating to /game', async () => {
-    const { debug, getByRole, getByText, getAllByRole, getByPlaceholderText } = render(
+    const { getByText, getAllByRole } = render(
       <MemoryRouter>
         <App />
       </MemoryRouter>
@@ -87,21 +122,25 @@ describe('App', () => {
     expect(pokemonChoices.length).toBe(4);
   });
 
-  it('should be able to navigate to /pokedex', () => {
-
-    const { getByRole, getByText, getAllByRole, getByPlaceholderText } = render(
+  it('should be able to navigate to /pokedex', async () => {
+    const { debug, getByText, getByRole } = render(
       <MemoryRouter>
         <App />
       </MemoryRouter>
     );
 
-    const pokeNav = getByText('Pokedex')
-
-    fireEvent.click(pokeNav);
+    const pokeNav = await waitFor(() => getByText('Pokedex'));
+    act(() => {
+      fireEvent.click(pokeNav);
+    });
     const aButton = getByText('A');
     const bButton = getByText('B');
-    //Test for to see if select is there
+    const pokeSelect = getByRole('combobox', {name: "Pokemon List"});
+
     expect(aButton).toBeInTheDocument();
     expect(bButton).toBeInTheDocument();
+    expect(pokeSelect).toBeInTheDocument();
+
   });
 
+});
