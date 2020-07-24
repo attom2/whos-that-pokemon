@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Mono:wght@500&display=swap');
+
 @mixin pixelate($size, $base, $accent: rgba(0,0,0,.25)) {
   background: $base;
   background-image:
@@ -19,6 +21,7 @@
   right: 0;
   bottom: 0;
   border: 2px solid black;
+  font-family: 'Fira Mono', monospace;
 }
 
 .pokedex-screen {
@@ -27,7 +30,7 @@
   display: table;
   margin: 0 auto;
   width: 78vw;
-  border: 1px solid black;
+  border: 8px outset #211911;
 }
 
 .d-pad-container {

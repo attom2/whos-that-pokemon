@@ -56,13 +56,7 @@ const Pokedex = ({allPokemon}) => {
         </div>
       </div>
     </section>
-    )
-
-
-
-
-
-
+  )
 }
 
 export default Pokedex
