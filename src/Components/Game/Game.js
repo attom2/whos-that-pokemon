@@ -73,6 +73,7 @@ const Game = ({ get4RdmPokemon}) => {
       </section>
       {/* {playAudio()} */}
     </>
+  
   )
 }
 
