@@ -16,7 +16,7 @@ describe('Game', () => {
   it('should render the game page', () => {
     const{ debug, getByAltText } = render(
       <BrowserRouter>
-      <Game 
+      <Game
       pokemons= {[
         {
           "name": "bulbasaur",
