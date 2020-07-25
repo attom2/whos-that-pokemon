@@ -1,15 +1,15 @@
 import React, { useEffect, useState, useContext } from 'react';
-import './Game.css'
-import pokeSound from '../../assets/whos-that-pokemon_.mp3'
-import wrongSound from '../../assets/EndCall3.mp3'
-import { AppContext } from '../../AppContext'
+import './Game.css';
+import pokeSound from '../../assets/whos-that-pokemon_.mp3';
+import wrongSound from '../../assets/EndCall3.mp3';
+import { AppContext } from '../../AppContext';
 
 
 const Game = ({ get4RdmPokemon, fetchSinglePokemon}) => {
   const [winCounter, setWinCounter] = useState(0);
   const pokemons = get4RdmPokemon();
   const [pokemonChoices, setPokemonChoices] = useState(pokemons);
-  const [bestCounter, setBestCounter] = useState(0)
+  const [bestCounter, setBestCounter] = useState(0);
   const wrongSoundObj = new Audio(wrongSound);
   const [imageClassName, setImageClassName] = useState('single-pokemon');
   const [isWinner, setIsWinner] = useState(false);
@@ -21,9 +21,9 @@ const Game = ({ get4RdmPokemon, fetchSinglePokemon}) => {
         <button
           name="user-button"
           onClick={(event) => {
-            checkForWin(event)
-            togglePokemonDisplay()
-            }
+            checkForWin(event);
+            togglePokemonDisplay();
+          }
           }
           id={`${pokemon.name}`}
           className="pokemon-button"
@@ -31,37 +31,37 @@ const Game = ({ get4RdmPokemon, fetchSinglePokemon}) => {
         >
           {pokemon.name}
         </button>
-      )
-    })
-  }
+      );
+    });
+  };
 
   const checkForWin = (event) => {
     const winner = singlePokemon.name;
 
-    if(winner === event.target.id && winCounter >= bestCounter) {
-      setWinCounter(winCounter + 1)
-      setBestCounter(winCounter + 1)
-      setIsWinner(true)
+    if (winner === event.target.id && winCounter >= bestCounter) {
+      setWinCounter(winCounter + 1);
+      setBestCounter(winCounter + 1);
+      setIsWinner(true);
     } else if (winner === event.target.id) {
-      setWinCounter(winCounter + 1)
-      setIsWinner(true)
+      setWinCounter(winCounter + 1);
+      setIsWinner(true);
     } else {
-      wrongSoundObj.play()
-      setWinCounter(0)
-      setIsWinner(false)
+      wrongSoundObj.play();
+      setWinCounter(0);
+      setIsWinner(false);
 
     }
-  }
+  };
 
 
   const togglePokemonDisplay = () => {
-    setImageClassName('single-pokemon visible')
+    setImageClassName('single-pokemon visible');
     const turnDisplayOff = () => {
-      setImageClassName('single-pokemon')
-      setPokemonChoices(get4RdmPokemon())
-    }
-    setTimeout(turnDisplayOff, 2000)
-  }
+      setImageClassName('single-pokemon');
+      setPokemonChoices(get4RdmPokemon());
+    };
+    setTimeout(turnDisplayOff, 2000);
+  };
 
   useEffect(() => {
     const {url} = pokemonChoices[Math.floor(Math.random() * pokemonChoices.length)];
@@ -71,36 +71,36 @@ const Game = ({ get4RdmPokemon, fetchSinglePokemon}) => {
   return (
     <>
       <section className='game-section' alt="game-section">
-      {singlePokemon.sprites && (
-        <>
-        <section className='tile-holder'>
-        <div className='streak-tile'>
-        <h4 className='tile-font'>Winning Streak: {`${winCounter}`}</h4>
-        </div>
-        <div className='best-tile'>
-      <h4 className='tile-font'>Best Streak: {`${bestCounter}`}</h4>
-        </div>
-        </section>
-        {isWinner && imageClassName === 'single-pokemon visible' && <h2> Correct! This is:</h2>}
-        {!isWinner && imageClassName === 'single-pokemon visible' && <h2> Incorrect! This is:</h2>}
-        {imageClassName === 'single-pokemon visible' && <h2>{singlePokemon.name}</h2>}
-        <img
-          className={imageClassName}
-          src={`${singlePokemon.sprites.front_default}`}
-          alt="pokemon"
-        />
-        <section alt='user-choices' className="choices">
-        <section className="choices">
-            {createOptionList()}
-        </section>
-        </section>
-        </>)
+        {singlePokemon.sprites && (
+          <>
+            <section className='tile-holder'>
+              <div className='streak-tile'>
+                <h4 className='tile-font'>Winning Streak: {`${winCounter}`}</h4>
+              </div>
+              <div className='best-tile'>
+                <h4 className='tile-font'>Best Streak: {`${bestCounter}`}</h4>
+              </div>
+            </section>
+            {isWinner && imageClassName === 'single-pokemon visible' && <h2> Correct! This is:</h2>}
+            {!isWinner && imageClassName === 'single-pokemon visible' && <h2> Incorrect! This is:</h2>}
+            {imageClassName === 'single-pokemon visible' && <h2>{singlePokemon.name}</h2>}
+            <img
+              className={imageClassName}
+              src={`${singlePokemon.sprites.front_default}`}
+              alt="pokemon"
+            />
+            <section alt='user-choices' className="choices">
+              <section className="choices">
+                {createOptionList()}
+              </section>
+            </section>
+          </>)
         }
         <audio src={pokeSound}
-        autoPlay />
-       </section>
+          autoPlay />
+      </section>
     </>
-  )
-}
+  );
+};
 
 export default Game;

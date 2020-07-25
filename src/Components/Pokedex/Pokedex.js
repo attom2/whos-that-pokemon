@@ -1,29 +1,29 @@
-import React, { useState, useContext } from 'react'
-import PokeDetails from '../PokeDetails/PokeDetails'
-import './Pokedex.scss'
-import { AppContext } from '../../AppContext'
+import React, { useContext } from 'react';
+import PokeDetails from '../PokeDetails/PokeDetails';
+import './Pokedex.scss';
+import { AppContext } from '../../AppContext';
 
 const Pokedex = ({ allPokemon, fetchSinglePokemon}) => {
   const { singlePokemon, setSinglePokemon } = useContext(AppContext);
 
   const createSelectMenu = () => {
     const pokeNames = allPokemon.map((poke, index) => {
-     return  <option value={poke.url} key={index}>{poke.name}</option>
-    })
+      return  <option value={poke.url} key={index}>{poke.name}</option>;
+    });
     return (
       <select
         title="Pokemon List"
         className='pokemon-list'
-        onChange={(event) => {displaySinglePokemon(event)}}
+        onChange={(event) => { displaySinglePokemon(event); }}
       >
         {pokeNames}
       </select>
-    )
-  }
+    );
+  };
 
   const displaySinglePokemon = (event) => {
     fetchSinglePokemon(event.target.value);
-  }
+  };
   
   return (
     <section className="pokedex-outline">
@@ -45,7 +45,7 @@ const Pokedex = ({ allPokemon, fetchSinglePokemon}) => {
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Pokedex
+export default Pokedex;

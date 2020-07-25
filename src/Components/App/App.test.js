@@ -3,32 +3,32 @@ import { render, fireEvent, waitFor } from '@testing-library/react';
 import App from './App';
 import '@testing-library/jest-dom';
 import { MemoryRouter } from 'react-router-dom';
-import { getAllPokemon, getSinglePokemon } from '../../ApiCalls'
+import { getAllPokemon, getSinglePokemon } from '../../ApiCalls';
 
 jest.mock("../../ApiCalls");
 
 describe('App', () => {
   getAllPokemon.mockResolvedValue( [
-      {
-        "name": "bulbasaur",
-        "url": "https://pokeapi.co/api/v2/pokemon/1/"
-      },
-      {
-        "name": "ivysaur",
-        "url": "https://pokeapi.co/api/v2/pokemon/2/"
-      },
-      {
-        "name": "venusaur",
-        "url": "https://pokeapi.co/api/v2/pokemon/3/"
-      },
-      {
-        "name": "charmander",
-        "url": "https://pokeapi.co/api/v2/pokemon/4/"
-      },
-      {
-        "name": "bulbasaur",
-        "url": "https://pokeapi.co/api/v2/pokemon/5/"
-  }])
+    {
+      "name": "bulbasaur",
+      "url": "https://pokeapi.co/api/v2/pokemon/1/"
+    },
+    {
+      "name": "ivysaur",
+      "url": "https://pokeapi.co/api/v2/pokemon/2/"
+    },
+    {
+      "name": "venusaur",
+      "url": "https://pokeapi.co/api/v2/pokemon/3/"
+    },
+    {
+      "name": "charmander",
+      "url": "https://pokeapi.co/api/v2/pokemon/4/"
+    },
+    {
+      "name": "bulbasaur",
+      "url": "https://pokeapi.co/api/v2/pokemon/5/"
+    }]);
 
   getSinglePokemon.mockResolvedValue({
     name: "charmander",
@@ -59,7 +59,7 @@ describe('App', () => {
         <App />
       </MemoryRouter>
     );
-    const gameNav = getByText('Game')
+    const gameNav = getByText('Game');
     fireEvent.click(gameNav);
     const singlePokemon = await waitFor(() => getByRole('heading', {name: 'charmander'}));
     expect(singlePokemon).toBeInTheDocument();
@@ -71,7 +71,7 @@ describe('App', () => {
         <App />
       </MemoryRouter>
     );
-    const gameNav = getByText('Game')
+    const gameNav = getByText('Game');
     fireEvent.click(gameNav);
     const pokemonChoices = await waitFor(() => getAllByRole('button'));
     expect(pokemonChoices.length).toBe(4);
@@ -126,7 +126,7 @@ describe('App', () => {
         <App />
       </MemoryRouter>
     );
-    const gameNav = getByText('Game')
+    const gameNav = getByText('Game');
     fireEvent.click(gameNav);
     const pokemonChoices = await waitFor(() => getAllByRole('button'));
     expect(pokemonChoices.length).toBe(4);
