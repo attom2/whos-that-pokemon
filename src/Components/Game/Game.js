@@ -9,13 +9,18 @@ const Game = ({ get4RdmPokemon}) => {
   const pokemons = get4RdmPokemon();
   const [pokemonChoices, setPokemonChoices] = useState(pokemons);
   const [bestCounter, setBestCounter] = useState(0)
+  const [imageClassName, setImageClassName] = useState('single-pokemon')
 
   const createOptionList = () => {
     return pokemonChoices.map(( pokemon, index ) => {
       return (
-        <button 
-          name="user-button" 
-          onClick={(event) => checkForWin(event)}
+        <button
+          name="user-button"
+          onClick={(event) => {
+            checkForWin(event)
+            togglePokemonDisplay()
+            }
+          }
           id={`${pokemon.name}`}
           className="pokemon-button"
           key={index}
@@ -43,7 +48,15 @@ const Game = ({ get4RdmPokemon}) => {
     } else {
       setWinCounter(0)
     }
-    setPokemonChoices(get4RdmPokemon())
+  }
+
+  const togglePokemonDisplay = () => {
+    setImageClassName('single-pokemon visible')
+    const turnDisplayOff = () => {
+      setImageClassName('single-pokemon')
+      setPokemonChoices(get4RdmPokemon())
+    }
+    setTimeout(turnDisplayOff, 2000)
   }
 
   useEffect(() => {
@@ -75,7 +88,7 @@ const Game = ({ get4RdmPokemon}) => {
         </div>
         </section>
         <img
-          className="single-pokemon"
+          className={imageClassName}
           src={`${singlePokemon.sprites.front_default}`}
           alt="pokemon"
         />
@@ -92,7 +105,6 @@ const Game = ({ get4RdmPokemon}) => {
       {/* </audio>
        {playAudio()} */}
     </>
-  
   )
 }
 
