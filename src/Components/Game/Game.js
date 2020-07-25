@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import './Game.css'
-import '../../assets/whos-that-pokemon_.mp3'
 import {getSinglePokemon} from '../../ApiCalls'
+import pokeSound from '../../assets/whos-that-pokemon_.mp3'
+import wrongSound from '../../assets/End Call3.mp3'
 
 const Game = ({ get4RdmPokemon}) => {
   const [singlePokemon, setSinglePokemon] = useState({});
@@ -30,10 +31,12 @@ const Game = ({ get4RdmPokemon}) => {
     const winner = singlePokemon.name;
     if(winner === event.target.id){
       setWinCounter(winCounter + 1)
-      if(winCounter > bestCounter){
+      if(winCounter >= bestCounter){
         setBestCounter(winCounter + 1)
       }
     } else {
+      // <audio src={wrongSound}
+      //   autoPlay />
       setWinCounter(0)
     }
     setPokemonChoices(get4RdmPokemon())
@@ -61,7 +64,7 @@ const Game = ({ get4RdmPokemon}) => {
         <>
         <section className='tile-holder'>
         <div className='streak-tile'>
-        <h4 className='tile-font'>Winning streak: {`${winCounter}`}</h4>
+        <h4 className='tile-font'>Winning Streak: {`${winCounter}`}</h4>
         </div>
         <div className='best-tile'>
       <h4 className='tile-font'>Best Streak: {`${bestCounter}`}</h4>
@@ -78,11 +81,13 @@ const Game = ({ get4RdmPokemon}) => {
         </section>
         </>)
         }
+        <audio src={pokeSound}
+        autoPlay />
         {/* <audio className='pokemonSound'>
         <source src='../../assets/whos-that-pokemon_.mp3'></source> */}
-      </section>
       {/* </audio>
        {playAudio()} */}
+       </section>
     </>
   
   )
