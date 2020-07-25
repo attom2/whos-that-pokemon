@@ -8,8 +8,9 @@ const Game = ({ get4RdmPokemon}) => {
   const [winCounter, setWinCounter] = useState(0);
   const pokemons = get4RdmPokemon();
   const [pokemonChoices, setPokemonChoices] = useState(pokemons);
-  const [bestCounter, setBestCounter] = useState(0)
-  const [imageClassName, setImageClassName] = useState('single-pokemon')
+  const [bestCounter, setBestCounter] = useState(0);
+  const [imageClassName, setImageClassName] = useState('single-pokemon');
+  const [isWinner, setIsWinner] = useState(false);
 
   const createOptionList = () => {
     return pokemonChoices.map(( pokemon, index ) => {
@@ -44,10 +45,14 @@ const Game = ({ get4RdmPokemon}) => {
     if(winner === event.target.id && winCounter >= bestCounter) {
       setWinCounter(winCounter + 1)
       setBestCounter(winCounter + 1)
+      setIsWinner(true)
     } else if (winner === event.target.id) {
       setWinCounter(winCounter + 1)
+      setIsWinner(true)
     } else {
       setWinCounter(0)
+      setIsWinner(false)
+
     }
   }
 
@@ -89,6 +94,9 @@ const Game = ({ get4RdmPokemon}) => {
       <h4 className='tile-font'>Best Streak: {`${bestCounter}`}</h4>
         </div>
         </section>
+        {isWinner && imageClassName === 'single-pokemon visible' && <h2> Correct! This is:</h2>}
+        {!isWinner && imageClassName === 'single-pokemon visible' && <h2> Incorrect! This is:</h2>}
+        {imageClassName === 'single-pokemon visible' && <h2>{singlePokemon.name}</h2>}
         <img
           className={imageClassName}
           src={`${singlePokemon.sprites.front_default}`}
