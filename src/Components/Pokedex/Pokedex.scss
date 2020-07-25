@@ -15,30 +15,30 @@
 
 .pokedex-outline {
   background-color: #FF0000;
-  height:77vh;
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
   border: 2px solid black;
+  bottom: 0;
   font-family: 'Fira Mono', monospace;
+  height:77vh;
+  left: 0;
+  position: absolute;
+  right: 0;
 }
 
 .pokedex-screen {
   @include pixelate(5px, #6285b0, #6994bd);
-  height: 59vh;
+  border: 8px outset #211911;
   display: table;
+  height: 59vh;
   margin: 0 auto;
   width: 78vw;
-  border: 8px outset #211911;
 }
 
 select {
   @include pixelate(5px, #6285b0, #6994bd);
   font-family: 'Fira Mono', monospace;
   font-size: 1.8em;
-  width: 85%;
   height: 12%;
+  width: 85%;
 }
 
 .d-pad-container {
