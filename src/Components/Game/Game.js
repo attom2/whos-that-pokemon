@@ -8,6 +8,7 @@ const Game = ({ get4RdmPokemon}) => {
   const [winCounter, setWinCounter] = useState(0);
   const pokemons = get4RdmPokemon();
   const [pokemonChoices, setPokemonChoices] = useState(pokemons);
+  const [bestCounter, setBestCounter] = useState(0)
   const createOptionList = () => {
     return pokemonChoices.map(( pokemon, index ) => {
       return (
@@ -29,6 +30,9 @@ const Game = ({ get4RdmPokemon}) => {
     const winner = singlePokemon.name;
     if(winner === event.target.id){
       setWinCounter(winCounter + 1)
+      if(winCounter > bestCounter){
+        setBestCounter(winCounter + 1)
+      }
     } else {
       setWinCounter(0)
     }
@@ -52,11 +56,17 @@ const Game = ({ get4RdmPokemon}) => {
 
   return (
     <>
-      <section alt="game-section">
+      <section className='game-section' alt="game-section">
       {singlePokemon.sprites && (
         <>
-        <h2>{`${singlePokemon.name}`} </h2>
-        <h4>Winning streak: {`${winCounter}`}</h4>
+        <section className='tile-holder'>
+        <div className='streak-tile'>
+        <h4 className='tile-font'>Winning streak: {`${winCounter}`}</h4>
+        </div>
+        <div className='best-tile'>
+      <h4 className='tile-font'>Best Streak: {`${bestCounter}`}</h4>
+        </div>
+        </section>
         <img className="single-pokemon"
           src={`${singlePokemon.sprites.front_default}`}
           alt="pokemon"
@@ -74,6 +84,7 @@ const Game = ({ get4RdmPokemon}) => {
       {/* </audio>
        {playAudio()} */}
     </>
+  
   )
 }
 

@@ -7,17 +7,7 @@ import '@testing-library/jest-dom'
 import { getAllPokemon, getSinglePokemon } from '../../ApiCalls'
 
 jest.mock('../../ApiCalls')
-
-describe('Game', () => {
-  it('should be true', () => {
-    expect(true).toEqual(true)
-      })
-
-  it('should render the game page', () => {
-    const{ debug, getByAltText } = render(
-      <BrowserRouter>
-      <Game
-      pokemons= {[
+pokemons= {[
         {
           "name": "bulbasaur",
           "url": "https://pokeapi.co/api/v2/pokemon/1/"
@@ -32,6 +22,17 @@ describe('Game', () => {
           "url": "https://pokeapi.co/api/v2/pokemon/4/"
         }
       ]}
+
+describe('Game', () => {
+  it('should be true', () => {
+    expect(true).toEqual(true)
+      })
+
+  it('should render the game page', () => {
+    const{ debug, getByAltText } = render(
+      <BrowserRouter>
+      <Game
+      
       get4RdmPokemon={ jest.fn() }
       />
       </BrowserRouter>
