@@ -9,10 +9,22 @@ const Game = ({ get4RdmPokemon}) => {
   const pokemons = get4RdmPokemon();
   const [pokemonChoices, setPokemonChoices] = useState(pokemons);
   const [bestCounter, setBestCounter] = useState(0)
+  const [imageClassName, setImageClassName] = useState('single-pokemon')
+
   const createOptionList = () => {
     return pokemonChoices.map(( pokemon, index ) => {
       return (
-        <button name="user-button" onClick={(event) => checkForWin(event)} id={`${pokemon.name}`} className="pokemon-button" key={index}>
+        <button
+          name="user-button"
+          onClick={(event) => {
+            checkForWin(event)
+            togglePokemonDisplay()
+            }
+          }
+          id={`${pokemon.name}`}
+          className="pokemon-button"
+          key={index}
+        >
           {pokemon.name}
         </button>
       )
@@ -28,19 +40,29 @@ const Game = ({ get4RdmPokemon}) => {
 
   const checkForWin = (event) => {
     const winner = singlePokemon.name;
-    if(winner === event.target.id){
+
+    if(winner === event.target.id && winCounter >= bestCounter) {
       setWinCounter(winCounter + 1)
-      if(winCounter > bestCounter){
-        setBestCounter(winCounter + 1)
-      }
+      setBestCounter(winCounter + 1)
+    } else if (winner === event.target.id) {
+      setWinCounter(winCounter + 1)
     } else {
       setWinCounter(0)
     }
-    setPokemonChoices(get4RdmPokemon())
+  }
+
+
+  const togglePokemonDisplay = () => {
+    setImageClassName('single-pokemon visible')
+    const turnDisplayOff = () => {
+      setImageClassName('single-pokemon')
+      setPokemonChoices(get4RdmPokemon())
+    }
+    setTimeout(turnDisplayOff, 2000)
   }
 
   useEffect(() => {
-    const {name, url} = pokemonChoices[Math.floor(Math.random() * pokemonChoices.length)];
+    const {url} = pokemonChoices[Math.floor(Math.random() * pokemonChoices.length)];
 
     const fetchSinglePokemon = async () => {
       try {
@@ -67,7 +89,8 @@ const Game = ({ get4RdmPokemon}) => {
       <h4 className='tile-font'>Best Streak: {`${bestCounter}`}</h4>
         </div>
         </section>
-        <img className="single-pokemon"
+        <img
+          className={imageClassName}
           src={`${singlePokemon.sprites.front_default}`}
           alt="pokemon"
         />
@@ -84,7 +107,6 @@ const Game = ({ get4RdmPokemon}) => {
       {/* </audio>
        {playAudio()} */}
     </>
-  
   )
 }
 

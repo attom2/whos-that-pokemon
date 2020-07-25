@@ -1,124 +1,56 @@
 header {
   background: linear-gradient(to top left, #FF0000 4%, #CC0000 100%);
-  padding: 3%;
+  padding: 2%;
   height: 20vh;
   display: flex;
+  flex-flow: column;
   align-items: center;
+  justify-content: center;
 }
 
 .pokemon-title {
   font-family: 'Pokemon Solid Normal';
-  font-size: 42px;
+  font-size: 34px;
   -webkit-text-stroke: 1px #2a75bb;
   -webkit-text-fill-color: #ffcb05;
   letter-spacing: 2px;
 }
 
 @font-face {
-font-family: 'Pokemon Hollow Normal';
-font-style: normal;
-font-weight: normal;
-src: local('Pokemon Hollow Normal'), url('../../assets/Pokemon Hollow.woff') format('woff');
+  font-family: 'Pokemon Hollow Normal';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Pokemon Hollow Normal'), url('../../assets/Pokemon Hollow.woff') format('woff');
 }
 
 @font-face {
-font-family: 'Pokemon Solid Normal';
-font-style: normal;
-font-weight: normal;
-src: local('Pokemon Solid Normal'), url('../../assets/Pokemon Solid.woff') format('woff');
+  font-family: 'Pokemon Solid Normal';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Pokemon Solid Normal'), url('../../assets/Pokemon Solid.woff') format('woff');
 }
 
-
-#overlay-button {
-  position: absolute;
-  left: 0em;
-  top: 3em;
-  z-index: 5;
-  cursor: pointer;
-  user-select: none;
-  span {
-      height: 4px;
-      width: 35px;
-      border-radius: 2px;
-      background-color: white;
-      position: relative;
-      display: flex;
-      transition: all .2s ease-in-out;
-      &:before {
-        top: -10px;
-        visibility: visible;
-      }
-      &:after {
-        top: 10px;
-      }
-      &:before, &:after {
-          height: 4px;
-          width: 35px;
-          border-radius: 2px;
-          background-color: white;
-          position: absolute;
-          content: "";
-          transition: all .2s ease-in-out;
-      }
-    }
-    &:hover span, &:hover span:before, &:hover span:after {
-      background: #333332;
-    }
+ul{
+  display: flex;
+  margin: 0px;
+  padding-right: 2em;
+  align-content: center;
+  justify-content: space-around;
 }
 
-input[type=checkbox] {
-  display: none;
+li {
+  list-style: none;
+  margin-right: 8px;
 }
 
-input[type=checkbox]:checked ~ #overlay {
-  visibility: visible;
-}
-
-input[type=checkbox]:checked ~ #overlay-button {
-  &:hover span, span{
-    background: transparent;
-  }
-  span {
-    &:before {
-      transform: rotate(45deg) translate(7px, 7px);
-      opacity: 1;
-    }
-    &:after {
-      transform: rotate(-45deg) translate(7px, -7px);
-    }
-  }
-}
-
-#overlay {
-  height: 100vh;
-  width: 80vw;
-  left: 0em;
-  background: #FF0000;
-  z-index: 2;
-  visibility: hidden;
-  position: fixed;
-  &.active {
-    visibility: visible;
-  }
-  ul {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    text-align: center;
-    height: 100vh;
-    padding-left: 0;
-    list-style-type: none;
-    li {
-      padding: 1em;
-      a {
-        color: white;
-        text-decoration: none;
-        font-size: 1.5em;
-        &:hover {
-          color: #333332;
-        }
-      }
-    }
-  }
+button {
+  height: 2em;
+  width: 8em;
+  background: radial-gradient(#6285b0, #6994bd);
+  color: white;
+  text-shadow: 2px grey;
+  line-height: 1.5em;
+  font-size: 1.3em;
+  padding: 0px 0px;
+  letter-spacing: .1em;
 }

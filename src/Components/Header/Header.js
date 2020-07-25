@@ -1,24 +1,44 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { NavLink } from 'react-router-dom'
 import './Header.scss'
 
 
 const Header = () => {
+  const [location, setLocation] = useState("Who's That Pokémon?")
+
   return (
     <header className="nav-header">
-      <input type="checkbox" id="overlay-input" />
-      <label htmlFor="overlay-input" id="overlay-button"><span></span></label>
-      <div id="overlay">
+      <h1 className="pokemon-title">{location}</h1>
+      <nav>
         <ul>
-          <NavLink to='/pokedex'>
-            <li> Pokedex </li>
+          <NavLink
+            activeStyle={{backgroundColor: 'black'}}
+            to='/pokedex'
+          >
+          <li>
+            <button
+              className="pokedex-link"
+              onClick={() => setLocation('Pokédex')}
+            >
+              Pokedex
+            </button>
+          </li>
           </NavLink>
-          <NavLink to='/game'>
-            <li>Game</li>
+          <NavLink
+            activeStyle={{backgroundColor: 'black'}}
+            to='/game'
+          >
+          <li>
+            <button
+              onClick={() => setLocation("Who's That Pokémon?")}
+              className="game-link"
+            >
+              Game
+            </button>
+          </li>
           </NavLink>
         </ul>
-      </div>
-      <h1 className="pokemon-title">Who's That Pokémon?</h1>
+      </nav>
     </header>
   )
 }
