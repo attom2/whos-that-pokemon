@@ -57,7 +57,7 @@ const App = () => {
             <Game get4RdmPokemon={get4RdmPokemon} pokemons={get4RdmPokemon()} fetchSinglePokemon={fetchSinglePokemon}/>
           )}
         />}
-        <Route path='/pokedex' render={() => <Pokedex allPokemon={allPokemon}/>}/>
+        <Route path='/pokedex' render={() => <Pokedex allPokemon={allPokemon} fetchSinglePokemon={fetchSinglePokemon}/>}/>
       </AppContext.Provider>
     </main>
   );

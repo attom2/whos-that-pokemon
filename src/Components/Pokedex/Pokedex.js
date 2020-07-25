@@ -1,12 +1,11 @@
 import React, { useState, useContext } from 'react'
 import PokeDetails from '../PokeDetails/PokeDetails'
 import './Pokedex.scss'
-import {getSinglePokemon} from '../../ApiCalls'
 import { AppContext } from '../../AppContext'
 
-const Pokedex = ({allPokemon}) => {
-  const [pokeDetails, setPokeDetails] = useState({})
-  const {value, setValue} = useContext(AppContext);
+const Pokedex = ({ allPokemon, fetchSinglePokemon}) => {
+  const { singlePokemon, setSinglePokemon } = useContext(AppContext);
+
   const createSelectMenu = () => {
     const pokeNames = allPokemon.map((poke, index) => {
      return  <option value={poke.url} key={index}>{poke.name}</option>
@@ -23,25 +22,14 @@ const Pokedex = ({allPokemon}) => {
   }
 
   const displaySinglePokemon = (event) => {
-    fetchSinglePokemon(event.target.value)
+    fetchSinglePokemon(event.target.value);
   }
-
-
-  const fetchSinglePokemon = async (url) => {
-    try {
-      const singlePokemon = await getSinglePokemon(url)
-      setPokeDetails(singlePokemon)
-    } catch (error) {
-      console.log(error);
-    }
-
-  }
-
+  
   return (
     <section className="pokedex-outline">
       <section className="pokedex-screen">
         {createSelectMenu()}
-        {pokeDetails.name && <PokeDetails details={pokeDetails}/> }
+        {singlePokemon.name && <PokeDetails details={singlePokemon}/> }
       </section>
       <div className="controller">
         <div className="d-pad-container">
