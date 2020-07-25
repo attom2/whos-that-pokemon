@@ -1,13 +1,11 @@
 import React, { useEffect, useState, useContext } from 'react';
 import './Game.css'
-import {getSinglePokemon} from '../../ApiCalls'
 import pokeSound from '../../assets/whos-that-pokemon_.mp3'
 import wrongSound from '../../assets/EndCall3.mp3'
 import { AppContext } from '../../AppContext'
 
 
-const Game = ({ get4RdmPokemon}) => {
-  const [singlePokemon, setSinglePokemon] = useState({});
+const Game = ({ get4RdmPokemon, fetchSinglePokemon}) => {
   const [winCounter, setWinCounter] = useState(0);
   const pokemons = get4RdmPokemon();
   const [pokemonChoices, setPokemonChoices] = useState(pokemons);
@@ -15,7 +13,7 @@ const Game = ({ get4RdmPokemon}) => {
   const wrongSoundObj = new Audio(wrongSound);
   const [imageClassName, setImageClassName] = useState('single-pokemon');
   const [isWinner, setIsWinner] = useState(false);
-  const { value, setValue } = useContext(AppContext);
+  const { singlePokemon, setSinglePokemon } = useContext(AppContext);
 
   const createOptionList = () => {
     return pokemonChoices.map(( pokemon, index ) => {
@@ -67,16 +65,7 @@ const Game = ({ get4RdmPokemon}) => {
 
   useEffect(() => {
     const {url} = pokemonChoices[Math.floor(Math.random() * pokemonChoices.length)];
-    const fetchSinglePokemon = async () => {
-      try {
-        const singlePokemon = await getSinglePokemon(url)
-        setSinglePokemon(singlePokemon)
-      } catch (error) {
-        console.log(error);
-      }
-    }
-    fetchSinglePokemon();
-
+    fetchSinglePokemon(url);
   }, [pokemonChoices]);
 
   return (

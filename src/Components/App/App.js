@@ -9,7 +9,7 @@ import { AppContext } from '../../AppContext';
 
 const App = () => {
   const [allPokemon, setAllPokemon] = useState([]);
-  const [value, setValue] = useState('Hello there from App');
+  const [singlePokemon, setSinglePokemon ] = useState({});
 
   useEffect(() => {
     const fetchAllPokemon = async () => {
@@ -25,7 +25,7 @@ const App = () => {
 
   const get4RdmPokemon = () => {
     const pokemons = [{}, {}, {}, {}]
-    let randomIndexes = []
+    let randomIndexes = [];
     while(randomIndexes.length <= 4) {
       let randNum = Math.floor(Math.random() * allPokemon.length);
       if (randomIndexes.indexOf(randNum) === -1) randomIndexes.push(randNum);
@@ -36,16 +36,25 @@ const App = () => {
     })
   };
 
+  const fetchSinglePokemon = async (url) => {
+    try {
+      const singlePokemon = await getSinglePokemon(url)
+      setSinglePokemon(singlePokemon)
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
 
   return (
     <main className="App">
       <Header />
-      <AppContext.Provider value= {{value, setValue}}>
+      <AppContext.Provider value= {{singlePokemon, setSinglePokemon}}>
         {allPokemon.length && <Route
           exact
           path="/game"
           render={() => (
-            <Game get4RdmPokemon={get4RdmPokemon} pokemons={get4RdmPokemon()} />
+            <Game get4RdmPokemon={get4RdmPokemon} pokemons={get4RdmPokemon()} fetchSinglePokemon={fetchSinglePokemon}/>
           )}
         />}
         <Route path='/pokedex' render={() => <Pokedex allPokemon={allPokemon}/>}/>
