@@ -3,12 +3,13 @@ import './App.css';
 import Header from '../Header/Header'
 import Game from '../Game/Game'
 import Pokedex from '../Pokedex/Pokedex'
-import {getAllPokemon} from '../../ApiCalls'
+import { getAllPokemon, getSinglePokemon} from '../../ApiCalls'
 import { Route } from 'react-router-dom';
-
+import { AppContext } from '../../AppContext';
 
 const App = () => {
   const [allPokemon, setAllPokemon] = useState([]);
+  const [value, setValue] = useState('Hello there from App');
 
   useEffect(() => {
     const fetchAllPokemon = async () => {
@@ -35,17 +36,20 @@ const App = () => {
     })
   };
 
+
   return (
     <main className="App">
       <Header />
-      {allPokemon.length && <Route
-        exact
-        path="/game"
-        render={() => (
-          <Game get4RdmPokemon={get4RdmPokemon} pokemons={get4RdmPokemon()}/>
-        )}
-      />}
-      <Route path='/pokedex' render={() => <Pokedex allPokemon={allPokemon}/>}/>
+      <AppContext.Provider value= {{value, setValue}}>
+        {allPokemon.length && <Route
+          exact
+          path="/game"
+          render={() => (
+            <Game get4RdmPokemon={get4RdmPokemon} pokemons={get4RdmPokemon()} />
+          )}
+        />}
+        <Route path='/pokedex' render={() => <Pokedex allPokemon={allPokemon}/>}/>
+      </AppContext.Provider>
     </main>
   );
 }

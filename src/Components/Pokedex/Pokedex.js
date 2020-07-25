@@ -1,11 +1,12 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import PokeDetails from '../PokeDetails/PokeDetails'
 import './Pokedex.scss'
 import {getSinglePokemon} from '../../ApiCalls'
+import { AppContext } from '../../AppContext'
 
 const Pokedex = ({allPokemon}) => {
   const [pokeDetails, setPokeDetails] = useState({})
-
+  const {value, setValue} = useContext(AppContext);
   const createSelectMenu = () => {
     const pokeNames = allPokemon.map((poke, index) => {
      return  <option value={poke.url} key={index}>{poke.name}</option>
@@ -35,7 +36,6 @@ const Pokedex = ({allPokemon}) => {
     }
 
   }
-
 
   return (
     <section className="pokedex-outline">
