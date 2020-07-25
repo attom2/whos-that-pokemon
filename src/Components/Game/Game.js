@@ -40,15 +40,17 @@ const Game = ({ get4RdmPokemon}) => {
 
   const checkForWin = (event) => {
     const winner = singlePokemon.name;
-    if(winner === event.target.id){
+
+    if(winner === event.target.id && winCounter >= bestCounter) {
       setWinCounter(winCounter + 1)
-      if(winCounter > bestCounter){
-        setBestCounter(winCounter + 1)
-      }
+      setBestCounter(winCounter + 1)
+    } else if (winner === event.target.id) {
+      setWinCounter(winCounter + 1)
     } else {
       setWinCounter(0)
     }
   }
+
 
   const togglePokemonDisplay = () => {
     setImageClassName('single-pokemon visible')
