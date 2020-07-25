@@ -3,6 +3,7 @@ import './Game.css'
 import {getSinglePokemon} from '../../ApiCalls'
 import pokeSound from '../../assets/whos-that-pokemon_.mp3'
 import wrongSound from '../../assets/EndCall3.mp3'
+import rightSound from '../../assets/HollowBellNotification.mp3'
 
 
 const Game = ({ get4RdmPokemon}) => {
@@ -12,6 +13,7 @@ const Game = ({ get4RdmPokemon}) => {
   const [pokemonChoices, setPokemonChoices] = useState(pokemons);
   const [bestCounter, setBestCounter] = useState(0)
   const wrongSoundObj = new Audio(wrongSound)
+  const rightSoundObj = new Audio(rightSound)
   const [imageClassName, setImageClassName] = useState('single-pokemon')
 
   const createOptionList = () => {
@@ -40,6 +42,7 @@ const Game = ({ get4RdmPokemon}) => {
     if(winner === event.target.id && winCounter >= bestCounter) {
       setWinCounter(winCounter + 1)
       setBestCounter(winCounter + 1)
+      rightSoundObj.play()
     } else if (winner === event.target.id) {
       setWinCounter(winCounter + 1)
     } else {
