@@ -5,6 +5,7 @@ header {
   display: flex;
   flex-flow: column;
   align-items: center;
+  justify-content: center;
 }
 
 .pokemon-title {
@@ -16,20 +17,40 @@ header {
 }
 
 @font-face {
-font-family: 'Pokemon Hollow Normal';
-font-style: normal;
-font-weight: normal;
-src: local('Pokemon Hollow Normal'), url('../../assets/Pokemon Hollow.woff') format('woff');
+  font-family: 'Pokemon Hollow Normal';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Pokemon Hollow Normal'), url('../../assets/Pokemon Hollow.woff') format('woff');
 }
 
 @font-face {
-font-family: 'Pokemon Solid Normal';
-font-style: normal;
-font-weight: normal;
-src: local('Pokemon Solid Normal'), url('../../assets/Pokemon Solid.woff') format('woff');
+  font-family: 'Pokemon Solid Normal';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Pokemon Solid Normal'), url('../../assets/Pokemon Solid.woff') format('woff');
+}
+
+ul{
+  display: flex;
+  margin: 0px;
+  padding-right: 2em;
+  align-content: center;
+  justify-content: space-around;
 }
 
 li {
   list-style: none;
-  display: inline-block;
+  margin-right: 8px;
+}
+
+button {
+  height: 2em;
+  width: 8em;
+  background: radial-gradient(#6285b0, #6994bd);
+  color: white;
+  text-shadow: 2px grey;
+  line-height: 1.5em;
+  font-size: 1.3em;
+  padding: 0px 0px;
+  letter-spacing: .1em;
 }
