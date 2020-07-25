@@ -9,10 +9,17 @@ const Game = ({ get4RdmPokemon}) => {
   const pokemons = get4RdmPokemon();
   const [pokemonChoices, setPokemonChoices] = useState(pokemons);
   const [bestCounter, setBestCounter] = useState(0)
+
   const createOptionList = () => {
     return pokemonChoices.map(( pokemon, index ) => {
       return (
-        <button name="user-button" onClick={(event) => checkForWin(event)} id={`${pokemon.name}`} className="pokemon-button" key={index}>
+        <button 
+          name="user-button" 
+          onClick={(event) => checkForWin(event)}
+          id={`${pokemon.name}`}
+          className="pokemon-button"
+          key={index}
+        >
           {pokemon.name}
         </button>
       )
@@ -40,7 +47,7 @@ const Game = ({ get4RdmPokemon}) => {
   }
 
   useEffect(() => {
-    const {name, url} = pokemonChoices[Math.floor(Math.random() * pokemonChoices.length)];
+    const {url} = pokemonChoices[Math.floor(Math.random() * pokemonChoices.length)];
 
     const fetchSinglePokemon = async () => {
       try {
@@ -67,7 +74,8 @@ const Game = ({ get4RdmPokemon}) => {
       <h4 className='tile-font'>Best Streak: {`${bestCounter}`}</h4>
         </div>
         </section>
-        <img className="single-pokemon"
+        <img
+          className="single-pokemon"
           src={`${singlePokemon.sprites.front_default}`}
           alt="pokemon"
         />
