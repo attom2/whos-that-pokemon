@@ -22,3 +22,27 @@
   margin: 2%;
   box-shadow: 2px 2px 3px grey;
 }
+
+.game-section {
+  border:2px solid green;
+}
+
+.streak-tile {
+  width: 6em;
+  border: 3px solid black;
+}
+
+.tile-holder {
+  display: flex;
+  display: flex;
+  justify-content: space-between;
+}
+
+.tile-font {
+  font-size: 1.4em;
+}
+
+.best-tile {
+  width: 6em;
+  border: 3px solid black;
+}
