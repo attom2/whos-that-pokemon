@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import './Game.css'
-import '../../assets/whos-that-pokemon_.mp3'
 import {getSinglePokemon} from '../../ApiCalls'
+import pokeSound from '../../assets/whos-that-pokemon_.mp3'
+import wrongSound from '../../assets/EndCall3.mp3'
+
 
 const Game = ({ get4RdmPokemon}) => {
   const [singlePokemon, setSinglePokemon] = useState({});
   const [winCounter, setWinCounter] = useState(0);
   const pokemons = get4RdmPokemon();
   const [pokemonChoices, setPokemonChoices] = useState(pokemons);
-  const [bestCounter, setBestCounter] = useState(0);
+  const [bestCounter, setBestCounter] = useState(0)
+  const wrongSoundObj = new Audio(wrongSound);
   const [imageClassName, setImageClassName] = useState('single-pokemon');
   const [isWinner, setIsWinner] = useState(false);
 
@@ -32,13 +35,6 @@ const Game = ({ get4RdmPokemon}) => {
     })
   }
 
-  const playAudio = () => {
-  const whosThat = document.getElementsByClassName('pokemonSound')[0]
-  if(whosThat){
-    whosThat.play()
-    }
-  }
-
   const checkForWin = (event) => {
     const winner = singlePokemon.name;
 
@@ -50,6 +46,7 @@ const Game = ({ get4RdmPokemon}) => {
       setWinCounter(winCounter + 1)
       setIsWinner(true)
     } else {
+      wrongSoundObj.play()
       setWinCounter(0)
       setIsWinner(false)
 
@@ -88,7 +85,7 @@ const Game = ({ get4RdmPokemon}) => {
         <>
         <section className='tile-holder'>
         <div className='streak-tile'>
-        <h4 className='tile-font'>Winning streak: {`${winCounter}`}</h4>
+        <h4 className='tile-font'>Winning Streak: {`${winCounter}`}</h4>
         </div>
         <div className='best-tile'>
       <h4 className='tile-font'>Best Streak: {`${bestCounter}`}</h4>
@@ -109,11 +106,9 @@ const Game = ({ get4RdmPokemon}) => {
         </section>
         </>)
         }
-        {/* <audio className='pokemonSound'>
-        <source src='../../assets/whos-that-pokemon_.mp3'></source> */}
-      </section>
-      {/* </audio>
-       {playAudio()} */}
+        <audio src={pokeSound}
+        autoPlay />
+       </section>
     </>
   )
 }
