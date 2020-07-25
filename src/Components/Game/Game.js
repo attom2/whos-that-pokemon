@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import './Game.css'
 import {getSinglePokemon} from '../../ApiCalls'
 import pokeSound from '../../assets/whos-that-pokemon_.mp3'
-import wrongSound from '../../assets/End Call3.mp3'
+import wrongSound from '../../assets/EndCall3.mp3'
+
 
 const Game = ({ get4RdmPokemon}) => {
   const [singlePokemon, setSinglePokemon] = useState({});
@@ -10,6 +11,7 @@ const Game = ({ get4RdmPokemon}) => {
   const pokemons = get4RdmPokemon();
   const [pokemonChoices, setPokemonChoices] = useState(pokemons);
   const [bestCounter, setBestCounter] = useState(0)
+  const wrongSoundObj = new Audio(wrongSound)
   const createOptionList = () => {
     return pokemonChoices.map(( pokemon, index ) => {
       return (
@@ -20,13 +22,6 @@ const Game = ({ get4RdmPokemon}) => {
     })
   }
 
-  const playAudio = () => {
-  const whosThat = document.getElementsByClassName('pokemonSound')[0]
-  if(whosThat){
-    whosThat.play()
-    }
-  }
-
   const checkForWin = (event) => {
     const winner = singlePokemon.name;
     if(winner === event.target.id){
@@ -35,8 +30,7 @@ const Game = ({ get4RdmPokemon}) => {
         setBestCounter(winCounter + 1)
       }
     } else {
-      // <audio src={wrongSound}
-      //   autoPlay />
+      wrongSoundObj.play()
       setWinCounter(0)
     }
     setPokemonChoices(get4RdmPokemon())
@@ -83,10 +77,6 @@ const Game = ({ get4RdmPokemon}) => {
         }
         <audio src={pokeSound}
         autoPlay />
-        {/* <audio className='pokemonSound'>
-        <source src='../../assets/whos-that-pokemon_.mp3'></source> */}
-      {/* </audio>
-       {playAudio()} */}
        </section>
     </>
   
