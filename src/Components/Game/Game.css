@@ -4,6 +4,10 @@
   -webkit-user-drag: none;
 }
 
+.visible {
+  filter: none;
+}
+
 .choices {
   display: flex;
   flex-wrap: wrap;

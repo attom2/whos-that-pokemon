@@ -13,6 +13,7 @@ const Pokedex = ({allPokemon}) => {
     return (
       <select
         title="Pokemon List"
+        className='pokemon-list'
         onChange={(event) => {displaySinglePokemon(event)}}
       >
         {pokeNames}
