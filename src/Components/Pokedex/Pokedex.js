@@ -18,19 +18,16 @@ const Pokedex = ({ allPokemon, fetchSinglePokemon}) => {
   };
 
 
-  const handleChange = selectedOption => {
-    displaySinglePokemon(selectedOption.value);
-  };
-
-  const displaySinglePokemon = (url) => {
-    setSinglePokemon(fetchSinglePokemon(url));
+  const displaySinglePokemon = selectedOption => {
+    const singlePokemon = fetchSinglePokemon(selectedOption.value);
+    setSinglePokemon(singlePokemon);
   };
 
   return (
     <section className="pokedex-outline">
       <section className="pokedex-screen">
         <Select
-          onChange={handleChange}
+          onChange={displaySinglePokemon}
           options={createPokeList()}
         />
         {singlePokemon.name && <PokeDetails details={singlePokemon}/> }
