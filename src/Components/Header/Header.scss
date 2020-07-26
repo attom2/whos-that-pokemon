@@ -40,17 +40,25 @@ ul{
 
 li {
   list-style: none;
-  margin-right: 8px;
+  margin-right: 10px;
 }
 
 button {
   height: 2em;
   width: 8em;
   background: radial-gradient(#6285b0, #6994bd);
+  border-radius: 5px;
   color: white;
   text-shadow: 2px grey;
   line-height: 1.5em;
   font-size: 1.3em;
   padding: 0px 0px;
   letter-spacing: .1em;
+}
+
+.current-location {
+  button {
+    background: radial-gradient(#1e65a7, #3d7dca, #6994bd);
+    box-shadow: inset 3px 3px 13px black;
+  }
 }

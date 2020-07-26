@@ -8,7 +8,7 @@ const Pokedex = ({ allPokemon, fetchSinglePokemon}) => {
 
   const createSelectMenu = () => {
     const pokeNames = allPokemon.map((poke, index) => {
-      return  <option value={poke.url} key={index}>{poke.name}</option>;
+      return  <option value={poke.url} key={index + 1}>{poke.name}</option>;
     });
     return (
       <select
@@ -16,15 +16,22 @@ const Pokedex = ({ allPokemon, fetchSinglePokemon}) => {
         className='pokemon-list'
         onChange={(event) => { displaySinglePokemon(event); }}
       >
+        <option
+          value='choose a pokemon'
+          key={0}
+          selected
+        >
+          Pick A Pokemon
+        </option>
         {pokeNames}
       </select>
     );
   };
 
   const displaySinglePokemon = (event) => {
-    fetchSinglePokemon(event.target.value);
+    setSinglePokemon(fetchSinglePokemon(event.target.value));
   };
-  
+
   return (
     <section className="pokedex-outline">
       <section className="pokedex-screen">
