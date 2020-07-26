@@ -12,7 +12,7 @@ const Pokedex = ({ allPokemon, fetchSinglePokemon}) => {
     const pokeList = allPokemon.map(pokemon => {
       return {
         label: pokemon.name,
-        value: pokemon.url
+        url: pokemon.url
       };
     });
     return pokeList;
@@ -20,8 +20,13 @@ const Pokedex = ({ allPokemon, fetchSinglePokemon}) => {
 
 
   const displaySinglePokemon = selectedOption => {
-    const singlePokemon = fetchSinglePokemon(selectedOption.value);
+    const singlePokemon = fetchSinglePokemon(selectedOption.url);
     setSinglePokemon(singlePokemon);
+  };
+
+  const getRandomPokemon = () => {
+    const randomIndex = Math.floor(Math.random() * allPokemon.length);
+    return allPokemon[randomIndex];
   };
 
   return (
@@ -43,7 +48,7 @@ const Pokedex = ({ allPokemon, fetchSinglePokemon}) => {
           <div className="d-pad left"></div>
           <div className="d-pad middle"></div>
           <div className="d-pad right"></div>
-          <div className="d-pad bottom"></div>
+          <div className="d-pad bottom" onClick={() => displaySinglePokemon(getRandomPokemon())}></div>
         </div>
         <div className="control-buttons">
           <div className="buttons">B</div>

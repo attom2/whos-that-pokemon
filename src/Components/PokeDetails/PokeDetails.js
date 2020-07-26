@@ -8,7 +8,7 @@ const PokeDetails = ({details, isShiny}) => {
   const pokeBackImage = details.sprites.back_default;
   const pokeBackShiny = details.sprites.back_shiny;
   const pokeFrontShiny = details.sprites.front_shiny;
-
+  
   return (
     <figure>
       <section className="img-container">
@@ -23,7 +23,7 @@ const PokeDetails = ({details, isShiny}) => {
           alt={pokemonName}
         />
       </section>
-      <h4>{pokemonName}</h4>
+      <h2>{pokemonName}</h2>
       <figcaption>
         <p>Height: {Math.round(parseInt(details.height)*10)/100}m</p>
         <p>Weight: {Math.round(parseInt(details.weight)*10)/100}kg</p>
