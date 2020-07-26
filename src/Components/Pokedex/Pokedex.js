@@ -6,6 +6,7 @@ import Select from 'react-select';
 
 const Pokedex = ({ allPokemon, fetchSinglePokemon}) => {
   const { singlePokemon, setSinglePokemon } = useContext(AppContext);
+  const [isShiny, setIsShiny] = useState(false);
 
   const createPokeList = () => {
     const pokeList = allPokemon.map(pokemon => {
@@ -30,11 +31,15 @@ const Pokedex = ({ allPokemon, fetchSinglePokemon}) => {
           onChange={displaySinglePokemon}
           options={createPokeList()}
         />
-        {singlePokemon.name && <PokeDetails details={singlePokemon}/> }
+        {singlePokemon.name && 
+        <PokeDetails 
+          details={singlePokemon} 
+          isShiny={isShiny}
+        /> }
       </section>
       <div className="controller">
         <div className="d-pad-container">
-          <div className="d-pad top"></div>
+          <div className="d-pad top" onClick={() => setIsShiny(shiny => !shiny)}></div>
           <div className="d-pad left"></div>
           <div className="d-pad middle"></div>
           <div className="d-pad right"></div>
