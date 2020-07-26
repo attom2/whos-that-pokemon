@@ -1,9 +1,9 @@
-import React from 'react'
-import './PokeDetails.scss'
+import React from 'react';
+import './PokeDetails.scss';
 
 const PokeDetails = ({details}) => {
-  const pokemonName = details.name
-  const pokeFrontImage = details.sprites.front_default
+  const pokemonName = details.name;
+  const pokeFrontImage = details.sprites.front_default;
   return (
     <figure>
       <img
@@ -17,7 +17,7 @@ const PokeDetails = ({details}) => {
         <h4>Weight: {Math.round(parseInt(details.weight)*10)/100}kg</h4>
       </figcaption>
     </figure>
-  )
-}
+  );
+};
 
 export default PokeDetails;

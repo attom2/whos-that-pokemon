@@ -1,41 +1,38 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import PokeDetails from '../PokeDetails/PokeDetails';
 import './Pokedex.scss';
 import { AppContext } from '../../AppContext';
+import Select from 'react-select';
 
 const Pokedex = ({ allPokemon, fetchSinglePokemon}) => {
   const { singlePokemon, setSinglePokemon } = useContext(AppContext);
 
-  const createSelectMenu = () => {
-    const pokeNames = allPokemon.map((poke, index) => {
-      return  <option value={poke.url} key={index + 1}>{poke.name}</option>;
+  const createPokeList = () => {
+    const pokeList = allPokemon.map(pokemon => {
+      return {
+        label: pokemon.name,
+        value: pokemon.url
+      };
     });
-    return (
-      <select
-        title="Pokemon List"
-        className='pokemon-list'
-        onChange={(event) => { displaySinglePokemon(event); }}
-      >
-        <option
-          value='choose a pokemon'
-          key={0}
-          selected
-        >
-          Pick A Pokemon
-        </option>
-        {pokeNames}
-      </select>
-    );
+    return pokeList;
   };
 
-  const displaySinglePokemon = (event) => {
-    setSinglePokemon(fetchSinglePokemon(event.target.value));
+
+  const handleChange = selectedOption => {
+    displaySinglePokemon(selectedOption.value);
+  };
+
+  const displaySinglePokemon = (url) => {
+    setSinglePokemon(fetchSinglePokemon(url));
   };
 
   return (
     <section className="pokedex-outline">
       <section className="pokedex-screen">
-        {createSelectMenu()}
+        <Select
+          onChange={handleChange}
+          options={createPokeList()}
+        />
         {singlePokemon.name && <PokeDetails details={singlePokemon}/> }
       </section>
       <div className="controller">
