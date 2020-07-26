@@ -3,6 +3,7 @@ import './Game.css';
 import pokeSound from '../../assets/whos-that-pokemon_.mp3';
 import wrongSound from '../../assets/EndCall3.mp3';
 import { AppContext } from '../../AppContext';
+import rightSound from '../../assets/HollowBellNotification.mp3';
 
 
 const Game = ({ get4RdmPokemon, fetchSinglePokemon}) => {
@@ -11,6 +12,7 @@ const Game = ({ get4RdmPokemon, fetchSinglePokemon}) => {
   const [pokemonChoices, setPokemonChoices] = useState(pokemons);
   const [bestCounter, setBestCounter] = useState(0);
   const wrongSoundObj = new Audio(wrongSound);
+  const rightSoundObj = new Audio(rightSound);
   const [imageClassName, setImageClassName] = useState('single-pokemon');
   const [isWinner, setIsWinner] = useState(false);
   const { singlePokemon, setSinglePokemon } = useContext(AppContext);
@@ -42,14 +44,15 @@ const Game = ({ get4RdmPokemon, fetchSinglePokemon}) => {
       setWinCounter(winCounter + 1);
       setBestCounter(winCounter + 1);
       setIsWinner(true);
+      rightSoundObj.play();
     } else if (winner === event.target.id) {
       setWinCounter(winCounter + 1);
       setIsWinner(true);
+      rightSoundObj.play();
     } else {
       wrongSoundObj.play();
       setWinCounter(0);
       setIsWinner(false);
-
     }
   };
 
