@@ -12,7 +12,7 @@ const Header = () => {
       <nav>
         <ul>
           <NavLink
-            activeStyle={{backgroundColor: 'black'}}
+            activeClassName='current-location'
             to='/pokedex'
           >
             <li>
@@ -25,7 +25,7 @@ const Header = () => {
             </li>
           </NavLink>
           <NavLink
-            activeStyle={{backgroundColor: 'black'}}
+            activeClassName='current-location'
             to='/game'
           >
             <li>
