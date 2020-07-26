@@ -8,7 +8,7 @@ const PokeDetails = ({details, isShiny}) => {
   const pokeBackImage = details.sprites.back_default;
   const pokeBackShiny = details.sprites.back_shiny;
   const pokeFrontShiny = details.sprites.front_shiny;
-  
+  console.log(details);
   return (
     <figure>
       <section className="img-container">
