@@ -29,9 +29,9 @@ const Pokedex = ({ allPokemon, fetchSinglePokemon}) => {
   };
 
   const displaySinglePokemon = (event) => {
-    fetchSinglePokemon(event.target.value);
+    setSinglePokemon(fetchSinglePokemon(event.target.value));
   };
-  
+
   return (
     <section className="pokedex-outline">
       <section className="pokedex-screen">
