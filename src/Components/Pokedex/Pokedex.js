@@ -12,7 +12,7 @@ const Pokedex = ({ allPokemon, fetchSinglePokemon}) => {
     const pokeList = allPokemon.map(pokemon => {
       return {
         label: pokemon.name,
-        url: pokemon.url
+        value: pokemon.url
       };
     });
     return pokeList;
@@ -20,7 +20,8 @@ const Pokedex = ({ allPokemon, fetchSinglePokemon}) => {
 
 
   const displaySinglePokemon = selectedOption => {
-    const singlePokemon = fetchSinglePokemon(selectedOption.url);
+    const url = selectedOption.url || selectedOption.value;
+    const singlePokemon = fetchSinglePokemon(url);
     setSinglePokemon(singlePokemon);
   };
 
@@ -30,11 +31,13 @@ const Pokedex = ({ allPokemon, fetchSinglePokemon}) => {
   };
 
   return (
+
     <section className="pokedex-outline">
       <section className="pokedex-screen">
         <Select
           onChange={displaySinglePokemon}
           options={createPokeList()}
+          isSearchable="true"
         />
         {singlePokemon.name && 
         <PokeDetails 
