@@ -104,3 +104,19 @@ select {
   justify-content: center;
   width: 35px;
 }
+
+@media screen and (min-width: 750px) {
+.pokedex-screen {
+  width: 38vw;
+}
+
+.pokemon-pic {
+  width: 21vw;
+  height: 30vh;
+}
+
+.controller {
+  justify-content: space-evenly;
+}
+
+}

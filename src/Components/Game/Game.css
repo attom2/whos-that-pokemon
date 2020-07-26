@@ -9,8 +9,9 @@
 }
 
 .choices {
-  display: flex;
-  flex-wrap: wrap;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .pokemon-button {
@@ -27,9 +28,6 @@
   box-shadow: 2px 2px 3px grey;
 }
 
-.game-section {
-  border:2px solid green;
-}
 
 .streak-tile {
   width: 6em;
@@ -37,7 +35,6 @@
 }
 
 .tile-holder {
-  display: flex;
   display: flex;
   justify-content: space-between;
 }
@@ -50,3 +47,47 @@
   width: 6em;
   border: 3px solid black;
 }
+
+.pic-left {
+  display: none;
+}
+
+.pic-right {
+  display: none;
+}
+
+/* @media screen and (min-width: 1210px) {
+  .tile-holder {
+    display: flex;
+    justify-content: center;
+    width: 54.3em;
+  }
+} */
+
+@media screen and (min-width: 1310px){
+  .tile-holder {
+ display: flex;
+ justify-content: space-around;
+ width: 37.3em;
+}
+
+.pic-left {
+ display: inline-block;
+ position: relative;
+ height: 59em;
+ width: 27%;
+ float: left;
+}
+
+.pic-right {
+  display: inline-block;
+  float: right;
+  height: 63em;
+  bottom: 97px;
+  position: relative;
+}
+
+
+
+}
+

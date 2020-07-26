@@ -6,6 +6,7 @@ import { AppContext } from '../../AppContext';
 import rightSound from '../../assets/HollowBellNotification.mp3';
 
 
+
 const Game = ({ get4RdmPokemon, fetchSinglePokemon}) => {
   const [winCounter, setWinCounter] = useState(0);
   const pokemons = get4RdmPokemon();
@@ -73,34 +74,50 @@ const Game = ({ get4RdmPokemon, fetchSinglePokemon}) => {
 
   return (
     <>
-      <section className='game-section' alt="game-section">
+      <section className="game-section" alt="game-section">
         {singlePokemon.sprites && (
           <>
-            <section className='tile-holder'>
-              <div className='streak-tile'>
-                <h4 className='tile-font'>Winning Streak: {`${winCounter}`}</h4>
+            <img
+              className="pic-left"
+              src={require("../../assets/ashpikachu.jpg")}
+              alt="ash and pikachu"
+            />
+            <section className="tile-holder">
+              <div className="streak-tile">
+                <h4 className="tile-font">Winning Streak: {`${winCounter}`}</h4>
               </div>
-              <div className='best-tile'>
-                <h4 className='tile-font'>Best Streak: {`${bestCounter}`}</h4>
+              <section className="feedback-tile">
+                {isWinner && imageClassName === "single-pokemon visible" && (
+                  <h2> Correct! This is:</h2>
+                )}
+                {!isWinner && imageClassName === "single-pokemon visible" && (
+                  <h2> Incorrect! This is:</h2>
+                )}
+                {imageClassName === "single-pokemon visible" && (
+                  <h2>{singlePokemon.name}</h2>
+                )}
+              </section>
+              <div className="best-tile">
+                <h4 className="tile-font">Best Streak: {`${bestCounter}`}</h4>
               </div>
             </section>
-            {isWinner && imageClassName === 'single-pokemon visible' && <h2> Correct! This is:</h2>}
-            {!isWinner && imageClassName === 'single-pokemon visible' && <h2> Incorrect! This is:</h2>}
-            {imageClassName === 'single-pokemon visible' && <h2>{singlePokemon.name}</h2>}
+            <img
+              className="pic-right"
+              src={require("../../assets/Misty.jpg")}
+              alt="Misty"
+            />
+
             <img
               className={imageClassName}
               src={`${singlePokemon.sprites.front_default}`}
               alt="pokemon"
             />
-            <section alt='user-choices' className="choices">
-              <section className="choices">
-                {createOptionList()}
-              </section>
+            <section alt="user-choices" className="choices">
+              <section className="choices">{createOptionList()}</section>
             </section>
-          </>)
-        }
-        <audio src={pokeSound}
-          autoPlay />
+          </>
+        )}
+        <audio src={pokeSound} autoPlay />
       </section>
     </>
   );
