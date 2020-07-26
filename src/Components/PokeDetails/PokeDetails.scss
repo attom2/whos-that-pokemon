@@ -1,10 +1,26 @@
 .pokemon-pic {
-  width: 50vw;
-  height: 30vh;
+  width: 38vw;
+  height: 23vh;
+}
+
+.img-container {
+  display: flex;
 }
 
 h4 {
   font-size: 1.3em;
   padding: 2px;
   margin: 3px;
+}
+
+figure {
+  display: block;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  margin-inline-start: 0;
+  margin-inline-end: 0;
+}
+
+figcaption {
+  display: flex;
 }
