@@ -1,23 +1,32 @@
-import React from 'react'
-import './PokeDetails.scss'
+import React from 'react';
+import './PokeDetails.scss';
 
-const PokeDetails = ({details}) => {
-  const pokemonName = details.name
-  const pokeFrontImage = details.sprites.front_default
+const PokeDetails = ({details, isShiny}) => {
+  const {sprites, name, types} = details;
+  const {front_default, back_default, front_shiny, back_shiny} = sprites;
+  const pokemonType = types.map(poke => poke.type.name + '\n');
   return (
     <figure>
-      <img
-        className='pokemon-pic'
-        src={pokeFrontImage}
-        alt={pokemonName}
-      />
+      <section className="img-container">
+        <img
+          className='pokemon-pic'
+          src={isShiny ? front_shiny : front_default}
+          alt={name}
+        />
+        <img
+          className='pokemon-pic'
+          src={isShiny ? back_shiny : back_default}
+          alt={name}
+        />
+      </section>
+      <h2>{name}</h2>
       <figcaption>
-        <h4>{pokemonName}</h4>
-        <h4>Height: {Math.round(parseInt(details.height)*10)/100}m</h4>
-        <h4>Weight: {Math.round(parseInt(details.weight)*10)/100}kg</h4>
+        <p>Height: {Math.round(parseInt(details.height)*10)/100}m</p>
+        <p>Weight: {Math.round(parseInt(details.weight)*10)/100}kg</p>
+        <p>Type: {pokemonType}</p>
       </figcaption>
     </figure>
-  )
-}
+  );
+};
 
 export default PokeDetails;
