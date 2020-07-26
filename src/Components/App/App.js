@@ -54,15 +54,15 @@ const App = () => {
           exact
           path="/game"
           render={() => (
-            <Game 
-              get4RdmPokemon={get4RdmPokemon} 
+            <Game
+              get4RdmPokemon={get4RdmPokemon}
               fetchSinglePokemon={fetchSinglePokemon}/>
           )}
         />}
-        <Route path='/pokedex' 
-          render={() => 
-            <Pokedex 
-              allPokemon={allPokemon} 
+        <Route path='/pokedex'
+          render={() =>
+            <Pokedex
+              allPokemon={allPokemon}
               fetchSinglePokemon={fetchSinglePokemon}
             />}
         />
