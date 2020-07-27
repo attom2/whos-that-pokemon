@@ -31,7 +31,7 @@ const App = () => {
     fetchAllPokemon();
   }, []);
 
-  const get4RdmPokemon = () => {
+  const getRandomPokemons = () => {
     const pokemons = [{}, {}, {}, {}];
     let randomIndexes = [];
     while (randomIndexes.length <= 4) {
@@ -96,7 +96,7 @@ const App = () => {
           path="/game"
           render={() => (
             <Game
-              get4RdmPokemon={get4RdmPokemon}
+              getRandomPokemons={getRandomPokemons}
               fetchSinglePokemon={fetchSinglePokemon}/>
           )}
         />}
