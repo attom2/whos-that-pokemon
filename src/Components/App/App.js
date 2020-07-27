@@ -67,13 +67,11 @@ const App = () => {
     switch (detailProperty) {
     case 'isFavorite': {
       const newPokemonInfo = allPokemon.reduce(pokemonInfoModifier, []);
-      console.log(newPokemonInfo);
       setAllPokemon(newPokemonInfo);
     }
       break;
     case 'hint': {
       const newPokemonInfo = allPokemon.reduce(pokemonInfoModifier, []);
-      console.log(newPokemonInfo);
       setAllPokemon(newPokemonInfo);
     }
       break;
