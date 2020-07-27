@@ -60,15 +60,15 @@ const Pokedex = ({fetchSinglePokemon, togglePokemonFavoriteStatus}) => {
           </div>
         </div>
         <div className="control-buttons">
+          <div className="buttons">B</div>
           <div
             className="buttons"
             onClick={() => {
               togglePokemonFavoriteStatus(singlePokemon.id);
             }}
           >
-            B
+            A
           </div>
-          <div className="buttons">A</div>
         </div>
       </div>
     </section>
