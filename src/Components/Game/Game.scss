@@ -1,7 +1,7 @@
 @import '../App/App.scss';
 
 .single-pokemon {
-  height: 30vh;
+  height: 35vh;
   filter: brightness(0%);
   -webkit-user-drag: none;
   margin: 0px;
@@ -54,26 +54,18 @@
 .tile-holder {
   display: flex;
   justify-content: space-around;
-  width: 37.3em;
 }
 
-.pic-left {
- display: inline-block;
- position: relative;
- height: 59em;
- width: 27%;
- float: left;
+.choices {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-self: center;
 }
 
-.pic-right {
-  display: inline-block;
-  float: right;
-  height: 63em;
-  bottom: 97px;
-  position: relative;
+.feedback-tile {
+  font-size: 13px;
 }
-
-
 
 }
 
