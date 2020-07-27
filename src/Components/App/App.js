@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import './App.css';
+import './App.scss';
 import Header from '../Header/Header';
 import Game from '../Game/Game';
 import Pokedex from '../Pokedex/Pokedex';

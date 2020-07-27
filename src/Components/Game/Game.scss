@@ -1,3 +1,5 @@
+@import '../App/App.scss';
+
 .single-pokemon {
   height: 40vh;
   filter: brightness(0%);
@@ -16,22 +18,16 @@
 
 .pokemon-button {
   border: 3px solid #1e65a7;
-  background: radial-gradient(#3d7dca, #1e65a7);
+  @include pixelate(3px, #3d7dca, #1e65a7);
   cursor: pointer;
   color: white;
   text-shadow: 2px 2px 2px black;
-  font-size: 31px;
+  font-size: 24px;
   font-weight: 700;
-  height: 10vh;
-  width: 46%;
+  height: 7vh;
+  width: 43%;
   margin: 2%;
   box-shadow: 2px 2px 3px grey;
-}
-
-
-.streak-tile {
-  width: 6em;
-  border: 3px solid black;
 }
 
 .tile-holder {
@@ -41,11 +37,6 @@
 
 .tile-font {
   font-size: 1.4em;
-}
-
-.best-tile {
-  width: 6em;
-  border: 3px solid black;
 }
 
 .pic-left {
