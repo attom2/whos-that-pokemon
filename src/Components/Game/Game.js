@@ -115,6 +115,30 @@ const Game = ({ get4RdmPokemon, fetchSinglePokemon}) => {
           )}
           <audio src={pokeSound} autoPlay />
         </section>
+        <div className="controller">
+          <div className="d-pad-container">
+            <div className="d-pad top"></div>
+            <div className="d-pad left"></div>
+            <div className="d-pad middle"></div>
+            <div className="d-pad right"></div>
+            <div className="d-pad bottom"
+              // onClick={() => displaySinglePokemon(getRandomPokemon())}
+            >
+            </div>
+          </div>
+          <div className="control-buttons">
+            <div className="buttons"
+              // onClick={() => {
+              //   const pokemonIndex = singlePokemon.id - 1;
+              //   const favoriteState = !allPokemon[pokemonIndex].isFavorite;
+              //   addUserDetails('isFavorite', singlePokemon.id, favoriteState);
+              // }}
+            >
+            B
+            </div>
+            <div className="buttons">A</div>
+          </div>
+        </div>
       </section>
       <img
         className="pic-right"

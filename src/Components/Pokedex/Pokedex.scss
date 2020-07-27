@@ -15,7 +15,9 @@
 .pokedex-screen {
   @include pixelate(5px, #6285b0, #6994bd);
   border: 8px outset #211911;
-  display: table;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-around;
   height: 59vh;
   margin: 0 auto;
   width: 78vw;

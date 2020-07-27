@@ -1,9 +1,10 @@
 @import '../App/App.scss';
 
 .single-pokemon {
-  height: 40vh;
+  height: 30vh;
   filter: brightness(0%);
   -webkit-user-drag: none;
+  margin: 0px;
 }
 
 .visible {
@@ -11,6 +12,7 @@
 }
 
 .choices {
+    align-self: flex-end;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -22,9 +24,9 @@
   cursor: pointer;
   color: white;
   text-shadow: 2px 2px 2px black;
-  font-size: 24px;
+  font-size: 18px;
   font-weight: 700;
-  height: 7vh;
+  height: 5vh;
   width: 43%;
   margin: 2%;
   box-shadow: 2px 2px 3px grey;
