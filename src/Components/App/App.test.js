@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent, waitFor } from '@testing-library/react';
+import { render, fireEvent, waitFor, findAllByTestId, findAllByRole } from '@testing-library/react';
 import App from './App';
 import '@testing-library/jest-dom';
 import { MemoryRouter } from 'react-router-dom';
@@ -26,7 +26,7 @@ describe('App', () => {
       "url": "https://pokeapi.co/api/v2/pokemon/4/"
     },
     {
-      "name": "bulbasaur",
+      "name": "charmander",
       "url": "https://pokeapi.co/api/v2/pokemon/5/"
     }]);
 
@@ -38,6 +38,8 @@ describe('App', () => {
       front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/3.png"
     }
   });
+
+
 
   it('should render the app header', async () => {
 
@@ -65,17 +67,15 @@ describe('App', () => {
     expect(singlePokemon).toBeInTheDocument();
   });
 
-  it.skip('should have pokemon choices buttons when navigating to /game', async () => {
-    const { getByText, getAllByRole, getByRole } = render(
+  it('should have pokemon choices buttons when navigating to /game', async () => {
+    const { getByText, findAllByTestId } = render(
       <MemoryRouter>
         <App />
       </MemoryRouter>
     );
     const gameNav = getByText('Game');
     fireEvent.click(gameNav);
-    const singlePokemon = await waitFor(() => getByRole('button', { name: 'charmander' }));
-    expect(singlePokemon).toBeInTheDocument();
-    const pokemonChoices = await waitFor(() => getAllByRole('button'));
+    const pokemonChoices = await findAllByTestId('pokemon-choice-button');
     expect(pokemonChoices.length).toBe(4);
   });
 
@@ -123,7 +123,7 @@ describe('App', () => {
 
   });
 
-  it.only('should be able navigating to /game and from there to /pokedex', async () => {
+  it('should be able navigating to /game and from there to /pokedex', async () => {
     const { getByText, getAllByRole, getByRole } = render(
       <MemoryRouter>
         <App />
