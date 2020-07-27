@@ -92,6 +92,8 @@ const App = () => {
           render={() =>
             <Pokedex
               allPokemon={allPokemon}
+              singlePokemon={singlePokemon}
+              setSinglePokemon={setSinglePokemon}
               fetchSinglePokemon={fetchSinglePokemon}
               togglePokemonFavoriteStatus={togglePokemonFavoriteStatus}
             />}

@@ -18,6 +18,18 @@
     justify-content: center;
 }
 
+.pokedex-screen-game {
+  @include pixelate(5px, #6285b0, #6994bd);
+  border: 8px outset #211911;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-around;
+  align-content: center;
+  height: 59vh;
+  width: 78vw;
+  margin: 0 auto;
+}
+
 .pokemon-button {
   border: 3px solid #1e65a7;
   @include pixelate(3px, #3d7dca, #1e65a7);
@@ -49,7 +61,11 @@
   display: none;
 }
 
-@media screen and (min-width: 1310px){
+@media screnn and (min-widht: 560px) {
+  
+}
+
+@media screen and (min-width: 800px){
   .tile-holder {
  display: flex;
  justify-content: space-around;

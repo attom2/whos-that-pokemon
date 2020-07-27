@@ -1,11 +1,15 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import PokeDetails from '../PokeDetails/PokeDetails';
 import './Pokedex.scss';
-import { AppContext } from '../../AppContext';
 import Select from 'react-select';
 
-const Pokedex = ({fetchSinglePokemon, togglePokemonFavoriteStatus}) => {
-  const { singlePokemon, setSinglePokemon, allPokemon } = useContext(AppContext);
+const Pokedex = ({
+  singlePokemon,
+  setSinglePokemon,
+  allPokemon,
+  fetchSinglePokemon,
+  togglePokemonFavoriteStatus
+}) => {
   const [isShiny, setIsShiny] = useState(false);
 
   const createPokeList = () => {
@@ -35,6 +39,7 @@ const Pokedex = ({fetchSinglePokemon, togglePokemonFavoriteStatus}) => {
     <section className="pokedex-outline">
       <section className="pokedex-screen">
         <Select
+          className='pokemon-select-menu'
           onChange={displaySinglePokemon}
           options={createPokeList()}
           isSearchable="true"
