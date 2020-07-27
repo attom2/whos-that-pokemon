@@ -8,7 +8,7 @@ import { getAllPokemon, getSinglePokemon } from '../../ApiCalls';
 jest.mock("../../ApiCalls");
 
 describe('App', () => {
-  getAllPokemon.mockResolvedValue( [
+  getAllPokemon.mockResolvedValue([
     {
       "name": "bulbasaur",
       "url": "https://pokeapi.co/api/v2/pokemon/1/"
