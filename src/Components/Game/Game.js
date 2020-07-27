@@ -127,13 +127,7 @@ const Game = ({ getRandomPokemons, fetchSinglePokemon}) => {
             </div>
           </div>
           <div className="control-buttons">
-            <div className="buttons"
-              // onClick={() => {
-              //   const pokemonIndex = singlePokemon.id - 1;
-              //   const favoriteState = !allPokemon[pokemonIndex].isFavorite;
-              //   addUserDetails('isFavorite', singlePokemon.id, favoriteState);
-              // }}
-            >
+            <div className="buttons" >
             B
             </div>
             <div className="buttons">A</div>

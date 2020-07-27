@@ -1,10 +1,14 @@
-import React from 'react';
+import React, {useContext} from 'react';
+import {AppContext} from '../../AppContext';
 import './PokeDetails.scss';
+import pokeball from '../../assets/icons8-pokeball-100.png';
 
 const PokeDetails = ({details, isShiny}) => {
-  const {sprites, name, types} = details;
-  const {front_default, back_default, front_shiny, back_shiny} = sprites;
+  const { sprites, name, types } = details;
+  const { front_default, back_default, front_shiny, back_shiny } = sprites;
   const pokemonType = types.map(poke => poke.type.name + '\n');
+  const { allPokemon, singlePokemon } = useContext(AppContext);
+
   return (
     <figure>
       <section className="img-container">
@@ -24,6 +28,12 @@ const PokeDetails = ({details, isShiny}) => {
         <p>Height: {Math.round(parseInt(details.height)*10)/100}m</p>
         <p>Weight: {Math.round(parseInt(details.weight)*10)/100}kg</p>
         <p>Type: {pokemonType}</p>
+        {allPokemon[singlePokemon.id - 1].isFavorite &&
+          <img
+            src={pokeball}
+            alt='A Pokeball. This pokemon is favorited'
+          />
+        }
       </figcaption>
     </figure>
   );
