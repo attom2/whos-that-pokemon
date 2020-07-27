@@ -15,7 +15,15 @@ const App = () => {
     const fetchAllPokemon = async () => {
       try {
         const allPokemon = await getAllPokemon();
-        setAllPokemon(allPokemon);
+        const modifiedPokemonInfo = allPokemon.map((pokemon, index) => {
+          return ({
+            ...pokemon,
+            id: index + 1,
+            isFavorite: false,
+            hint: ''
+          });
+        });
+        setAllPokemon(modifiedPokemonInfo);
       } catch (error) {
         console.log(error);
       }
@@ -49,7 +57,14 @@ const App = () => {
   return (
     <main className="App">
       <Header />
-      <AppContext.Provider value= {{singlePokemon, setSinglePokemon}}>
+      <AppContext.Provider 
+        value={{
+          singlePokemon,
+          setSinglePokemon,
+          allPokemon,
+          setAllPokemon
+        }}
+      >
         {allPokemon.length && <Route
           exact
           path="/game"
