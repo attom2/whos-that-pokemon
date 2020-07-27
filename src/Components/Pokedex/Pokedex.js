@@ -4,7 +4,7 @@ import './Pokedex.scss';
 import { AppContext } from '../../AppContext';
 import Select from 'react-select';
 
-const Pokedex = ({fetchSinglePokemon, addUserDetails}) => {
+const Pokedex = ({fetchSinglePokemon, togglePokemonFavoriteStatus}) => {
   const { singlePokemon, setSinglePokemon, allPokemon } = useContext(AppContext);
   const [isShiny, setIsShiny] = useState(false);
 
@@ -51,17 +51,19 @@ const Pokedex = ({fetchSinglePokemon, addUserDetails}) => {
           <div className="d-pad left"></div>
           <div className="d-pad middle"></div>
           <div className="d-pad right"></div>
-          <div className="d-pad bottom"
-            onClick={() => displaySinglePokemon(getRandomPokemon())}
+          <div
+            className="d-pad bottom"
+            onClick={() => {
+              displaySinglePokemon(getRandomPokemon());
+            }}
           >
           </div>
         </div>
         <div className="control-buttons">
-          <div className="buttons"
+          <div
+            className="buttons"
             onClick={() => {
-              const pokemonIndex = singlePokemon.id - 1;
-              const favoriteState = !allPokemon[pokemonIndex].isFavorite;
-              addUserDetails('isFavorite', singlePokemon.id, favoriteState);
+              togglePokemonFavoriteStatus(singlePokemon.id);
             }}
           >
             B
