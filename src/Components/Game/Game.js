@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react';
-import './Game.css';
+import './Game.scss';
 import pokeSound from '../../assets/whos-that-pokemon_.mp3';
 import wrongSound from '../../assets/EndCall3.mp3';
 import { AppContext } from '../../AppContext';
@@ -7,9 +7,9 @@ import rightSound from '../../assets/HollowBellNotification.mp3';
 
 
 
-const Game = ({ get4RdmPokemon, fetchSinglePokemon}) => {
+const Game = ({ getRandomPokemons, fetchSinglePokemon}) => {
   const [winCounter, setWinCounter] = useState(0);
-  const pokemons = get4RdmPokemon();
+  const pokemons = getRandomPokemons();
   const [pokemonChoices, setPokemonChoices] = useState(pokemons);
   const [bestCounter, setBestCounter] = useState(0);
   const wrongSoundObj = new Audio(wrongSound);
@@ -62,7 +62,7 @@ const Game = ({ get4RdmPokemon, fetchSinglePokemon}) => {
     setImageClassName('single-pokemon visible');
     const turnDisplayOff = () => {
       setImageClassName('single-pokemon');
-      setPokemonChoices(get4RdmPokemon());
+      setPokemonChoices(getRandomPokemons());
     };
     setTimeout(turnDisplayOff, 2000);
   };
@@ -74,51 +74,77 @@ const Game = ({ get4RdmPokemon, fetchSinglePokemon}) => {
 
   return (
     <>
-      <section className="game-section" alt="game-section">
-        {singlePokemon.sprites && (
-          <>
-            <img
-              className="pic-left"
-              src={require("../../assets/ashpikachu.jpg")}
-              alt="ash and pikachu"
-            />
-            <section className="tile-holder">
-              <div className="streak-tile">
-                <h4 className="tile-font">Winning Streak: {`${winCounter}`}</h4>
-              </div>
-              <section className="feedback-tile">
-                {isWinner && imageClassName === "single-pokemon visible" && (
-                  <h2> Correct! This is:</h2>
-                )}
-                {!isWinner && imageClassName === "single-pokemon visible" && (
-                  <h2> Incorrect! This is:</h2>
-                )}
-                {imageClassName === "single-pokemon visible" && (
-                  <h2>{singlePokemon.name}</h2>
-                )}
+      <img
+        className="pic-left"
+        src={require("../../assets/ashpikachu.jpg")}
+        alt="ash and pikachu"
+      />
+      <section className='pokedex-outline'>
+        <section className="pokedex-screen" alt="game-section">
+          {singlePokemon.sprites && (
+            <>
+              <section className="tile-holder">
+                <div className="streak-tile">
+                  <h4 className="tile-font">Winning Streak: {`${winCounter}`}</h4>
+                </div>
+                <section className="feedback-tile">
+                  {isWinner && imageClassName === "single-pokemon visible" && (
+                    <h2> Correct! This is:</h2>
+                  )}
+                  {!isWinner && imageClassName === "single-pokemon visible" && (
+                    <h2> Incorrect! This is:</h2>
+                  )}
+                  {imageClassName === "single-pokemon visible" && (
+                    <h2>{singlePokemon.name}</h2>
+                  )}
+                </section>
+                <div className="best-tile">
+                  <h4 className="tile-font">Best Streak: {`${bestCounter}`}</h4>
+                </div>
               </section>
-              <div className="best-tile">
-                <h4 className="tile-font">Best Streak: {`${bestCounter}`}</h4>
-              </div>
-            </section>
-            <img
-              className="pic-right"
-              src={require("../../assets/Misty.jpg")}
-              alt="Misty"
-            />
 
-            <img
-              className={imageClassName}
-              src={`${singlePokemon.sprites.front_default}`}
-              alt="pokemon"
-            />
-            <section alt="user-choices" className="choices">
-              <section className="choices">{createOptionList()}</section>
-            </section>
-          </>
-        )}
-        <audio src={pokeSound} autoPlay />
+              <img
+                className={imageClassName}
+                src={`${singlePokemon.sprites.front_default}`}
+                alt="pokemon"
+              />
+              <section alt="user-choices" className="choices">
+                <section className="choices">{createOptionList()}</section>
+              </section>
+            </>
+          )}
+          <audio src={pokeSound} autoPlay />
+        </section>
+        <div className="controller">
+          <div className="d-pad-container">
+            <div className="d-pad top"></div>
+            <div className="d-pad left"></div>
+            <div className="d-pad middle"></div>
+            <div className="d-pad right"></div>
+            <div className="d-pad bottom"
+              // onClick={() => displaySinglePokemon(getRandomPokemon())}
+            >
+            </div>
+          </div>
+          <div className="control-buttons">
+            <div className="buttons"
+              // onClick={() => {
+              //   const pokemonIndex = singlePokemon.id - 1;
+              //   const favoriteState = !allPokemon[pokemonIndex].isFavorite;
+              //   addUserDetails('isFavorite', singlePokemon.id, favoriteState);
+              // }}
+            >
+            B
+            </div>
+            <div className="buttons">A</div>
+          </div>
+        </div>
       </section>
+      <img
+        className="pic-right"
+        src={require("../../assets/Misty.jpg")}
+        alt="Misty"
+      />
     </>
   );
 };
