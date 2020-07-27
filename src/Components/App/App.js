@@ -53,11 +53,39 @@ const App = () => {
     }
   };
 
+  const addUserDetails = (detailProperty, pokemonId, detailContents) => {
+    const pokemonInfoModifier = (updatedPokemons, pokemon) => {
+      if (pokemon.id !== pokemonId) {
+        updatedPokemons = [...updatedPokemons, pokemon];
+      } else {
+        pokemon[detailProperty] = detailContents;
+        updatedPokemons = [...updatedPokemons, pokemon];
+      }
+      return updatedPokemons;
+    };
+
+    switch (detailProperty) {
+    case 'isFavorite': {
+      const newPokemonInfo = allPokemon.reduce(pokemonInfoModifier, []);
+      console.log(newPokemonInfo);
+      setAllPokemon(newPokemonInfo);
+    }
+      break;
+    case 'hint': {
+      const newPokemonInfo = allPokemon.reduce(pokemonInfoModifier, []);
+      console.log(newPokemonInfo);
+      setAllPokemon(newPokemonInfo);
+    }
+      break;
+    default:
+      console.log(allPokemon);
+    }
+  };
 
   return (
     <main className="App">
       <Header />
-      <AppContext.Provider 
+      <AppContext.Provider
         value={{
           singlePokemon,
           setSinglePokemon,
@@ -79,6 +107,7 @@ const App = () => {
             <Pokedex
               allPokemon={allPokemon}
               fetchSinglePokemon={fetchSinglePokemon}
+              addUserDetails={addUserDetails}
             />}
         />
       </AppContext.Provider>
