@@ -99,6 +99,30 @@ describe('App', () => {
     expect(pokemonChoices.length).toBe(4);
   });
 
+  it('should change header when navigating to /game', async () => {
+    const { getByText, findByRole } = render(
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>
+    );
+    const gameNav = getByText('Game');
+    fireEvent.click(gameNav);
+    const gameTitle = await findByRole('heading', {name:"Who's That Pokémon?"});
+    expect(gameTitle).toBeInTheDocument();
+  });
+
+  it('should change header when navigating to /pokedex', async () => {
+    const { getByText, findByRole } = render(
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>
+    );
+    const pokeNav = getByText('Pokedex');
+    fireEvent.click(pokeNav);
+    const pokedexTitle = await findByRole('heading', { name: "Pokédex" });
+    expect(pokedexTitle).toBeInTheDocument();
+  });
+
   it.skip('should start with a winning streak of 0, add 1 if the correct, and reset to 0 if wrong', async () => {
     const {getByRole, getByText} = render(
       <MemoryRouter>
@@ -161,7 +185,7 @@ describe('App', () => {
   });
 
   it('should have a d-pad and "A" and "B" buttons on game and pokedex pages', async () => {
-    const { getByText, findByText, debug } = render(
+    const { getByText, findByText } = render(
       <MemoryRouter>
         <App />
       </MemoryRouter>
