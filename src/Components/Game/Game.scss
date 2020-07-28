@@ -51,7 +51,9 @@
 }
 
 .tile-font {
-  font-size: 1.4em;
+  font-size: 1.2em;
+  margin-block-start: 0.5em;
+  margin-block-end: 0.5em;
 }
 
 @media screen and (min-width: 1310px){
@@ -72,7 +74,16 @@
 }
 
 @media screen and (min-width: 750px) {
+  
   .pokedex-screen-game {
     width: 38vw;
+  }
+
+  .tile-font {
+  font-size: 1.4em;
+  margin-block-start: 1.33em;
+  margin-block-end: 1.33em;
+  margin-inline-start: 1em;
+  margin-inline-end: 1em;
   }
 }
