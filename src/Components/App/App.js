@@ -53,31 +53,19 @@ const App = () => {
     }
   };
 
-  const addUserDetails = (detailProperty, pokemonId, detailContents) => {
+  const togglePokemonFavoriteStatus = (pokemonId) => {
     const pokemonInfoModifier = (updatedPokemons, pokemon) => {
       if (pokemon.id !== pokemonId) {
         updatedPokemons = [...updatedPokemons, pokemon];
       } else {
-        pokemon[detailProperty] = detailContents;
+        pokemon.isFavorite = !pokemon.isFavorite;
         updatedPokemons = [...updatedPokemons, pokemon];
       }
       return updatedPokemons;
     };
 
-    switch (detailProperty) {
-    case 'isFavorite': {
-      const newPokemonInfo = allPokemon.reduce(pokemonInfoModifier, []);
-      setAllPokemon(newPokemonInfo);
-    }
-      break;
-    case 'hint': {
-      const newPokemonInfo = allPokemon.reduce(pokemonInfoModifier, []);
-      setAllPokemon(newPokemonInfo);
-    }
-      break;
-    default:
-      console.log(allPokemon);
-    }
+    const newPokemonInfo = allPokemon.reduce(pokemonInfoModifier, []);
+    setAllPokemon(newPokemonInfo);
   };
 
   return (
@@ -104,8 +92,10 @@ const App = () => {
           render={() =>
             <Pokedex
               allPokemon={allPokemon}
+              singlePokemon={singlePokemon}
+              setSinglePokemon={setSinglePokemon}
               fetchSinglePokemon={fetchSinglePokemon}
-              addUserDetails={addUserDetails}
+              togglePokemonFavoriteStatus={togglePokemonFavoriteStatus}
             />}
         />
       </AppContext.Provider>

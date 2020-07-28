@@ -77,7 +77,7 @@ const Game = ({ getRandomPokemons, fetchSinglePokemon}) => {
     <>
      
       <section className='pokedex-outline'>
-        <section className="pokedex-screen" alt="game-section">
+        <section className="pokedex-screen-game" alt="game-section">
           {singlePokemon.sprites && (
             <>
               <section className="tile-holder">
@@ -119,21 +119,11 @@ const Game = ({ getRandomPokemons, fetchSinglePokemon}) => {
             <div className="d-pad left"></div>
             <div className="d-pad middle"></div>
             <div className="d-pad right"></div>
-            <div className="d-pad bottom"
-              // onClick={() => displaySinglePokemon(getRandomPokemon())}
-            >
+            <div className="d-pad bottom">
             </div>
           </div>
           <div className="control-buttons">
-            <div className="buttons"
-              // onClick={() => {
-              //   const pokemonIndex = singlePokemon.id - 1;
-              //   const favoriteState = !allPokemon[pokemonIndex].isFavorite;
-              //   addUserDetails('isFavorite', singlePokemon.id, favoriteState);
-              // }}
-            >
-            B
-            </div>
+            <div className="buttons">B</div>
             <div className="buttons">A</div>
           </div>
         </div>

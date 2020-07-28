@@ -6,6 +6,7 @@
   border: 2px solid black;
   font-family: 'Fira Mono', monospace;
   height:77vh;
+  width: minmax(400px, 800px);
   left: 0;
   position: absolute;
   right: 0;
@@ -16,7 +17,6 @@
   border: 8px outset #211911;
   display: flex;
   flex-flow: column;
-  justify-content: space-around;
   height: 59vh;
   margin: 0 auto;
   width: 78vw;
