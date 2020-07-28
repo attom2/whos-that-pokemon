@@ -31,6 +31,7 @@ const Game = ({ getRandomPokemons, fetchSinglePokemon}) => {
           id={`${pokemon.name}`}
           className="pokemon-button"
           key={index}
+          data-testid="pokemon-choice-button"
         >
           {pokemon.name}
         </button>
