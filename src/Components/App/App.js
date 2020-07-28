@@ -10,6 +10,7 @@ import { AppContext } from '../../AppContext';
 const App = () => {
   const [allPokemon, setAllPokemon] = useState([]);
   const [singlePokemon, setSinglePokemon] = useState({});
+  const [bestCounter, setBestCounter] = useState(0);
 
   useEffect(() => {
     const fetchAllPokemon = async () => {
@@ -76,7 +77,8 @@ const App = () => {
           singlePokemon,
           setSinglePokemon,
           allPokemon,
-          setAllPokemon
+          bestCounter,
+          setBestCounter
         }}
       >
         {allPokemon.length && <Route

@@ -11,13 +11,12 @@ const Game = ({ getRandomPokemons, fetchSinglePokemon}) => {
   const [winCounter, setWinCounter] = useState(0);
   const pokemons = getRandomPokemons();
   const [pokemonChoices, setPokemonChoices] = useState(pokemons);
-  const [bestCounter, setBestCounter] = useState(0);
   const wrongSoundObj = new Audio(wrongSound);
   const rightSoundObj = new Audio(rightSound);
   const [imageClassName, setImageClassName] = useState('single-pokemon');
   const [isWinner, setIsWinner] = useState(false);
-  const { singlePokemon, setSinglePokemon } = useContext(AppContext);
-  
+  const { singlePokemon, bestCounter, setBestCounter } = useContext(AppContext);
+
   const createOptionList = () => {
     return pokemonChoices.map(( pokemon, index ) => {
       return (
@@ -65,7 +64,7 @@ const Game = ({ getRandomPokemons, fetchSinglePokemon}) => {
       setImageClassName('single-pokemon');
       setPokemonChoices(getRandomPokemons());
     };
-    setTimeout(turnDisplayOff, 2000);
+    setTimeout(turnDisplayOff, 2100);
   };
 
   useEffect(() => {
@@ -75,7 +74,7 @@ const Game = ({ getRandomPokemons, fetchSinglePokemon}) => {
 
   return (
     <>
-     
+
       <section className='pokedex-outline'>
         <section className="pokedex-screen-game" alt="game-section">
           {singlePokemon.sprites && (
