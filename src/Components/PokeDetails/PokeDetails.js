@@ -1,10 +1,14 @@
-import React from 'react';
+import React, {useContext} from 'react';
+import {AppContext} from '../../AppContext';
 import './PokeDetails.scss';
+import pokeball from '../../assets/icons8-pokeball-100.png';
 
 const PokeDetails = ({details, isShiny}) => {
   const {sprites, name, types} = details;
   const {front_default, back_default, front_shiny, back_shiny} = sprites;
   const pokemonType = types.map(poke => poke.type.name + '\n');
+  const { allPokemon, singlePokemon } = useContext(AppContext);
+
   return (
     <figure>
       <section className="img-container">
@@ -19,11 +23,26 @@ const PokeDetails = ({details, isShiny}) => {
           alt={name}
         />
       </section>
-      <h2>{name}</h2>
+      <div className='stats-title'>
+        {allPokemon[singlePokemon.id - 1].isFavorite &&
+          <img
+            className='pokeball-icon'
+            src={pokeball}
+            alt='A Pokeball. This pokemon is favorited'
+          />
+        }
+        <h2>{name}</h2>
+      </div>
       <figcaption>
-        <p><b>Height:</b> {Math.round(parseInt(details.height)*10)/100}m       </p>
-        <p><b>Weight: </b>{Math.round(parseInt(details.weight)*10)/100}kg          </p>
-        <p><b>Type: </b>{pokemonType}</p>
+        <p>
+          <b>Height:</b><br/>{Math.round(parseInt(details.height)*10)/100}m
+        </p>
+        <p>
+          <b>Weight:</b><br/>{Math.round(parseInt(details.weight)*10)/100}kg
+        </p>
+        <p>
+          <b>Type:</b><br/>{pokemonType}
+        </p>
       </figcaption>
     </figure>
   );
