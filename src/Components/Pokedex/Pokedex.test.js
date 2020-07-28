@@ -1,10 +1,8 @@
 import React from 'react';
-import Pokedex from './Pokedex';
 import App from '../App/App';
 import { render, fireEvent } from "@testing-library/react";
 import { MemoryRouter } from 'react-router-dom';
 import "@testing-library/jest-dom";
-import userEvent from '@testing-library/user-event';
 import { getAllPokemon, getSinglePokemon } from '../../ApiCalls';
 
 jest.mock('../../ApiCalls');
@@ -167,5 +165,37 @@ describe("User interactions through Pokedex", () => {
     expect(pokemonHeight).toBeInTheDocument();
     expect(pokemonWeight).toBeInTheDocument();
     expect(pokemonType).toBeInTheDocument();
+  });
+
+  it('should allow a user to favorite and unfavorite a pokemon', async () => {
+    const { getByRole, getByText, findByText, findByRole, findAllByRole } = render(
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>
+    );
+
+    const pokeNav = await findByText('Pokedex');
+    fireEvent.click(pokeNav);
+    const pokeSelect = getByRole('textbox', {name:'combobox'});
+    getSinglePokemon.mockResolvedValueOnce(mockVenusaur);
+
+    fireEvent.click(pokeSelect);
+    fireEvent.keyDown(pokeSelect, {key: 'ArrowDown', code:'ArrowDown'});
+    fireEvent.keyDown(pokeSelect, {key: 'ArrowDown', code:'ArrowDown'});
+    fireEvent.keyDown(pokeSelect, {key: 'Enter', code:'Enter'});
+
+    let pokemonSprites = await findAllByRole('img', {name: 'venusaur'});
+    expect(pokemonSprites).toHaveLength(2);
+
+    const gameBoyAButton = getByText('A');
+    expect(gameBoyAButton).toBeInTheDocument();
+
+    fireEvent.click(gameBoyAButton);
+
+    const pokeball = await findByRole('img', {name: 'A Pokeball. This pokemon is favorited'});
+    expect(pokeball).toBeInTheDocument();
+
+    fireEvent.click(gameBoyAButton);
+    expect(pokeball).not.toBeInTheDocument();
   });
 });
