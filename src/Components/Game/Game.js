@@ -25,8 +25,7 @@ const Game = ({ getRandomPokemons, fetchSinglePokemon}) => {
           onClick={(event) => {
             checkForWin(event);
             togglePokemonDisplay();
-          }
-          }
+          }}
           id={`${pokemon.name}`}
           className="pokemon-button"
           key={index}
@@ -44,6 +43,7 @@ const Game = ({ getRandomPokemons, fetchSinglePokemon}) => {
     if (winner === event.target.id && winCounter >= bestCounter) {
       setWinCounter(winCounter + 1);
       setBestCounter(winCounter + 1);
+      localStorage.setItem('bestStreak', `${winCounter + 1}`);
       setIsWinner(true);
       rightSoundObj.play();
     } else if (winner === event.target.id) {

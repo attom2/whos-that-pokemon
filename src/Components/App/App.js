@@ -13,6 +13,13 @@ const App = () => {
   const [bestCounter, setBestCounter] = useState(0);
 
   useEffect(() => {
+    const winStreakCheck = () => {
+      if (localStorage.bestStreak) {
+        const previousWinStreak = localStorage.getItem('bestStreak');
+        setBestCounter(previousWinStreak);
+      }
+    };
+
     const fetchAllPokemon = async () => {
       try {
         const allPokemon = await getAllPokemon();
@@ -29,6 +36,8 @@ const App = () => {
         console.log(error);
       }
     };
+
+    winStreakCheck();
     fetchAllPokemon();
   }, []);
 
