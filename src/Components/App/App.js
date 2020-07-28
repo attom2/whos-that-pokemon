@@ -4,7 +4,7 @@ import Header from '../Header/Header';
 import Game from '../Game/Game';
 import Pokedex from '../Pokedex/Pokedex';
 import { getAllPokemon, getSinglePokemon} from '../../ApiCalls';
-import { Route } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 import { AppContext } from '../../AppContext';
 
 const App = () => {
@@ -109,6 +109,9 @@ const App = () => {
               togglePokemonFavoriteStatus={togglePokemonFavoriteStatus}
             />}
         />
+        <Route path='/'>
+          <Redirect to='/game' />
+        </Route>
       </AppContext.Provider>
     </main>
   );
