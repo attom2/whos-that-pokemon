@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent, waitFor, findAllByTestId, findAllByRole } from '@testing-library/react';
+import { render, fireEvent, waitFor} from '@testing-library/react';
 import App from './App';
 import '@testing-library/jest-dom';
 import { MemoryRouter } from 'react-router-dom';
@@ -21,7 +21,7 @@ describe('App', () => {
       "url": "https://pokeapi.co/api/v2/pokemon/2/",
       isFavorite: false
     },
-    {
+    { 
       "name": "venusaur",
       "url": "https://pokeapi.co/api/v2/pokemon/3/",
       isFavorite: false
@@ -160,32 +160,14 @@ describe('App', () => {
 
   });
 
-  it('should be able to navigate to /pokedex', async () => {
-    const { getByText, getByRole } = render(
-      <MemoryRouter>
-        <App />
-      </MemoryRouter>
-    );
-
-    const pokeNav = await waitFor(() => getByText('Pokedex'));
-    fireEvent.click(pokeNav);
-    const aButton = getByText('A');
-    const bButton = getByText('B');
-    const pokeSelect = getByRole('textbox', {name : "combobox"});
-    expect(pokeSelect).toBeInTheDocument();
-    expect(aButton).toBeInTheDocument();
-    expect(bButton).toBeInTheDocument();
-
-  });
-
   it('should be able to navigate to /pokedex and select a new pokemon to view', async () => {
-    const { getByText, getByRole, debug } = render(
+    const { getByText, getByRole, findByText, findAllByRole, debug } = render(
       <MemoryRouter>
         <App />
       </MemoryRouter>
     );
 
-    const pokeNav = await waitFor(() => getByText('Pokedex'));
+    const pokeNav = await findByText('Pokedex');
     fireEvent.click(pokeNav);
     const aButton = getByText('A');
     const bButton = getByText('B');
@@ -194,11 +176,16 @@ describe('App', () => {
     expect(aButton).toBeInTheDocument();
     expect(bButton).toBeInTheDocument();
 
-    fireEvent.change(pokeSelect, { target: { value: 'charmander' } });
+    fireEvent.click(pokeSelect);
+    fireEvent.keyDown(pokeSelect, {key: 'ArrowDown', code:'ArrowDown'});
+    fireEvent.keyDown(pokeSelect, {key: 'ArrowDown', code:'ArrowDown'});
+    fireEvent.keyDown(pokeSelect, {key: 'ArrowDown', code:'ArrowDown'});
+    fireEvent.keyDown(pokeSelect, {key: 'ArrowDown', code:'ArrowDown'});
+    fireEvent.keyDown(pokeSelect, {key: 'Enter', code:'Enter'});
 
-    const singlePokemon = await waitFor(() => getByRole("img", {name: 'charmander'}));
+    const pokemonSprites = await findAllByRole("img", {name: 'charmander'});
     debug();
-    expect(singlePokemon).toBeInTheDocument();
+    expect(pokemonSprites).toHaveLength(2);
 
   });
 

@@ -39,6 +39,7 @@ const Pokedex = ({
       <section className="pokedex-screen">
         <Select
           className='pokemon-select-menu'
+          data-testid='pokemon-select-menu'
           aria-label='combobox'
           onChange={displaySinglePokemon}
           options={createPokeList()}

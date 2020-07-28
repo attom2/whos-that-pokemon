@@ -1,62 +1,111 @@
 import React from 'react';
 import Pokedex from './Pokedex';
-import { render, act } from "@testing-library/react";
+import App from '../App/App';
+import { render, fireEvent } from "@testing-library/react";
 import { MemoryRouter } from 'react-router-dom';
 import "@testing-library/jest-dom";
 import userEvent from '@testing-library/user-event';
-import { getSinglePokemon } from '../../ApiCalls';
+import { getAllPokemon, getSinglePokemon } from '../../ApiCalls';
 
 jest.mock('../../ApiCalls');
 
-const pokemonList = [
+getAllPokemon.mockResolvedValue([
   {
     "name": "ivysaur",
-    "url": "https://pokeapi.co/api/v2/pokemon/2/"
+    "url": "https://pokeapi.co/api/v2/pokemon/2/",
+    isFavorite: false
   },
   {
     "name": "venusaur",
-    "url": "https://pokeapi.co/api/v2/pokemon/3/"
+    "url": "https://pokeapi.co/api/v2/pokemon/3/",
+    isFavorite: false
   },
   {
     "name": "charmander",
-    "url": "https://pokeapi.co/api/v2/pokemon/4/"
+    "url": "https://pokeapi.co/api/v2/pokemon/4/",
+    isFavorite: false
   },
   {
     "name": "charmeleon",
-    "url": "https://pokeapi.co/api/v2/pokemon/5/"
+    "url": "https://pokeapi.co/api/v2/pokemon/5/",
+    isFavorite: false
   },
   {
     "name": "squirtle",
-    "url": "https://pokeapi.co/api/v2/pokemon/7/"
+    "url": "https://pokeapi.co/api/v2/pokemon/7/",
+    isFavorite: false
   },
   {
     "name": "wartortle",
-    "url": "https://pokeapi.co/api/v2/pokemon/8/"
+    "url": "https://pokeapi.co/api/v2/pokemon/8/",
+    isFavorite: false
   }
-];
+]);
 
-const mockSinglePokemon = {
+const mockVenusaur = {
   name: "venusaur",
+  id: 2,
   height: 20,
   weight: 1000,
   sprites: {
-    front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/3.png"
-  }
+    front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/3.png",
+    back_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/3.png",
+    back_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/3.png",
+    front_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/3.png"
+  },
+  types: [
+    {
+      slot: 1,
+      type: {
+        name: "grass",
+        url: "https://pokeapi.co/api/v2/type/12/"
+      }
+    },
+    {
+      slot: 2,
+      type: {
+        name: "poison",
+        url: "https://pokeapi.co/api/v2/type/4/"
+      }
+    }
+  ]
 
 };
-describe.skip("Pokedex component", () => {
-  it('should have a select menu', () => {
-    const { getByRole, getAllByRole, debug } = render(
+
+const mockCharmander = {
+  name: "charmander",
+  height: 20,
+  weight: 1000,
+  id: 3,
+  sprites: {
+    back_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/4.png",
+    back_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/4.png",
+    front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png",
+    front_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/4.png"
+  },
+  types: [
+    {
+      slot: 1,
+      type: {
+        name: "fire",
+        url: "https://pokeapi.co/api/v2/type/10/"
+      }
+    }
+  ]
+};
+
+describe("Pokedex component", () => {
+  it('should navigate to from App and display a select menu', async () => {
+    const { findByText, getByRole } = render(
       <MemoryRouter>
-        <Pokedex allPokemon={pokemonList} singlePokemon={mockSinglePokemon}/>
+        <App />
       </MemoryRouter>
     );
-    debug();
-    const pokemonMenu = getByRole('combobox', {name:'Pokemon List'});
-    const pokemonListOptions = getAllByRole('option');
 
-    expect(pokemonMenu).toBeInTheDocument();
-    expect(pokemonListOptions.length).toEqual(6);
+    const pokeNav = await findByText('Pokedex');
+    fireEvent.click(pokeNav);
+    const pokeSelect = getByRole('textbox', {name : "combobox"});
+    expect(pokeSelect).toBeInTheDocument();
   });
 });
 
