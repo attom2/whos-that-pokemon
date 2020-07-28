@@ -10,8 +10,16 @@ import { AppContext } from '../../AppContext';
 const App = () => {
   const [allPokemon, setAllPokemon] = useState([]);
   const [singlePokemon, setSinglePokemon] = useState({});
+  const [bestCounter, setBestCounter] = useState(0);
 
   useEffect(() => {
+    const winStreakCheck = () => {
+      if (localStorage.bestStreak) {
+        const previousWinStreak = localStorage.getItem('bestStreak');
+        setBestCounter(previousWinStreak);
+      }
+    };
+
     const fetchAllPokemon = async () => {
       try {
         const allPokemon = await getAllPokemon();
@@ -28,6 +36,8 @@ const App = () => {
         console.log(error);
       }
     };
+
+    winStreakCheck();
     fetchAllPokemon();
   }, []);
 
@@ -76,7 +86,8 @@ const App = () => {
           singlePokemon,
           setSinglePokemon,
           allPokemon,
-          setAllPokemon
+          bestCounter,
+          setBestCounter
         }}
       >
         {allPokemon.length && <Route
