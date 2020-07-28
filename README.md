@@ -1,80 +1,77 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Who's That Pokémon?
+### Contributors
+- Corbin March (GitHub: [marchcorbin](https://github.com/marchcorbin))
+- Edwin Montealvo (Github: [emontealvo](https://github.com/emontealvo))
+- Andy Tom (GitHub: [attom2](https://github.com/attom2))
 
-## Available Scripts
+## Abstract
+This mobile-forward application is an interactive retro pokemon game. Pokemon Masters may often become bored and need a way to sharpen their pokemon identifying skills. (Never know when you will seen them in the wild!!).
 
-In the project directory, you can run:
+The user has the capabilities to play a game of "Who's that pokemon?" and view all 151 pokemon (generation 1) through a pokedex.
 
-### `yarn start`
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Learning Goals
+- Understand and implement React Hooks
+- Reinforce React fundamentals
+- Reinforce using React Router to create a multi-page user experience
+- Reinforce component and asynchronous JS testing
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
 
-### `yarn test`
+## Setup
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Clone down this repository to your local machine.
 
-### `yarn build`
+Once cloned, change into this repo's directy.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Run `npm install`.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+Run `npm start`.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+In your browser, navigate to `localhost:3000`.
 
-### `yarn eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Project in Action
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Shiny Functionality & Routing Functionality
+![shinyfunctionality](https://user-images.githubusercontent.com/54864865/88721587-e799ee80-d0e3-11ea-80e0-2f1b0da1d96d.gif)
+![Routingfunctionality](https://user-images.githubusercontent.com/54864865/88721614-e9fc4880-d0e3-11ea-87cc-d2696cee6252.gif)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
-
-# Project in Action
 ### Basic Functionality
 ![basicfunctionality](https://user-images.githubusercontent.com/54864865/88721582-e49efe00-d0e3-11ea-969d-36e22fe05ff5.gif)
-### Shiny Functionality
-![shinyfunctionality](https://user-images.githubusercontent.com/54864865/88721587-e799ee80-d0e3-11ea-80e0-2f1b0da1d96d.gif)
+
 
 ### Pokedex Functionality
 ![pokedexfunctionality](https://user-images.githubusercontent.com/54864865/88721603-e963b200-d0e3-11ea-9a00-b3c0b2902749.gif)
 
-### Routing Functionality
-![Routingfunctionality](https://user-images.githubusercontent.com/54864865/88721614-e9fc4880-d0e3-11ea-87cc-d2696cee6252.gif)
+
+### Wins
+- Finishing our MVP 
+- A captivating retro user interface
+- Creating an engaging game with sounds and scores
+- Successfully utilizing React Hooks
+
+### Challenges 
+- Testing external react-select Npm package
+- Testing a randomized function from within our app component
+- Implementing audio to play on load
+
+### Future Iterations..
+- Viewing all favorites on the same screen
+- Battle mode: have two pokemon go into battle
+- Utilize React Context for more robust data manipulation, rather than between sibling components
+
+## Technologies Used
+- React Hooks
+- React & Router
+- Jest & React-testing-library
+- SCSS/SASS
+- Fetch API
+
+## Systems/Practices
+- git/Version Control
+- Node Package Manager
+- [gitHub Projects](https://github.com/attom2/whos-that-pokemon/projects/1)
+
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
