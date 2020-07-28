@@ -5,6 +5,7 @@ header {
   flex-flow: column;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
 }
 
 .pokemon-title {
@@ -13,6 +14,13 @@ header {
   -webkit-text-stroke: 1px #2a75bb;
   -webkit-text-fill-color: #ffcb05;
   letter-spacing: 2px;
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
+
+.Pokédex {
+  font-size: 50px;
+  margin-bottom: 5px;
 }
 
 @font-face {

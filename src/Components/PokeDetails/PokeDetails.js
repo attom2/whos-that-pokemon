@@ -3,7 +3,6 @@ import './PokeDetails.scss';
 
 const PokeDetails = ({details, isShiny}) => {
   const {sprites, name, types} = details;
-  console.log('details', details)
   const {front_default, back_default, front_shiny, back_shiny} = sprites;
   const pokemonType = types.map(poke => poke.type.name + '\n');
   return (
@@ -22,9 +21,9 @@ const PokeDetails = ({details, isShiny}) => {
       </section>
       <h2>{name}</h2>
       <figcaption>
-        <p>Height: {Math.round(parseInt(details.height)*10)/100}m</p>
-        <p>Weight: {Math.round(parseInt(details.weight)*10)/100}kg</p>
-        <p>Type: {pokemonType}</p>
+        <p><b>Height:</b> {Math.round(parseInt(details.height)*10)/100}m       </p>
+        <p><b>Weight: </b>{Math.round(parseInt(details.weight)*10)/100}kg          </p>
+        <p><b>Type: </b>{pokemonType}</p>
       </figcaption>
     </figure>
   );
