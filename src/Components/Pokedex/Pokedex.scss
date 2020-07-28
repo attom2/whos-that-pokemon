@@ -94,6 +94,10 @@ select {
   width: 35px;
 }
 
+.block {
+  display: block;
+}
+
 @media screen and (min-width: 750px) {
   .pokedex-screen {
     width: 38vw;
@@ -113,10 +117,7 @@ select {
     right: 25%;
   }
 
-  .gameboy-outer {
-    background-color: grey;
-  }
   html {
-    background-color: grey;
+    background-color: #750000;
   }
 }
