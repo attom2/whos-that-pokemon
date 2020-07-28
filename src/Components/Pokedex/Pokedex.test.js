@@ -74,8 +74,8 @@ const mockVenusaur = {
 
 const mockCharmander = {
   name: "charmander",
-  height: 20,
-  weight: 1000,
+  height: 6,
+  weight: 85,
   id: 3,
   sprites: {
     back_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/4.png",
@@ -109,68 +109,63 @@ describe("Pokedex component", () => {
   });
 });
 
-describe.skip("User interactions through Pokedex", () => {
+describe("User interactions through Pokedex", () => {
 
-  getSinglePokemon.mockResolvedValueOnce({
-    name: "venusaur",
-    height: 20,
-    weight: 1000,
-    sprites: {
-      front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/3.png"
-    }
-  });
+  getSinglePokemon.mockResolvedValueOnce(mockVenusaur);
 
-  it("should pick and display different pokemon's info", async () => {
-    const { getByRole, findByRole } = render(
+  it("should allow user to pick and display different pokemon's info", async () => {
+    const { getByRole, findByText, findByRole, findAllByRole } = render(
       <MemoryRouter>
-        <Pokedex allPokemon={pokemonList}/>
+        <App />
       </MemoryRouter>);
 
-    const pokemonMenu = getByRole('combobox', {name:'Pokemon List'});
+    const pokeNav = await findByText('Pokedex');
+    fireEvent.click(pokeNav);
+    const pokeSelect = getByRole('textbox', {name:'combobox'});
 
-    act(() => {
-      userEvent.selectOptions(pokemonMenu, "https://pokeapi.co/api/v2/pokemon/3/");
-    });
+    expect(pokeSelect).toBeInTheDocument();
 
-    expect(await pokemonMenu.value).toEqual("https://pokeapi.co/api/v2/pokemon/3/");
+    fireEvent.click(pokeSelect);
+    fireEvent.keyDown(pokeSelect, {key: 'ArrowDown', code:'ArrowDown'});
+    fireEvent.keyDown(pokeSelect, {key: 'ArrowDown', code:'ArrowDown'});
+    fireEvent.keyDown(pokeSelect, {key: 'Enter', code:'Enter'});
+
     expect(getSinglePokemon).toHaveBeenCalledTimes(1);
     expect(getSinglePokemon).toHaveBeenCalledWith("https://pokeapi.co/api/v2/pokemon/3/");
 
-    let pokemonImg = await findByRole('img', {name: 'venusaur'});
+    let pokemonSprites = await findAllByRole('img', {name: 'venusaur'});
     let pokemonName = await findByRole('heading', {name: 'venusaur'});
-    let pokemonHeight = await findByRole('heading', {name: 'Height: 2m'});
-    let pokemonWeight = await findByRole('heading', {name: 'Weight: 100kg'});
+    let pokemonHeight = await findByText('2m');
+    let pokemonWeight = await findByText('100kg');
+    let pokemonType = await findByText('grass poison');
 
-    expect(pokemonImg).toBeInTheDocument();
+    expect(pokemonSprites).toHaveLength(2);
     expect(pokemonName).toBeInTheDocument();
     expect(pokemonHeight).toBeInTheDocument();
     expect(pokemonWeight).toBeInTheDocument();
+    expect(pokemonType).toBeInTheDocument();
 
-    getSinglePokemon.mockResolvedValueOnce({
-      name: "charmeleon",
-      height: 11,
-      weight: 190,
-      sprites: {
-        front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/5.png"
-      }
-    });
+    getSinglePokemon.mockResolvedValueOnce(mockCharmander);
 
-    act(() => {
-      userEvent.selectOptions(pokemonMenu, "https://pokeapi.co/api/v2/pokemon/5/");
-    });
+    fireEvent.click(pokeSelect);
+    fireEvent.keyDown(pokeSelect, {key: 'ArrowDown', code:'ArrowDown'});
+    fireEvent.keyDown(pokeSelect, {key: 'ArrowDown', code:'ArrowDown'});
+    fireEvent.keyDown(pokeSelect, {key: 'ArrowDown', code:'ArrowDown'});
+    fireEvent.keyDown(pokeSelect, {key: 'Enter', code:'Enter'});
 
-    expect(await pokemonMenu.value).toEqual("https://pokeapi.co/api/v2/pokemon/5/");
     expect(getSinglePokemon).toHaveBeenCalledTimes(2);
-    expect(getSinglePokemon).toHaveBeenCalledWith("https://pokeapi.co/api/v2/pokemon/5/");
+    expect(getSinglePokemon).toHaveBeenCalledWith("https://pokeapi.co/api/v2/pokemon/4/");
 
-    pokemonImg = await findByRole('img', {name: 'charmeleon'});
-    pokemonName = await findByRole('heading', {name: 'charmeleon'});
-    pokemonHeight = await findByRole('heading', {name: 'Height: 1.1m'});
-    pokemonWeight = await findByRole('heading', {name: 'Weight: 19kg'});
+    pokemonSprites = await findAllByRole('img', {name: 'charmander'});
+    pokemonName = await findByRole('heading', {name: 'charmander'});
+    pokemonHeight = await findByText('0.6m');
+    pokemonWeight = await findByText('8.5kg');
+    pokemonType = await findByText('fire');
 
-    expect(pokemonImg).toBeInTheDocument();
+    expect(pokemonSprites).toHaveLength(2);
     expect(pokemonName).toBeInTheDocument();
     expect(pokemonHeight).toBeInTheDocument();
     expect(pokemonWeight).toBeInTheDocument();
+    expect(pokemonType).toBeInTheDocument();
   });
 });
