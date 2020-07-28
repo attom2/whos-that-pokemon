@@ -1,11 +1,11 @@
 header {
   background: linear-gradient(to top left, #FF0000 4%, #CC0000 100%);
-  padding: 2%;
-  height: 20vh;
+  height: 23vh;
   display: flex;
   flex-flow: column;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
 }
 
 .pokemon-title {
@@ -14,6 +14,13 @@ header {
   -webkit-text-stroke: 1px #2a75bb;
   -webkit-text-fill-color: #ffcb05;
   letter-spacing: 2px;
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
+
+.Pokédex {
+  font-size: 50px;
+  margin-bottom: 5px;
 }
 
 @font-face {

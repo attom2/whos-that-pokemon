@@ -75,11 +75,7 @@ const Game = ({ getRandomPokemons, fetchSinglePokemon}) => {
 
   return (
     <>
-      <img
-        className="pic-left"
-        src={require("../../assets/ashpikachu.jpg")}
-        alt="ash and pikachu"
-      />
+     
       <section className='pokedex-outline'>
         <section className="pokedex-screen-game" alt="game-section">
           {singlePokemon.sprites && (
@@ -88,17 +84,6 @@ const Game = ({ getRandomPokemons, fetchSinglePokemon}) => {
                 <div className="streak-tile">
                   <h4 className="tile-font">Winning Streak: {`${winCounter}`}</h4>
                 </div>
-                <section className="feedback-tile">
-                  {isWinner && imageClassName === "single-pokemon visible" && (
-                    <h2> Correct! This is:</h2>
-                  )}
-                  {!isWinner && imageClassName === "single-pokemon visible" && (
-                    <h2> Incorrect! This is:</h2>
-                  )}
-                  {imageClassName === "single-pokemon visible" && (
-                    <h2>{singlePokemon.name}</h2>
-                  )}
-                </section>
                 <div className="best-tile">
                   <h4 className="tile-font">Best Streak: {`${bestCounter}`}</h4>
                 </div>
@@ -109,9 +94,21 @@ const Game = ({ getRandomPokemons, fetchSinglePokemon}) => {
                 src={`${singlePokemon.sprites.front_default}`}
                 alt="pokemon"
               />
+              <section className="feedback-tile">
+                {isWinner && imageClassName === "single-pokemon visible" && (
+                  <h2> Correct! This is:</h2>
+                )}
+                {!isWinner && imageClassName === "single-pokemon visible" && (
+                  <h2> Incorrect! This is:</h2>
+                )}
+                {imageClassName === "single-pokemon visible" && (
+                  <h2>{singlePokemon.name}</h2>
+                )}
+              </section>
+              {imageClassName !== "single-pokemon visible" &&
               <section alt="user-choices" className="choices">
                 <section className="choices">{createOptionList()}</section>
-              </section>
+              </section>}
             </>
           )}
           <audio src={pokeSound} autoPlay />
@@ -131,11 +128,6 @@ const Game = ({ getRandomPokemons, fetchSinglePokemon}) => {
           </div>
         </div>
       </section>
-      <img
-        className="pic-right"
-        src={require("../../assets/Misty.jpg")}
-        alt="Misty"
-      />
     </>
   );
 };

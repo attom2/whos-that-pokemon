@@ -35,7 +35,6 @@ const Pokedex = ({
   };
 
   return (
-
     <section className="pokedex-outline">
       <section className="pokedex-screen">
         <Select

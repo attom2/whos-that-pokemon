@@ -8,7 +8,7 @@ const Header = () => {
 
   return (
     <header className="nav-header">
-      <h1 className="pokemon-title">{location}</h1>
+      <h1 className={`pokemon-title ${location}`}>{location}</h1>
       <nav>
         <ul>
           <NavLink

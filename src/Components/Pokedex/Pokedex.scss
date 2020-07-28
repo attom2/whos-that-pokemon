@@ -4,7 +4,6 @@
 .pokedex-outline {
   background-color: #FF0000;
   border: 2px solid black;
-  bottom: 0;
   font-family: 'Fira Mono', monospace;
   height:77vh;
   width: minmax(400px, 800px);
@@ -96,17 +95,28 @@ select {
 }
 
 @media screen and (min-width: 750px) {
-.pokedex-screen {
-  width: 38vw;
-}
+  .pokedex-screen {
+    width: 38vw;
+  }
 
-.pokemon-pic {
-  width: 21vw;
-  height: 30vh;
-}
+  .pokemon-pic {
+    width: 21vw;
+    height: 30vh;
+  }
 
-.controller {
-  justify-content: space-evenly;
-}
+  .controller {
+    justify-content: space-evenly;
+  }
 
+  .pokedex-outline {
+    left: 25%;
+    right: 25%;
+  }
+
+  .gameboy-outer {
+    background-color: grey;
+  }
+  html {
+    background-color: grey;
+  }
 }

@@ -18,15 +18,22 @@ figure {
 .stats-title {
   display: flex;
   justify-content: center;
+  margin-bottom: 0;
+
+  h2 {
+    margin: 5px;
+  }
 }
 
 figcaption {
   display: grid;
   grid-template-columns: repeat(3, minmax(5em, 13em));
+  position: static;
+  top: 80%; left:25%; bottom: 5px; right: 15%;
 }
 
 .pokeball-icon {
-  height: (100vh/9);
+  height: (100vh/12);
   width: 3.3em;
   grid-column-start: 2;
   grid-row-start: 2;

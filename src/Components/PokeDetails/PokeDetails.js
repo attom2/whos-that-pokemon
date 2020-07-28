@@ -4,8 +4,8 @@ import './PokeDetails.scss';
 import pokeball from '../../assets/icons8-pokeball-100.png';
 
 const PokeDetails = ({details, isShiny}) => {
-  const { sprites, name, types } = details;
-  const { front_default, back_default, front_shiny, back_shiny } = sprites;
+  const {sprites, name, types} = details;
+  const {front_default, back_default, front_shiny, back_shiny} = sprites;
   const pokemonType = types.map(poke => poke.type.name + '\n');
   const { allPokemon, singlePokemon } = useContext(AppContext);
 
@@ -34,9 +34,15 @@ const PokeDetails = ({details, isShiny}) => {
         <h2>{name}</h2>
       </div>
       <figcaption>
-        <p>Height: {Math.round(parseInt(details.height)*10)/100}m</p>
-        <p>Weight: {Math.round(parseInt(details.weight)*10)/100}kg</p>
-        <p>Type: {pokemonType}</p>
+        <p>
+          <b>Height:</b><br/>{Math.round(parseInt(details.height)*10)/100}m
+        </p>
+        <p>
+          <b>Weight:</b><br/>{Math.round(parseInt(details.weight)*10)/100}kg
+        </p>
+        <p>
+          <b>Type:</b><br/>{pokemonType}
+        </p>
       </figcaption>
     </figure>
   );
