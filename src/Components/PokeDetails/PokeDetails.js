@@ -23,17 +23,20 @@ const PokeDetails = ({details, isShiny}) => {
           alt={name}
         />
       </section>
-      <h2>{name}</h2>
-      <figcaption>
-        <p>Height: {Math.round(parseInt(details.height)*10)/100}m</p>
-        <p>Weight: {Math.round(parseInt(details.weight)*10)/100}kg</p>
-        <p>Type: {pokemonType}</p>
+      <div className='stats-title'>
         {allPokemon[singlePokemon.id - 1].isFavorite &&
           <img
+            className='pokeball-icon'
             src={pokeball}
             alt='A Pokeball. This pokemon is favorited'
           />
         }
+        <h2>{name}</h2>
+      </div>
+      <figcaption>
+        <p>Height: {Math.round(parseInt(details.height)*10)/100}m</p>
+        <p>Weight: {Math.round(parseInt(details.weight)*10)/100}kg</p>
+        <p>Type: {pokemonType}</p>
       </figcaption>
     </figure>
   );

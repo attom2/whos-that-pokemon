@@ -44,7 +44,7 @@ const mockSinglePokemon = {
   }
 
 };
-describe("Pokedex component", () => {
+describe.skip("Pokedex component", () => {
   it('should have a select menu', () => {
     const { getByRole, getAllByRole, debug } = render(
       <MemoryRouter>
@@ -60,7 +60,7 @@ describe("Pokedex component", () => {
   });
 });
 
-describe("User interactions through Pokedex", () => {
+describe.skip("User interactions through Pokedex", () => {
 
   getSinglePokemon.mockResolvedValueOnce({
     name: "venusaur",

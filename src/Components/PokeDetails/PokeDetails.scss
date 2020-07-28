@@ -7,12 +7,6 @@
   display: flex;
 }
 
-h4 {
-  font-size: 1.3em;
-  padding: 2px;
-  margin: 3px;
-}
-
 figure {
   display: block;
   margin-block-start: 0;
@@ -21,6 +15,19 @@ figure {
   margin-inline-end: 0;
 }
 
-figcaption {
+.stats-title {
   display: flex;
+  justify-content: center;
+}
+
+figcaption {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(5em, 13em));
+}
+
+.pokeball-icon {
+  height: (100vh/9);
+  width: 3.3em;
+  grid-column-start: 2;
+  grid-row-start: 2;
 }
