@@ -7,9 +7,9 @@ import rightSound from '../../assets/HollowBellNotification.mp3';
 
 
 
-const Game = ({ getRandomPokemons, fetchSinglePokemon}) => {
+const Game = ({ getRandomPokemons, fetchSinglePokemon, allPokemon}) => {
   const [winCounter, setWinCounter] = useState(0);
-  const pokemons = getRandomPokemons();
+  const pokemons = getRandomPokemons(allPokemon);
   const [pokemonChoices, setPokemonChoices] = useState(pokemons);
   const wrongSoundObj = new Audio(wrongSound);
   const rightSoundObj = new Audio(rightSound);
@@ -62,7 +62,7 @@ const Game = ({ getRandomPokemons, fetchSinglePokemon}) => {
     setImageClassName('single-pokemon visible');
     const turnDisplayOff = () => {
       setImageClassName('single-pokemon');
-      setPokemonChoices(getRandomPokemons());
+      setPokemonChoices(getRandomPokemons(allPokemon));
     };
     setTimeout(turnDisplayOff, 2100);
   };

@@ -1,16 +1,42 @@
 import React from 'react';
-import { render, fireEvent, waitFor} from '@testing-library/react';
+import { render, fireEvent, waitFor } from '@testing-library/react';
 import App from './App';
 import '@testing-library/jest-dom';
 import { MemoryRouter } from 'react-router-dom';
 import { getAllPokemon, getSinglePokemon } from '../../ApiCalls';
+import { getRandomPokemons } from './getRandomPokemons';
+import { mocked } from 'ts-jest/utils';
+import { act } from 'react-dom/test-utils';
 
 jest.mock("../../ApiCalls");
+jest.mock("./getRandomPokemons");
 
 describe('App', () => {
   window.HTMLMediaElement.prototype.play = () => { /* do nothing */ };
 
-  getAllPokemon.mockResolvedValue([
+  mocked(getRandomPokemons).mockImplementation(() => [
+    {
+      "name": "bulbasaur",
+      "url": "https://pokeapi.co/api/v2/pokemon/1/",
+      isFavorite: false
+    },
+    {
+      "name": "ivysaur",
+      "url": "https://pokeapi.co/api/v2/pokemon/2/",
+      isFavorite: false
+    },
+    {
+      "name": "venusaur",
+      "url": "https://pokeapi.co/api/v2/pokemon/3/",
+      isFavorite: false
+    },
+    {
+      "name": "charmander",
+      "url": "https://pokeapi.co/api/v2/pokemon/4/",
+      isFavorite: false
+    }]);
+
+  getAllPokemon.mockResolvedValue( [
     {
       "name": "bulbasaur",
       "url": "https://pokeapi.co/api/v2/pokemon/1/",
@@ -63,20 +89,20 @@ describe('App', () => {
 
   it('should render the app header', async () => {
 
-    const {getByRole} = render(
+    const { getByRole } = render(
       <MemoryRouter>
         <App />
       </MemoryRouter>
     );
 
-    const title = await waitFor(() => getByRole('heading', {name: "Who's That Pokémon?"}));
+    const title = await waitFor(() => getByRole('heading', { name: "Who's That Pokémon?" }));
     expect(title).toBeInTheDocument();
 
   });
 
 
   it('should be able to navigate to /game and see charmander button', async () => {
-    const {getByRole, getByText} = render(
+    const { getByRole, getByText } = render(
       <MemoryRouter>
         <App />
       </MemoryRouter>
@@ -88,7 +114,7 @@ describe('App', () => {
   });
 
   it('should have pokemon choices buttons when navigating to /game', async () => {
-    const {getByText, findAllByTestId} = render(
+    const { getByText, findAllByTestId } = render(
       <MemoryRouter>
         <App />
       </MemoryRouter>
@@ -105,6 +131,7 @@ describe('App', () => {
         <App />
       </MemoryRouter>
     );
+    
     const gameNav = getByText('Game');
     fireEvent.click(gameNav);
     const gameTitle = await findByRole('heading', {name:"Who's That Pokémon?"});
@@ -123,32 +150,48 @@ describe('App', () => {
     expect(pokedexTitle).toBeInTheDocument();
   });
 
-  it.skip('should start with a winning streak of 0, add 1 if the correct, and reset to 0 if wrong', async () => {
-    const {getByRole, getByText} = render(
+  it('should start with a winning streak of 0, add 1 if the correct, and reset to 0 if wrong', async () => {
+    const { getByRole, getByText, findByRole, debug } = render(
       <MemoryRouter>
         <App />
       </MemoryRouter>
     );
+    jest.useFakeTimers();
+
     const gameNav = getByText('Game');
     fireEvent.click(gameNav);
     const winningStreak = await waitFor(() => getByText("Winning Streak: 0"));
     expect(winningStreak).toBeInTheDocument();
 
-
     const winningBtn = await waitFor(() => getByRole('button', {name: "charmander"}));
-    fireEvent.click(winningBtn);
-    const winningStreak2 = await waitFor(() => getByText("Winning Streak: 1"));
-    expect(winningStreak2).toBeInTheDocument();
 
-    const losingBtn = await waitFor(() => getByRole('button', {name: "ivysaur"}));
+    expect(winningBtn).toBeInTheDocument();
+    fireEvent.click(winningBtn);
+
+    const winnginMessage = await waitFor(() => getByText("Correct! This is:"));
+    expect(winnginMessage).toBeInTheDocument(); 
+
+    const winningStreak1 = await waitFor(() => getByText("Winning Streak: 1"));
+    expect(winningStreak1).toBeInTheDocument(); 
+    act(() => {
+      jest.advanceTimersByTime(2000);
+    });
+    const winningBtn2 = await waitFor(() => getByRole('button', { name: "charmander" }));
+
+    expect(winningBtn2).toBeInTheDocument();
+    const losingBtn = await findByRole('button', { name: "ivysaur" });
+
+
     fireEvent.click(losingBtn);
+    // const losingMessage = await waitFor(() => getByText("Incorrect! This is:"));
+    // expect(losingMessage).toBeInTheDocument(); 
     const winningStreakLost = await waitFor(() => getByText("Winning Streak: 0"));
     expect(winningStreakLost).toBeInTheDocument();
 
   });
 
   it('should start with a winning streak of 0 and stay at 0 if wrong answer selected', async () => {
-    const {getByRole, getByText} = render(
+    const { getByRole, getByText } = render(
       <MemoryRouter>
         <App />
       </MemoryRouter>
@@ -159,7 +202,7 @@ describe('App', () => {
     const winningStreak = await waitFor(() => getByText("Winning Streak: 0"));
     expect(winningStreak).toBeInTheDocument();
 
-    const losingBtn = await waitFor(() => getByRole('button', {name: "ivysaur"}));
+    const losingBtn = await waitFor(() => getByRole('button', { name: "ivysaur" }));
     fireEvent.click(losingBtn);
     const winningStreakLost = await waitFor(() => getByText("Winning Streak: 0"));
     expect(winningStreakLost).toBeInTheDocument();
@@ -167,7 +210,7 @@ describe('App', () => {
   });
 
   it('should be able navigating to /game and from there to /pokedex', async () => {
-    const {getByText, findAllByTestId, getByRole} = render(
+    const { getByText, findAllByTestId, getByRole } = render(
       <MemoryRouter>
         <App />
       </MemoryRouter>
@@ -179,10 +222,11 @@ describe('App', () => {
 
     const pokeNav = await waitFor(() => getByText('Pokedex'));
     fireEvent.click(pokeNav);
-    const pokeSelect = await waitFor(() => getByRole('textbox', {name: "combobox"}));
+    const pokeSelect = await waitFor(() => getByRole('textbox', { name: "combobox" }));
     expect(pokeSelect).toBeInTheDocument();
 
   });
+
 
   it('should have a d-pad and "A" and "B" buttons on game and pokedex pages', async () => {
     const { getByText, findByText } = render(
@@ -207,5 +251,6 @@ describe('App', () => {
     expect(aButton).toBeInTheDocument();
     expect(bButton).toBeInTheDocument();
   });
+
 
 });
