@@ -3,7 +3,6 @@ import './PokeDetails.scss';
 
 const PokeDetails = ({details, isShiny}) => {
   const {sprites, name, types} = details;
-  console.log('details', details)
   const {front_default, back_default, front_shiny, back_shiny} = sprites;
   const pokemonType = types.map(poke => poke.type.name + '\n');
   return (
