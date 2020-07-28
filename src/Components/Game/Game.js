@@ -17,7 +17,7 @@ const Game = ({ getRandomPokemons, fetchSinglePokemon}) => {
   const [imageClassName, setImageClassName] = useState('single-pokemon');
   const [isWinner, setIsWinner] = useState(false);
   const { singlePokemon, setSinglePokemon } = useContext(AppContext);
-
+  
   const createOptionList = () => {
     return pokemonChoices.map(( pokemon, index ) => {
       return (

@@ -1,5 +1,5 @@
 header {
-  background: linear-gradient(to top left, #FF0000 4%, #CC0000 100%);
+  background: #FF0000;
   height: 23vh;
   display: flex;
   flex-flow: column;
@@ -70,7 +70,7 @@ button {
   }
 }
 
-@media screen and (min-width: 1310px){
+@media screen and (min-width: 750px){
   header {
     width: 50%;
     margin-left: 25%;
