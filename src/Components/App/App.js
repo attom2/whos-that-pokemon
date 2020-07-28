@@ -11,8 +11,16 @@ import { AppContext } from '../../AppContext';
 const App = () => {
   const [allPokemon, setAllPokemon] = useState([]);
   const [singlePokemon, setSinglePokemon] = useState({});
+  const [bestCounter, setBestCounter] = useState(0);
 
   useEffect(() => {
+    const winStreakCheck = () => {
+      if (localStorage.bestStreak) {
+        const previousWinStreak = localStorage.getItem('bestStreak');
+        setBestCounter(previousWinStreak);
+      }
+    };
+
     const fetchAllPokemon = async () => {
       try {
         const allPokemon = await getAllPokemon();
@@ -29,6 +37,8 @@ const App = () => {
         console.log(error);
       }
     };
+
+    winStreakCheck();
     fetchAllPokemon();
   }, []);
 
@@ -40,19 +50,6 @@ const App = () => {
       console.log(error);
     }
   };
-
-  // const getRandomPokemons = () => {
-  //   const pokemons = [{}, {}, {}, {}];
-  //   let randomIndexes = [];
-  //   while (randomIndexes.length <= 4) {
-  //     let randNum = Math.floor(Math.random() * allPokemon.length);
-  //     if (randomIndexes.indexOf(randNum) === -1) randomIndexes.push(randNum);
-  //   }
-  //   return pokemons.map((emptySlot, i) => {
-  //     const randomIndex = randomIndexes[i];
-  //     return allPokemon[randomIndex];
-  //   });
-  // };
 
   const togglePokemonFavoriteStatus = (pokemonId) => {
     const pokemonInfoModifier = (updatedPokemons, pokemon) => {
@@ -77,7 +74,8 @@ const App = () => {
           singlePokemon,
           setSinglePokemon,
           allPokemon,
-          setAllPokemon
+          bestCounter,
+          setBestCounter
         }}
       >
         {allPokemon.length && <Route

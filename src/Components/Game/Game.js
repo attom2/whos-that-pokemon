@@ -11,13 +11,12 @@ const Game = ({ getRandomPokemons, fetchSinglePokemon, allPokemon}) => {
   const [winCounter, setWinCounter] = useState(0);
   const pokemons = getRandomPokemons(allPokemon);
   const [pokemonChoices, setPokemonChoices] = useState(pokemons);
-  const [bestCounter, setBestCounter] = useState(0);
   const wrongSoundObj = new Audio(wrongSound);
   const rightSoundObj = new Audio(rightSound);
   const [imageClassName, setImageClassName] = useState('single-pokemon');
   const [isWinner, setIsWinner] = useState(false);
-  const { singlePokemon, setSinglePokemon } = useContext(AppContext);
-  
+  const { singlePokemon, bestCounter, setBestCounter } = useContext(AppContext);
+
   const createOptionList = () => {
     return pokemonChoices.map(( pokemon, index ) => {
       return (
@@ -26,8 +25,7 @@ const Game = ({ getRandomPokemons, fetchSinglePokemon, allPokemon}) => {
           onClick={(event) => {
             checkForWin(event);
             togglePokemonDisplay();
-          }
-          }
+          }}
           id={`${pokemon.name}`}
           className="pokemon-button"
           key={index}
@@ -45,6 +43,7 @@ const Game = ({ getRandomPokemons, fetchSinglePokemon, allPokemon}) => {
     if (winner === event.target.id && winCounter >= bestCounter) {
       setWinCounter(winCounter + 1);
       setBestCounter(winCounter + 1);
+      localStorage.setItem('bestStreak', `${winCounter + 1}`);
       setIsWinner(true);
       rightSoundObj.play();
     } else if (winner === event.target.id) {
@@ -65,7 +64,7 @@ const Game = ({ getRandomPokemons, fetchSinglePokemon, allPokemon}) => {
       setImageClassName('single-pokemon');
       setPokemonChoices(getRandomPokemons(allPokemon));
     };
-    setTimeout(turnDisplayOff, 2000);
+    setTimeout(turnDisplayOff, 2100);
   };
 
   useEffect(() => {
@@ -75,7 +74,7 @@ const Game = ({ getRandomPokemons, fetchSinglePokemon, allPokemon}) => {
 
   return (
     <>
-     
+
       <section className='pokedex-outline'>
         <section className="pokedex-screen-game" alt="game-section">
           {singlePokemon.sprites && (
