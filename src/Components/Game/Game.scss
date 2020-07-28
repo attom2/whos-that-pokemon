@@ -1,10 +1,12 @@
 @import '../App/App.scss';
 
 .single-pokemon {
-  height: 30vh;
-  filter: brightness(0%);
-  -webkit-user-drag: none;
-  margin: 0px;
+    height: 35vh;
+    -webkit-user-drag: none;
+    margin: 0px;
+    width: 43%;
+    filter: brightness(0);
+    align-self: center;
 }
 
 .visible {
@@ -12,10 +14,10 @@
 }
 
 .choices {
-    align-self: flex-end;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+  align-self: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .pokemon-button {
@@ -41,38 +43,23 @@
   font-size: 1.4em;
 }
 
-.pic-left {
-  display: none;
-}
-
-.pic-right {
-  display: none;
-}
-
 @media screen and (min-width: 1310px){
-  .tile-holder {
- display: flex;
- justify-content: space-around;
- width: 37.3em;
+  
+.tile-holder {
+  display: flex;
+  justify-content: space-around;
 }
 
-.pic-left {
- display: inline-block;
- position: relative;
- height: 59em;
- width: 27%;
- float: left;
+.choices {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-self: center;
 }
 
-.pic-right {
-  display: inline-block;
-  float: right;
-  height: 63em;
-  bottom: 97px;
-  position: relative;
+.feedback-tile {
+  font-size: 13px;
 }
-
-
 
 }
 

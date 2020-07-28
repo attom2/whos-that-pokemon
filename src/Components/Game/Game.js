@@ -75,11 +75,7 @@ const Game = ({ getRandomPokemons, fetchSinglePokemon}) => {
 
   return (
     <>
-      <img
-        className="pic-left"
-        src={require("../../assets/ashpikachu.jpg")}
-        alt="ash and pikachu"
-      />
+     
       <section className='pokedex-outline'>
         <section className="pokedex-screen" alt="game-section">
           {singlePokemon.sprites && (
@@ -141,11 +137,6 @@ const Game = ({ getRandomPokemons, fetchSinglePokemon}) => {
           </div>
         </div>
       </section>
-      <img
-        className="pic-right"
-        src={require("../../assets/Misty.jpg")}
-        alt="Misty"
-      />
     </>
   );
 };
