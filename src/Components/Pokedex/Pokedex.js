@@ -31,44 +31,45 @@ const Pokedex = ({fetchSinglePokemon, addUserDetails}) => {
   };
 
   return (
-
-    <section className="pokedex-outline">
-      <section className="pokedex-screen">
-        <Select
-          onChange={displaySinglePokemon}
-          options={createPokeList()}
-          isSearchable="true"
-        />
-        {singlePokemon.name &&
+    <section className= "gameboy-outer">
+      <section className="pokedex-outline">
+        <section className="pokedex-screen">
+          <Select
+            onChange={displaySinglePokemon}
+            options={createPokeList()}
+            isSearchable="true"
+          />
+          {singlePokemon.name &&
         <PokeDetails
           details={singlePokemon}
           isShiny={isShiny}
         /> }
-      </section>
-      <div className="controller">
-        <div className="d-pad-container">
-          <div className="d-pad top" onClick={() => setIsShiny(shiny => !shiny)}></div>
-          <div className="d-pad left"></div>
-          <div className="d-pad middle"></div>
-          <div className="d-pad right"></div>
-          <div className="d-pad bottom"
-            onClick={() => displaySinglePokemon(getRandomPokemon())}
-          >
+        </section>
+        <div className="controller">
+          <div className="d-pad-container">
+            <div className="d-pad top" onClick={() => setIsShiny(shiny => !shiny)}></div>
+            <div className="d-pad left"></div>
+            <div className="d-pad middle"></div>
+            <div className="d-pad right"></div>
+            <div className="d-pad bottom"
+              onClick={() => displaySinglePokemon(getRandomPokemon())}
+            >
+            </div>
           </div>
-        </div>
-        <div className="control-buttons">
-          <div className="buttons"
-            onClick={() => {
-              const pokemonIndex = singlePokemon.id - 1;
-              const favoriteState = !allPokemon[pokemonIndex].isFavorite;
-              addUserDetails('isFavorite', singlePokemon.id, favoriteState);
-            }}
-          >
+          <div className="control-buttons">
+            <div className="buttons"
+              onClick={() => {
+                const pokemonIndex = singlePokemon.id - 1;
+                const favoriteState = !allPokemon[pokemonIndex].isFavorite;
+                addUserDetails('isFavorite', singlePokemon.id, favoriteState);
+              }}
+            >
             B
+            </div>
+            <div className="buttons">A</div>
           </div>
-          <div className="buttons">A</div>
         </div>
-      </div>
+      </section>
     </section>
   );
 };

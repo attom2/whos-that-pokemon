@@ -21,9 +21,9 @@ const PokeDetails = ({details, isShiny}) => {
       </section>
       <h2>{name}</h2>
       <figcaption>
-        <p>Height: {Math.round(parseInt(details.height)*10)/100}m</p>
-        <p>Weight: {Math.round(parseInt(details.weight)*10)/100}kg</p>
-        <p>Type: {pokemonType}</p>
+        <p><b>Height:</b> {Math.round(parseInt(details.height)*10)/100}m       </p>
+        <p><b>Weight: </b>{Math.round(parseInt(details.weight)*10)/100}kg          </p>
+        <p><b>Type: </b>{pokemonType}</p>
       </figcaption>
     </figure>
   );

@@ -4,7 +4,6 @@
     height: 35vh;
     -webkit-user-drag: none;
     margin: 0px;
-    width: 43%;
     filter: brightness(0);
     align-self: center;
 }
@@ -59,6 +58,11 @@
 
 .feedback-tile {
   font-size: 13px;
+}
+
+.pokedex-outline {
+  left: 20%;
+  right: 20%;
 }
 
 }
