@@ -1,10 +1,12 @@
 @import '../App/App.scss';
 
 .single-pokemon {
-  height: 35vh;
-  filter: brightness(0%);
-  -webkit-user-drag: none;
-  margin: 0px;
+    height: 35vh;
+    -webkit-user-drag: none;
+    margin: 0px;
+    width: 43%;
+    filter: brightness(0);
+    align-self: center;
 }
 
 .visible {
