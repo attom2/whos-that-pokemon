@@ -56,17 +56,6 @@
 
 @media screen and (min-width: 1310px){
   
-  .tile-holder {
-    display: flex;
-    justify-content: space-around;
-  }
-
-  .choices {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-self: center;
-  }
 
   .feedback-tile {
     font-size: 13px;
@@ -76,7 +65,9 @@
     left: 20%;
     right: 20%;
   }
-
+  .pokedex-screen-game {
+    width: 50vw;
+  }
 
 }
 

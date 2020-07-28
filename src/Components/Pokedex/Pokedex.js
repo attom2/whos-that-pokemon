@@ -35,17 +35,6 @@ const Pokedex = ({
   };
 
   return (
-<<<<<<< HEAD
-    <section className= "gameboy-outer">
-      <section className="pokedex-outline">
-        <section className="pokedex-screen block">
-          <Select
-            onChange={displaySinglePokemon}
-            options={createPokeList()}
-            isSearchable="true"
-          />
-          {singlePokemon.name &&
-=======
     <section className="pokedex-outline">
       <section className="pokedex-screen">
         <Select
@@ -56,7 +45,6 @@ const Pokedex = ({
           isSearchable="true"
         />
         {singlePokemon.name &&
->>>>>>> master
         <PokeDetails
           details={singlePokemon}
           isShiny={isShiny}

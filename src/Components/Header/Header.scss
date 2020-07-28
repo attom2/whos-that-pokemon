@@ -76,5 +76,12 @@ button {
     margin-left: 25%;
     background: #FF0000;
   }
+}
 
+@media screen and (max-height: 600px) {
+  button {
+    height: 1.5em;
+    width: 7em;
+    font-size: 1.1em;
+  }
 }

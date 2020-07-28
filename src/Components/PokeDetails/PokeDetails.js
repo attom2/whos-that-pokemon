@@ -24,13 +24,6 @@ const PokeDetails = ({details, isShiny}) => {
         />
       </section>
       <div className='stats-title'>
-        {allPokemon[singlePokemon.id - 1].isFavorite &&
-          <img
-            className='pokeball-icon'
-            src={pokeball}
-            alt='A Pokeball. This pokemon is favorited'
-          />
-        }
         <h2>{name}</h2>
       </div>
       <figcaption>
@@ -44,6 +37,13 @@ const PokeDetails = ({details, isShiny}) => {
           <b>Type:</b><br/>{pokemonType}
         </p>
       </figcaption>
+      {allPokemon[singlePokemon.id - 1].isFavorite &&
+        <img
+          className='pokeball-icon'
+          src={pokeball}
+          alt='A Pokeball. This pokemon is favorited'
+        />
+      }
     </figure>
   );
 };
