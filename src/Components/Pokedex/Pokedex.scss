@@ -2,7 +2,7 @@
 @import '../App/App.scss';
 
 .pokedex-outline {
-  background-color: #FF0000;
+  background: linear-gradient(to left, #FF0000 4%, #CC0000 100%);
   border: 2px solid black;
   font-family: 'Fira Mono', monospace;
   height:77vh;

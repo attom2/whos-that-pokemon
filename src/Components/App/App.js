@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './App.scss';
+import { getRandomPokemons } from './getRandomPokemons';
 import Header from '../Header/Header';
 import Game from '../Game/Game';
 import Pokedex from '../Pokedex/Pokedex';
@@ -31,19 +32,6 @@ const App = () => {
     fetchAllPokemon();
   }, []);
 
-  const getRandomPokemons = () => {
-    const pokemons = [{}, {}, {}, {}];
-    let randomIndexes = [];
-    while (randomIndexes.length <= 4) {
-      let randNum = Math.floor(Math.random() * allPokemon.length);
-      if (randomIndexes.indexOf(randNum) === -1) randomIndexes.push(randNum);
-    }
-    return pokemons.map((emptySlot, i) => {
-      const randomIndex = randomIndexes[i];
-      return allPokemon[randomIndex];
-    });
-  };
-
   const fetchSinglePokemon = async (url) => {
     try {
       const singlePokemon = await getSinglePokemon(url);
@@ -52,6 +40,19 @@ const App = () => {
       console.log(error);
     }
   };
+
+  // const getRandomPokemons = () => {
+  //   const pokemons = [{}, {}, {}, {}];
+  //   let randomIndexes = [];
+  //   while (randomIndexes.length <= 4) {
+  //     let randNum = Math.floor(Math.random() * allPokemon.length);
+  //     if (randomIndexes.indexOf(randNum) === -1) randomIndexes.push(randNum);
+  //   }
+  //   return pokemons.map((emptySlot, i) => {
+  //     const randomIndex = randomIndexes[i];
+  //     return allPokemon[randomIndex];
+  //   });
+  // };
 
   const togglePokemonFavoriteStatus = (pokemonId) => {
     const pokemonInfoModifier = (updatedPokemons, pokemon) => {
@@ -85,7 +86,9 @@ const App = () => {
           render={() => (
             <Game
               getRandomPokemons={getRandomPokemons}
-              fetchSinglePokemon={fetchSinglePokemon}/>
+              fetchSinglePokemon={fetchSinglePokemon}
+              allPokemon={allPokemon}
+            />
           )}
         />}
         <Route path='/pokedex'
