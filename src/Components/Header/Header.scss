@@ -69,3 +69,12 @@ button {
     box-shadow: inset 3px 3px 13px black;
   }
 }
+
+@media screen and (min-width: 1310px){
+  header {
+    width: 50%;
+    margin-left: 25%;
+    background: #FF0000;
+  }
+
+}

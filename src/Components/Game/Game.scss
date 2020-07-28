@@ -44,26 +44,27 @@
 
 @media screen and (min-width: 1310px){
   
-.tile-holder {
-  display: flex;
-  justify-content: space-around;
-}
+  .tile-holder {
+    display: flex;
+    justify-content: space-around;
+  }
 
-.choices {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-self: center;
-}
+  .choices {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-self: center;
+  }
 
-.feedback-tile {
-  font-size: 13px;
-}
+  .feedback-tile {
+    font-size: 13px;
+  }
 
-.pokedex-outline {
-  left: 20%;
-  right: 20%;
-}
+  .pokedex-outline {
+    left: 20%;
+    right: 20%;
+  }
+
 
 }
 

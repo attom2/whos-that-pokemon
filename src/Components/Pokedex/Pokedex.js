@@ -33,7 +33,7 @@ const Pokedex = ({fetchSinglePokemon, addUserDetails}) => {
   return (
     <section className= "gameboy-outer">
       <section className="pokedex-outline">
-        <section className="pokedex-screen">
+        <section className="pokedex-screen block">
           <Select
             onChange={displaySinglePokemon}
             options={createPokeList()}
