@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "32c99231e8c0c5ffac9ca80aa36ae674",
+    "revision": "ad634a0743ef96d8309f5e0233b393cf",
     "url": "/whos-that-pokemon/index.html"
   },
   {
-    "revision": "032e0197f8fbb00d45c7",
+    "revision": "8fe2c341c6a6489f1466",
     "url": "/whos-that-pokemon/static/css/main.bd0f4ca5.chunk.css"
   },
   {
-    "revision": "57c238aaf19f538f74b9",
-    "url": "/whos-that-pokemon/static/js/2.5296fc7f.chunk.js"
+    "revision": "198d3d3dc8c4f62415a4",
+    "url": "/whos-that-pokemon/static/js/2.5f6ccf38.chunk.js"
   },
   {
     "revision": "c64c486544348f10a6d6c716950bc223",
-    "url": "/whos-that-pokemon/static/js/2.5296fc7f.chunk.js.LICENSE.txt"
+    "url": "/whos-that-pokemon/static/js/2.5f6ccf38.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "032e0197f8fbb00d45c7",
-    "url": "/whos-that-pokemon/static/js/main.a8d1fc31.chunk.js"
+    "revision": "8fe2c341c6a6489f1466",
+    "url": "/whos-that-pokemon/static/js/main.954204c2.chunk.js"
   },
   {
     "revision": "ee58db62f8c5cabe6246",
