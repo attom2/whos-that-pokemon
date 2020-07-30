@@ -19,6 +19,10 @@ The user has the capabilities to play a game of "Who's that pokemon?" and view a
 
 ## Setup
 
+Visit the deployed site - https://attom2.github.io/whos-that-pokemon/
+
+-- OR --
+
 Clone down this repository to your local machine.
 
 Once cloned, change into this repo's directy.
