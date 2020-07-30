@@ -101,18 +101,26 @@ select {
   display: block;
 }
 
-@media screen and (min-width: 750px) {
+
+@media screen and (min-width: 600px) {
+  .pokedex-screen {
+    width: 29vw;
+    width: 43vw;
+  }
+  .pokedex-outline {
+    left: 20%;
+    right: 20%;
+  }
+  .controller {
+    justify-content: space-evenly;
+  }
+}
+
+@media screen and (min-width: 900px) {
   .pokedex-screen {
     width: 29vw;
     height: 57vh;
   }
-
-  // .pokemon-pic {
-  //   width: 21vw;
-  //   height: 30vh;
-  //   max-width: 21vw;
-  //   max-height: 30vh;
-  // }
 
   .controller {
     justify-content: space-evenly;
@@ -123,7 +131,4 @@ select {
     right: 30%;
   }
 
-  html {
-    background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iNTAwIiBoZWlnaHQ9IjUwMCI+CjxmaWx0ZXIgaWQ9Im4iPgo8ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iLjciIG51bU9jdGF2ZXM9IjEwIiBzdGl0Y2hUaWxlcz0ic3RpdGNoIj48L2ZlVHVyYnVsZW5jZT4KPC9maWx0ZXI+CjxyZWN0IHdpZHRoPSI1MDAiIGhlaWdodD0iNTAwIiBmaWxsPSIjMDAwIj48L3JlY3Q+CjxyZWN0IHdpZHRoPSI1MDAiIGhlaWdodD0iNTAwIiBmaWx0ZXI9InVybCgjbikiIG9wYWNpdHk9IjAuNCI+PC9yZWN0Pgo8L3N2Zz4=");
-  }
 }
