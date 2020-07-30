@@ -5,11 +5,13 @@
   background: linear-gradient(to left, #FF0000 4%, #CC0000 100%);
   border: 2px solid black;
   font-family: 'Fira Mono', monospace;
-  height:77vh;
+  height: 76vh;
   width: minmax(400px, 800px);
   left: 0;
   position: absolute;
   right: 0;
+  border-top: none;
+  border-radius: 0 0 25px 25px;
 }
 
 .pokedex-screen {
@@ -101,24 +103,27 @@ select {
 
 @media screen and (min-width: 750px) {
   .pokedex-screen {
-    width: 38vw;
+    width: 29vw;
+    height: 57vh;
   }
 
-  .pokemon-pic {
-    width: 21vw;
-    height: 30vh;
-  }
+  // .pokemon-pic {
+  //   width: 21vw;
+  //   height: 30vh;
+  //   max-width: 21vw;
+  //   max-height: 30vh;
+  // }
 
   .controller {
     justify-content: space-evenly;
   }
 
   .pokedex-outline {
-    left: 25%;
-    right: 25%;
+    left: 30%;
+    right: 30%;
   }
 
   html {
-    background-color: #750000;
+    background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iNTAwIiBoZWlnaHQ9IjUwMCI+CjxmaWx0ZXIgaWQ9Im4iPgo8ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iLjciIG51bU9jdGF2ZXM9IjEwIiBzdGl0Y2hUaWxlcz0ic3RpdGNoIj48L2ZlVHVyYnVsZW5jZT4KPC9maWx0ZXI+CjxyZWN0IHdpZHRoPSI1MDAiIGhlaWdodD0iNTAwIiBmaWxsPSIjMDAwIj48L3JlY3Q+CjxyZWN0IHdpZHRoPSI1MDAiIGhlaWdodD0iNTAwIiBmaWx0ZXI9InVybCgjbikiIG9wYWNpdHk9IjAuNCI+PC9yZWN0Pgo8L3N2Zz4=");
   }
 }
