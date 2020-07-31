@@ -177,7 +177,7 @@ describe('App', () => {
       jest.advanceTimersByTime(2000);
     });
     const winningBtn2 = await waitFor(() => getByRole('button', { name: "charmander" }));
-
+    
     expect(winningBtn2).toBeInTheDocument();
     const losingBtn = await findByRole('button', { name: "ivysaur" });
 
